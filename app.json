@@ -1,0 +1,17 @@
+{
+  "name": "mts-app",
+  "displayName": "mts-app",
+  "expo": {
+    "name": "mts-app",
+    "slug": "expo-template-bare",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
