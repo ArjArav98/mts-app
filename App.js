@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import 'react-native-gesture-handler';
-import { View, KeyboardAvoidingView, Image, StyleSheet } from 'react-native';
-import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from './src/login';
-import { StackNavigator } from 'react-navigation';
 
-// const MyRoutes = StackNavigator({
-// 	Login: {
-// 		screen: LoginHome
-// 	},
-// 	Signup: {
-// 		screen: SignupHome
-// 	},
-// },
-// 	{
-// 		initialRouteName: 'Login'
-// 	}
-// );
+import { 	View, KeyboardAvoidingView, Image, 
+			StyleSheet, Text, ScrollView } from 'react-native';
+
+import { 	LoginInput, LoginButton, 
+			SmallLoginButton, BreakLine } from './src/login';
+			
+import { 	SectionHeader, CartTable, CartTableItem,
+			CartButton, HomeBreakLine } from './src/home';
+
+/*******/
+/* APP */
+/*******/
 
 export default function App() {
 	return (
-		<Home />
+		<CartHome />
 	);
 }
+
+/*************/
+/* LOGINHOME */
+/*************/
 
 function LoginHome() {
 
@@ -69,6 +70,10 @@ function LoginHome() {
 	);
 	
 }
+
+/**************/
+/* SIGNUPHOME */
+/**************/
 
 function SignupHome() {
 
@@ -122,6 +127,20 @@ function SignupHome() {
 		</KeyboardAvoidingView>
 	);
 	
+}
+
+/************/
+/* CARTHOME */
+/************/
+
+function CartHome() {
+	return (
+		<View>
+			<Text>
+				Hello World
+			</Text>
+		</View>
+	);
 }
 
 const loginStyles = StyleSheet.create({
@@ -188,12 +207,4 @@ const loginStyles = StyleSheet.create({
 	SignupFormContainer: {
 		flex: 2
 	}
-});
-
-function SectionHeader() {
-
-}
-
-const homeStyles = StyleSheet.create({
-	
 });
