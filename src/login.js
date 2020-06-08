@@ -5,8 +5,8 @@ import { Text, StyleSheet, TextInput, View } from 'react-native';
 export function LoginButton(props) {
 
 	let buttonStyle = (props.buttonStyle === "default")? 
-						styles.LoginButton : 
-						[styles.LoginButton, styles.InverseLoginButton];
+						[styles.LoginButton, props.style] : 
+						[styles.LoginButton, styles.InverseLoginButton, props.style];
 
 	return (
 		<Text style={buttonStyle}>
@@ -17,10 +17,19 @@ export function LoginButton(props) {
 
 /* This is the Secondary Login Button component. */
 export function SmallLoginButton(props) {
+
+	const buttonStyle = [styles.SmallLoginButton, props.style];
+
 	return (
-		<Text style={styles.SmallLoginButton}>
+		<Text style={buttonStyle}>
 			{ props.title }
 		</Text>
+	);
+}
+
+export function BreakLine(props) {
+	return (
+		<View style={{marginTop: '2%'}}></View>
 	);
 }
 
@@ -42,11 +51,13 @@ export function LoginInput(props) {
 		isPassword = false;
 	}
 
+	let inputStyles = [styles.LoginInputContainer, props.style];
+
 	return (
-		<View style={styles.LoginInputContainer}>
+		<View style={inputStyles}>
 			<TextInput style={styles.LoginInput}
 				placeholder={props.placeholder}
-				placeholderTextColor="black"
+				placeholderTextColor="lightblue"
 				keyboardType={keyboardType}
 				maxLength={maxLength}
 				secureTextEntry={isPassword}
@@ -58,9 +69,11 @@ export function LoginInput(props) {
 const styles = StyleSheet.create({
 	
 	LoginButton: {
-		padding: '4%',
-		borderWidth: 4,
+		paddingTop: '1.5%',
+		paddingBottom: '1.5%',
+		borderWidth: 3,
 		borderColor: 'blue',
+		borderRadius: 4,
 		backgroundColor: 'blue',
 		color: 'white',
 		textAlign: 'center',
@@ -80,15 +93,15 @@ const styles = StyleSheet.create({
 	},
 
 	LoginInputContainer: {
-		borderWidth: 1,
-		borderColor: 'grey',
-		padding: '4%'
+		borderWidth: 3,
+		borderColor: 'blue',
+		borderRadius: 4,
+		padding: '3%'
 	},
 	LoginInput: {
 		color: 'black',
 		fontSize: 18,
-		fontWeight: '500',
-		width: '90%',
+		width: '60%',
 		marginLeft: '5%'
 	}
 
