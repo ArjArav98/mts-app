@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Image, Dimensions } from "react-native";
-import { LoginButton, SmallLoginButton, LoginInput, BreakLine } from "./src/login";
+import React, { useState, useEffect } from 'react';
+import { View, KeyboardAvoidingView, Image, StyleSheet } from 'react-native';
+import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from './src/login';
 
 export default function App() {
+	return (
+		<View />
+	);
+}
+
+function LoginHome() {
 
 	return (
-		<View style={styles.LoginContainer}>
+		<KeyboardAvoidingView style={styles.LoginContainer}>
 			
 			<View style={styles.LogoContainer}>
 				<Image 	resizeMode="cover" 
@@ -44,7 +50,7 @@ export default function App() {
 			<LoginButton title="LOGIN" buttonStyle="default" style={styles.SubmitButton} />
 			</View>
 
-		</View>
+		</KeyboardAvoidingView>
 	);
 	
 }
@@ -74,8 +80,9 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	LoginOptions: {
-		width: '40%',
-		marginRight: '3%'
+		width: '42%',
+		marginLeft: '1.25%',
+		marginRight: '1.25%'
 	},
 
 	LoginFormContainer: {
@@ -99,7 +106,7 @@ const styles = StyleSheet.create({
 	},
 
 	SubmitContainer: {
-		flex: 0.5,
+		flex: 0.8,
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
 		alignItems: 'center',

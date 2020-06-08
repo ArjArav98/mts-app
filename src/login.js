@@ -1,27 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Text, StyleSheet, TextInput, View } from 'react-native';
 
+/**************/
+/* COMPONENTS */
+/**************/
+
 /* This is the Login Button (both default and inverse) component. */
 export function LoginButton(props) {
 
-	let buttonStyle = (props.buttonStyle === "default")? 
-						[styles.LoginButton, props.style] : 
-						[styles.LoginButton, styles.InverseLoginButton, props.style];
+	let containerStyle = 	(props.buttonStyle === "default")? 
+							[styles.LoginButtonContainer, props.style] : 
+							[styles.LoginButtonContainer, styles.InverseLoginButtonContainer, props.style];
 
+	let buttonStyle = 	(props.buttonStyle === "default")?
+						[styles.LoginButton, {color: 'white'}] :
+						[styles.LoginButton, {color: 'blue'}];
+	
 	return (
-		<Text style={buttonStyle}>
-			{ props.title }
-		</Text>
+		<View style={containerStyle}>
+			<Text style={buttonStyle}>
+				{ props.title }
+			</Text>
+		</View>
 	);
 }
 
 /* This is the Secondary Login Button component. */
 export function SmallLoginButton(props) {
-
-	const buttonStyle = [styles.SmallLoginButton, props.style];
-
 	return (
-		<Text style={buttonStyle}>
+		<Text style={[styles.SmallLoginButton, props.style]}>
 			{ props.title }
 		</Text>
 	);
@@ -66,21 +73,28 @@ export function LoginInput(props) {
 	);
 }
 
+/**************/
+/* STYLESHEET */
+/**************/
+
 const styles = StyleSheet.create({
 	
-	LoginButton: {
-		paddingTop: '1.5%',
-		paddingBottom: '1.5%',
+	LoginButtonContainer: {
+		paddingTop: '2.5%',
+		paddingBottom: '2.5%',
+		backgroundColor: 'blue',
+		color: 'white',
 		borderWidth: 3,
 		borderColor: 'blue',
 		borderRadius: 4,
-		backgroundColor: 'blue',
-		color: 'white',
+	},
+	LoginButton: {
 		textAlign: 'center',
 		fontWeight: '800',
-		fontSize: 18
+		fontSize: 18,
+		width: '100%'
 	},
-	InverseLoginButton: {
+	InverseLoginButtonContainer: {
 		backgroundColor: 'white',
 		color: 'blue'
 	},
