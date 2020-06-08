@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { 	Text, StyleSheet, TextInput, 
+import { 	Text, StyleSheet, TextInput, Image,
 			View, ScrollView, KeyboardAvoidingView  } from 'react-native';
 
 /**************/
@@ -22,27 +22,47 @@ export function SectionHeader(props) {
 export function CartTable(props) {
 
 	return (
-		<ScrollView style={[homeStyles.CartTableContainer,props.style]}>
+		
+		<View style={[homeStyles.CartTableContainer,props.style]}>
+			<ScrollView style={{width: '100%'}}>
 
-			<View style={homeStyles.CartTableRow}>
-				<View style={homeStyles.CartTableRowElement}>
-					<Text style={homeStyles.CartTableText}>Item Name</Text>
-				</View>
-				<View style={homeStyles.CartTableRowElement}>
-					<Text style={homeStyles.CartTableText}>Qty</Text>
-				</View>
-				<View style={homeStyles.CartTableRowElement}>
-					<Text style={homeStyles.CartTableText}>Price</Text>
-				</View>
-			</View>
+				<CartTableHeader />
 
-			<HomeBreakLine />
+				<HomeBreakLine />
 
-			<CartTableItem product="Horlicks 500g" price="450" />
+				<CartTableItem product="Horlicks 500g" price="450" />
+				<CartTableItem product="Odomos" price="450" />
+				<CartTableItem product="Horlicks 500g" price="450" />
+				<CartTableItem product="Colgate Toothpaste" price="450" />
+				<CartTableItem product="Horlicks 500g" price="450" />
+				<CartTableItem product="Lays 100g" price="450" />
+				<CartTableItem product="Horlicks 500g" price="450" />
+				<CartTableItem product="Vikko Vajradanti 100kg" price="450" />
 
-		</ScrollView>
+			</ScrollView>
+
+		</View>
+
 	);
 
+}
+
+export function CartTableHeader(){
+	
+	return (
+		<View style={homeStyles.CartTableRow}>
+			<View style={homeStyles.CartTableRowElement}>
+				<Text style={homeStyles.CartTableText}>Item Name</Text>
+			</View>
+			<View style={homeStyles.CartTableRowElement}>
+				<Text style={homeStyles.CartTableText}>Qty</Text>
+			</View>
+			<View style={homeStyles.CartTableRowElement}>
+				<Text style={homeStyles.CartTableText}>Price</Text>
+			</View>
+		</View>
+	);
+	
 }
 
 export function CartTableItem(props) {
@@ -54,14 +74,14 @@ export function CartTableItem(props) {
 			<View style={homeStyles.CartTableRowQtyElement}>
 				<View style={homeStyles.CartTableImgContainer}>
 					<Image style={homeStyles.CartTableImg}
-							source={require('./assets/images/add.png')} />
+							source={require('../assets/images/add.png')} />
 				</View>
-				<View style={[homeStyles.CartTableImgContainer,{flex:0.1}]}>
+				<View style={[homeStyles.CartTableImgContainer,{flex:0.3}]}>
 					<Text style={homeStyles.CartTableText}>0</Text>
 				</View>
 				<View style={homeStyles.CartTableImgContainer}>
 					<Image style={homeStyles.CartTableImg}
-							source={require('./assets/images/minus.png')} />
+							source={require('../assets/images/minus.png')} />
 				</View>
 			</View>
 			<View style={homeStyles.CartTableRowElement}>
@@ -110,18 +130,14 @@ const homeStyles = StyleSheet.create({
 	CartTableRow: {
 		width: '100%',
 		flexDirection: 'row',
-		padding: '2%'
+		paddingBottom: '3%'
 	},
 	CartTableRowElement: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
+		flex: 1
 	},
 	CartTableRowQtyElement: {
 		flex: 0.7,
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center',
+		flexDirection: 'row'
 	},
 	CartTableText: {
 		color: 'black',
@@ -129,6 +145,7 @@ const homeStyles = StyleSheet.create({
 		fontWeight: 'bold',
 		flexShrink: 1,
 		width: '100%',
+		justifyContent: 'center',
 		textAlign: 'center'
 	},
 	CartTableImgContainer: {
@@ -146,8 +163,6 @@ const homeStyles = StyleSheet.create({
 		borderWidth: 4,
 		borderColor: 'blue',
 		borderRadius: 4,
-		justifyContent: 'center',
-		alignItems: 'center',
 		padding: '1%'
 	},
 	CartButton: {

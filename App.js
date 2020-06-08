@@ -6,7 +6,7 @@ import { 	View, KeyboardAvoidingView, Image,
 
 import { 	LoginInput, LoginButton, 
 			SmallLoginButton, BreakLine } from './src/login';
-			
+
 import { 	SectionHeader, CartTable, CartTableItem,
 			CartButton, HomeBreakLine } from './src/home';
 
@@ -135,13 +135,46 @@ function SignupHome() {
 
 function CartHome() {
 	return (
-		<View>
-			<Text>
-				Hello World
-			</Text>
-		</View>
+		<KeyboardAvoidingView>
+
+			<HomeBreakLine />
+			<HomeBreakLine />
+			<HomeBreakLine />
+			<HomeBreakLine />
+
+			<SectionHeader style={homeStyles.CartSectionHeader} title="YOUR CART" />
+			<HomeBreakLine />
+
+			<CartTable style={homeStyles.CartTable} />
+
+			<View style={homeStyles.CartHomeButtonsList}>
+				<CartButton title="ADD ITEMS" style={homeStyles.CartHomeButton} />
+				<CartButton title="GENERATE BILL" style={homeStyles.CartHomeButton} />
+			</View>
+
+		</KeyboardAvoidingView>
 	);
 }
+
+const homeStyles = StyleSheet.create({
+	CartHomeContainer: {
+		width: '100%'
+	},
+
+	CartTable: {
+		marginBottom: '8%'
+	},
+
+	CartHomeButtonsList: {
+		width: '100%',
+		flexDirection: 'row'
+	},
+	CartHomeButton: {
+		flex: 1,
+		marginRight: '2%',
+		marginLeft: '2%'
+	}
+});
 
 const loginStyles = StyleSheet.create({
 	LoginContainer: {
