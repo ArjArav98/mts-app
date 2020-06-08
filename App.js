@@ -1,53 +1,68 @@
 import React, { useState, useEffect } from 'react';
+import 'react-native-gesture-handler';
 import { View, KeyboardAvoidingView, Image, StyleSheet } from 'react-native';
 import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from './src/login';
+import { StackNavigator } from 'react-navigation';
+
+// const MyRoutes = StackNavigator({
+// 	Login: {
+// 		screen: LoginHome
+// 	},
+// 	Signup: {
+// 		screen: SignupHome
+// 	},
+// },
+// 	{
+// 		initialRouteName: 'Login'
+// 	}
+// );
 
 export default function App() {
 	return (
-		<View />
+		<Home />
 	);
 }
 
 function LoginHome() {
 
 	return (
-		<KeyboardAvoidingView style={styles.LoginContainer}>
+		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
 			
-			<View style={styles.LogoContainer}>
+			<View style={loginStyles.LogoContainer}>
 				<Image 	resizeMode="cover" 
-						style={styles.LoginLogo} 
+						style={loginStyles.LoginLogo} 
 						source={require("./assets/images/logo.png")}
 				/>
 				<BreakLine />
 				<BreakLine />
 			</View>
 
-			<View style={styles.LoginOptionsContainer}>
-				<LoginButton title="LOGIN" buttonStyle="default" style={styles.LoginOptions} />
-				<LoginButton title="SIGNUP" style={styles.LoginOptions} />
+			<View style={loginStyles.LoginOptionsContainer}>
+				<LoginButton title="LOGIN" buttonStyle="default" style={loginStyles.LoginOptions} />
+				<LoginButton title="SIGNUP" style={loginStyles.LoginOptions} />
 			</View>
 
-			<View style={styles.LoginFormContainer}>
+			<View style={loginStyles.LoginFormContainer}>
 				<LoginInput 
-					style={styles.LoginFormInput}
+					style={loginStyles.LoginFormInput}
 					placeholder="Mobile Number"
 					type="number"
 				/>
 				<BreakLine />
 				<LoginInput 
-					style={styles.LoginFormInput}
+					style={loginStyles.LoginFormInput}
 					placeholder="Password"
 					type="password"
 				/>
 			</View>
 
-			<View style={styles.LoginOtherOptions}>
-				<SmallLoginButton title="Forgot Password" style={styles.OtherOptions} />
+			<View style={loginStyles.LoginOtherOptions}>
+				<SmallLoginButton title="Forgot Password" style={loginStyles.OtherOptions} />
 				<SmallLoginButton title="Login with OTP"/>
 			</View>
 
-			<View style={styles.SubmitContainer}>
-			<LoginButton title="LOGIN" buttonStyle="default" style={styles.SubmitButton} />
+			<View style={loginStyles.SubmitContainer}>
+			<LoginButton title="LOGIN" buttonStyle="default" style={loginStyles.SubmitButton} />
 			</View>
 
 		</KeyboardAvoidingView>
@@ -55,11 +70,66 @@ function LoginHome() {
 	
 }
 
-const styles = StyleSheet.create({
+function SignupHome() {
+
+	return (
+		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
+			
+			<View style={loginStyles.LogoContainer}>
+				<Image 	resizeMode="cover" 
+						style={loginStyles.LoginLogo} 
+						source={require("./assets/images/logo.png")}
+				/>
+				<BreakLine />
+				<BreakLine />
+			</View>
+
+			<View style={loginStyles.LoginOptionsContainer}>
+				<LoginButton 	title="BACK TO LOGIN" 
+								buttonStyle="default" 
+								style={loginStyles.SubmitButton}
+				/>
+			</View>
+
+			<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer]}>
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Name"
+					type="text"
+				/>
+				<BreakLine /><LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Mobile Number"
+					type="number"
+				/>
+				<BreakLine /><LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Address"
+					type="text"
+				/>
+				<BreakLine />
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Pincode"
+					type="pincode"
+				/>
+			</View>
+
+			<View style={loginStyles.SubmitContainer}>
+			<LoginButton title="SIGNUP" buttonStyle="default" style={loginStyles.SubmitButton} />
+			</View>
+
+		</KeyboardAvoidingView>
+	);
+	
+}
+
+const loginStyles = StyleSheet.create({
 	LoginContainer: {
 		width: '100%',
 		flexDirection: 'column',
-		flex: 1
+		flex: 1,
+		backgroundColor: 'white'
 	},
 
 	LogoContainer: {
@@ -113,5 +183,17 @@ const styles = StyleSheet.create({
 	},
 	SubmitButton: {
 		width: '70%',
+	},
+
+	SignupFormContainer: {
+		flex: 2
 	}
+});
+
+function SectionHeader() {
+
+}
+
+const homeStyles = StyleSheet.create({
+	
 });
