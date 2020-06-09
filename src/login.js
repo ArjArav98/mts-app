@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, StyleSheet, TextInput, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 /**************/
 /* COMPONENTS */
@@ -16,9 +17,11 @@ export function LoginButton(props) {
 						[styles.LoginButton, {color: 'white'}] :
 						[styles.LoginButton, {color: 'blue'}];
 	
+	let navigateFunction = (props.navigate)? ()=>props.navigate('Signup') : null ;
+
 	return (
 		<View style={containerStyle}>
-			<Text style={buttonStyle}>
+			<Text style={buttonStyle} onPress={navigateFunction}>
 				{ props.title }
 			</Text>
 		</View>

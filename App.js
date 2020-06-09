@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import 'react-native-gesture-handler';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+
+import { 	BarCodeScanner } from 'expo-barcode-scanner';
+import { 	StackNavigator } from 'react-navigation';
 
 import { 	View, KeyboardAvoidingView, Image, 
-			StyleSheet, Text, ScrollView,Button } from 'react-native';
+			StyleSheet, Text, ScrollView,Button, ImagePropTypes } from 'react-native';
 
 import { 	LoginInput, LoginButton, 
 			SmallLoginButton, BreakLine } from './src/login';
@@ -11,13 +13,40 @@ import { 	LoginInput, LoginButton,
 import { 	SectionHeader, CartTable, CartTableItem,
 			CartButton, HomeBreakLine } from './src/home';
 
+/**************/
+/* NAVIGATION */
+/**************/
+
+const Navbar = StackNavigator({
+	Login: {
+		screen: LoginHome
+	},
+	Signup: {
+		screen: SignupHome
+	},
+	AppHome: {
+		screen: Home
+	},
+	Cart: {
+		screen: CartHome
+	},
+	Barcode: {
+		screen: BarcodeScreen
+	}
+}, {
+	initialRouteName: 'Login',
+	defaultNavigationOptions: {
+		header: null
+	}
+});
+
 /*******/
 /* APP */
 /*******/
 
 export default function App() {
 	return (
-		<LoginHome />
+		<Navbar />
 	);
 }
 
@@ -25,9 +54,16 @@ export default function App() {
 /* LOGINHOME */
 /*************/
 
-function LoginHome() {
+function LoginHome(props) {
+
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
 
 	return (
+
 		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
 			
 			<View style={loginStyles.LogoContainer}>
@@ -64,12 +100,17 @@ function LoginHome() {
 			</View>
 
 			<View style={loginStyles.SubmitContainer}>
-			<LoginButton title="LOGIN" buttonStyle="default" style={loginStyles.SubmitButton} />
+				<LoginButton title="LOGIN" buttonStyle="default" 
+					style={loginStyles.SubmitButton} navigate={navigate} />
 			</View>
 
 		</KeyboardAvoidingView>
 	);
 	
+}
+
+function test() {
+	alert("hello world");
 }
 
 /**************/
