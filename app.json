@@ -2,14 +2,18 @@
   "name": "mts-app",
   "displayName": "mts-app",
   "expo": {
-    "name": "mts-app",
+	"name": "MTS",
+	"icon": "./assets/images/logo.png",
     "slug": "expo-template-bare",
     "version": "1.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "ios": {
+		"bundleIdentifier": "com.arjunaravind.mts",
+      	"buildNumber": "1.0.0"
+	},
+    "android": {
+		"package": "com.arjunaravind.mts",
+		"versionCode": 1
+	},
     "assetBundlePatterns": [
       "**/*"
     ]

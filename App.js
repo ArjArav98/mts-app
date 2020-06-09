@@ -242,7 +242,8 @@ function Home(props) {
 			<View style={homeStyles.HomeElemContainer}>
 				<SectionHeader title="CART LIST" style={homeStyles.HomeSectionHeader} />
 				<CartTable />
-				<CartButton title="CHECKOUT" style={homeStyles.HomeCartButton} />
+				<CartButton title="CHECKOUT" style={homeStyles.HomeCartButton}
+							navigate={navigate} navigateScreen={'Cart'} />
 			</View>
 
 		</View>
