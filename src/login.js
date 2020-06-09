@@ -17,7 +17,7 @@ export function LoginButton(props) {
 						[styles.LoginButton, {color: 'white'}] :
 						[styles.LoginButton, {color: 'blue'}];
 	
-	let navigateFunction = (props.navigate)? ()=>props.navigate('Signup') : null ;
+	let navigateFunction = (props.navigate)? ()=>props.navigate(props.navigateScreen) : null ;
 
 	return (
 		<View style={containerStyle}>

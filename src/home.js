@@ -88,9 +88,12 @@ export function CartTableItem(props) {
 
 /* This is the CartButton component. */
 export function CartButton(props) {
+	
+	let navigateFunction = (props.navigate)? ()=>props.navigate(props.navigateScreen) : null ;
+	
 	return (
 		<View style={[homeStyles.CartButtonContainer,props.style]}>
-			<Text style={homeStyles.CartButton}>{props.title}</Text>
+			<Text style={homeStyles.CartButton} onPress={navigateFunction}>{props.title}</Text>
 		</View>
 	);
 }

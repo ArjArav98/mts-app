@@ -12,6 +12,7 @@ import { 	LoginInput, LoginButton,
 
 import { 	SectionHeader, CartTable, CartTableItem,
 			CartButton, HomeBreakLine } from './src/home';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 /**************/
 /* NAVIGATION */
@@ -77,7 +78,8 @@ function LoginHome(props) {
 
 			<View style={loginStyles.LoginOptionsContainer}>
 				<LoginButton title="LOGIN" buttonStyle="default" style={loginStyles.LoginOptions} />
-				<LoginButton title="SIGNUP" style={loginStyles.LoginOptions} />
+				<LoginButton title="SIGNUP" style={loginStyles.LoginOptions} 
+							navigate={navigate} navigateScreen={'Signup'} />
 			</View>
 
 			<View style={loginStyles.LoginFormContainer}>
@@ -101,7 +103,7 @@ function LoginHome(props) {
 
 			<View style={loginStyles.SubmitContainer}>
 				<LoginButton title="LOGIN" buttonStyle="default" 
-					style={loginStyles.SubmitButton} navigate={navigate} />
+					style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'AppHome'} />
 			</View>
 
 		</KeyboardAvoidingView>
@@ -109,15 +111,17 @@ function LoginHome(props) {
 	
 }
 
-function test() {
-	alert("hello world");
-}
-
 /**************/
 /* SIGNUPHOME */
 /**************/
 
-function SignupHome() {
+function SignupHome(props) {
+
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
 
 	return (
 		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
@@ -135,6 +139,7 @@ function SignupHome() {
 				<LoginButton 	title="BACK TO LOGIN" 
 								buttonStyle="default" 
 								style={loginStyles.SubmitButton}
+								navigate={navigate} navigateScreen={'Login'}
 				/>
 			</View>
 
@@ -175,7 +180,14 @@ function SignupHome() {
 /* CARTHOME */
 /************/
 
-function CartHome() {
+function CartHome(props) {
+	
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
+	
 	return (
 		<KeyboardAvoidingView>
 
@@ -202,7 +214,14 @@ function CartHome() {
 /* HOME */
 /************/
 
-function Home() {
+function Home(props) {
+	
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
+	
 	return (
 		<View style={homeStyles.HomeContainer}>
 			
@@ -214,8 +233,10 @@ function Home() {
 				<Text style={homeStyles.HomeElemText}>
 					Tap the icon below to scan a barcode.
 				</Text>
-				<Image 	style={homeStyles.HomeElemImage} 
-						source={require('./assets/images/qr.png')} />
+				<TouchableOpacity style={homeStyles.HomeElemImageContainer} onPress={()=>navigate('Barcode')}>
+					<Image 	style={homeStyles.HomeElemImage} 
+							source={require('./assets/images/qr.png')} />
+				</TouchableOpacity>
 			</View>
 
 			<View style={homeStyles.HomeElemContainer}>
@@ -311,10 +332,12 @@ const homeStyles = StyleSheet.create({
 		color: 'black',
 		fontSize: 18
 	},
+	HomeElemImageContainer: {
+		marginTop: '7%'
+	},
 	HomeElemImage: {
 		height: 145,
 		width: 145,
-		marginTop: '8%'
 	},
 
 	HomeSectionHeader: {
