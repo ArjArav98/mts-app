@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontWeight: '800',
 		fontSize: 18,
+		fontWeight: 'bold',
 		width: '100%'
 	},
 	InverseLoginButtonContainer: {
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
 	SmallLoginButton: {
 		color: 'red',
 		fontSize: 17,
+		fontWeight: 'bold',
 		textAlign: 'center',
 		padding: '4%'
 	},
@@ -115,6 +117,7 @@ const styles = StyleSheet.create({
 	LoginInput: {
 		color: 'black',
 		fontSize: 18,
+		fontWeight: 'bold',
 		width: '60%',
 		marginLeft: '5%'
 	}

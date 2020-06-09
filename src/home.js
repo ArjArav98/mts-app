@@ -33,11 +33,6 @@ export function CartTable(props) {
 				<CartTableItem product="Horlicks 500g" price="450" />
 				<CartTableItem product="Odomos" price="450" />
 				<CartTableItem product="Horlicks 500g" price="450" />
-				<CartTableItem product="Colgate Toothpaste" price="450" />
-				<CartTableItem product="Horlicks 500g" price="450" />
-				<CartTableItem product="Lays 100g" price="450" />
-				<CartTableItem product="Horlicks 500g" price="450" />
-				<CartTableItem product="Vikko Vajradanti 100kg" price="450" />
 
 			</ScrollView>
 

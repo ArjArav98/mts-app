@@ -156,6 +156,32 @@ function CartHome() {
 	);
 }
 
+function Home() {
+	return (
+		<View style={homeStyles.HomeContainer}>
+			
+			<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>
+				<Text style={homeStyles.HomeElemText}>Welcome Master!</Text>
+				<Text style={homeStyles.HomeElemText}>
+					Don't forget to check out our offers!
+				</Text>
+				<Text style={homeStyles.HomeElemText}>
+					Tap the icon below to scan a barcode.
+				</Text>
+				<Image 	style={homeStyles.HomeElemImage} 
+						source={require('./assets/images/qr.png')} />
+			</View>
+
+			<View style={homeStyles.HomeElemContainer}>
+				<SectionHeader title="CART LIST" style={homeStyles.HomeSectionHeader} />
+				<CartTable />
+				<CartButton title="CHECKOUT" style={homeStyles.HomeCartButton} />
+			</View>
+
+		</View>
+	);
+}
+
 const homeStyles = StyleSheet.create({
 	CartHomeContainer: {
 		width: '100%'
@@ -173,6 +199,40 @@ const homeStyles = StyleSheet.create({
 		flex: 1,
 		marginRight: '2%',
 		marginLeft: '2%'
+	},
+
+	HomeContainer: {
+		width: '100%',
+		flex: 1
+	},
+	HomeElemContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	HomeElemContainer1: {
+		flex: 0.8,
+		paddingTop: '7%',
+		paddingBottom: '0%',
+		paddingLeft: '2%',
+		paddingRight: '2%',
+	},
+	HomeElemText: {
+		color: 'black',
+		fontSize: 18
+	},
+	HomeElemImage: {
+		height: 145,
+		width: 145,
+		marginTop: '8%'
+	},
+
+	HomeSectionHeader: {
+		width: '100%'
+	},
+	HomeCartButton: {
+		width: '60%',
+		marginTop: '7%'
 	}
 });
 
