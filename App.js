@@ -2,7 +2,7 @@ import React, { useState, useEffect, Component } from 'react';
 import 'react-native-gesture-handler';
 
 import { 	BarCodeScanner } from 'expo-barcode-scanner';
-import { 	StackNavigator } from 'react-navigation';
+import { 	StackNavigator,  } from 'react-navigation';
 
 import { 	View, KeyboardAvoidingView, Image, 
 			StyleSheet, Text, Button } from 'react-native';
@@ -45,9 +45,7 @@ const Navbar = StackNavigator({
 	},
 }, {
 	initialRouteName: 'Login',
-	defaultNavigationOptions: {
-		header: null
-	}
+	headerMode: 'none'
 });
 
 function UserVerificationHome(props) {
@@ -184,7 +182,7 @@ function PaymentHome(props){
 
 export default function App() {
 	return (
-		<Navbar />
+		<Navbar screenOptions={{headerShown: false}} />
 	);
 }
 
