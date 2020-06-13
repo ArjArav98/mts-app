@@ -1,173 +1,209 @@
-import React, { useState, useEffect } from "react";
-import { 	Text, StyleSheet, TextInput, Image,
-			View, ScrollView, KeyboardAvoidingView  } from 'react-native';
+import React, { Component } from "react";
+import { 	Text, StyleSheet, Image,
+			View, ScrollView  } from 'react-native';
 
 /**************/
 /* COMPONENTS */
 /**************/
 
-/* This is the Section Header component. */
-export function SectionHeader(props) {
+export class SectionHeader extends Component {
+	
+	render() {
+		return (
+			<View style={[this.styles.SectionHeaderContainer,this.props.style]}>
+				<Text style={this.styles.SectionHeader}>
+					{this.props.title}
+				</Text>
+			</View>
+		);
+	}
 
-	return (
-		<View style={[homeStyles.SectionHeaderContainer,props.style]}>
-			<Text style={homeStyles.SectionHeader}>
-				{props.title}
-			</Text>
-		</View>
-	);
+	styles = StyleSheet.create({
+		SectionHeaderContainer: {
+			backgroundColor: 'blue',
+			padding: '4%'
+		},
+		SectionHeader: {
+			width: '100%',
+			textAlign: 'center',
+			fontSize: 20,
+			fontWeight: 'bold',
+			color: 'white'
+		}
+	})
+
 }
 
 /* This is the CartTable component. */
-export function CartTable(props) {
+export class CartTable extends Component {
 
-	return (
+	render(){
+		return (
 		
-		<View style={[homeStyles.CartTableContainer,props.style]}>
-			<ScrollView style={{width: '100%'}}>
-
-				<CartTableHeader />
-
-				<HomeBreakLine />
-
-				<CartTableItem product="Horlicks 500g" price="450" />
-				<CartTableItem product="Odomos" price="450" />
-				<CartTableItem product="Horlicks 500g" price="450" />
-
-			</ScrollView>
-
-		</View>
-
-	);
-
-}
-
-export function CartTableHeader(){
+			<View style={[this.styles.CartTableContainer,this.props.style]}>
+				<ScrollView style={{width: '100%'}}>
 	
-	return (
-		<View style={homeStyles.CartTableRow}>
-			<View style={homeStyles.CartTableRowElement}>
-				<Text style={homeStyles.CartTableText}>Item Name</Text>
-			</View>
-			<View style={homeStyles.CartTableRowElement}>
-				<Text style={homeStyles.CartTableText}>Qty</Text>
-			</View>
-			<View style={homeStyles.CartTableRowElement}>
-				<Text style={homeStyles.CartTableText}>Price</Text>
-			</View>
-		</View>
-	);
+					<View style={this.styles.CartTableRow}>
+						<CartTableHeader title="Item Name" />
+						<CartTableHeader title="Qty" />
+						<CartTableHeader title="Price" />
+					</View>
 	
-}
-
-export function CartTableItem(props) {
-	return (
-		<View style={homeStyles.CartTableRow}>
-			<View style={homeStyles.CartTableRowElement}>
-				<Text style={homeStyles.CartTableText}>{props.product}</Text>
-			</View>
-			<View style={homeStyles.CartTableRowQtyElement}>
-				<View style={homeStyles.CartTableImgContainer}>
-					<Image style={homeStyles.CartTableImg}
-							source={require('../assets/images/add.png')} />
-				</View>
-				<View style={[homeStyles.CartTableImgContainer,{flex:0.3}]}>
-					<Text style={homeStyles.CartTableText}>0</Text>
-				</View>
-				<View style={homeStyles.CartTableImgContainer}>
-					<Image style={homeStyles.CartTableImg}
-							source={require('../assets/images/minus.png')} />
-				</View>
-			</View>
-			<View style={homeStyles.CartTableRowElement}>
-				<Text style={homeStyles.CartTableText}>Rs {props.price}</Text>
-			</View>
-		</View>
-	);
-}
-
-/* This is the CartButton component. */
-export function CartButton(props) {
+					<HomeBreakLine />
 	
-	let navigateFunction = (props.navigate)? ()=>props.navigate(props.navigateScreen) : null ;
+					<CartTableItem product="Horlicks 500g" price="450" />
+					<CartTableItem product="Odomos" price="450" />
+					<CartTableItem product="Horlicks 500g" price="450" />
 	
-	return (
-		<View style={[homeStyles.CartButtonContainer,props.style]}>
-			<Text style={homeStyles.CartButton} onPress={navigateFunction}>{props.title}</Text>
-		</View>
-	);
-}
-
-/* This is the BreakLine component. */
-export function HomeBreakLine(props) {
-	return (
-		<View style={{marginTop: '2%'}}></View>
-	);
-}
-
-/**************/
-/* STYLESHEET */
-/**************/
-
-const homeStyles = StyleSheet.create({
-	SectionHeaderContainer: {
-		backgroundColor: 'blue',
-		padding: '4%'
-	},
-	SectionHeader: {
-		width: '100%',
-		textAlign: 'center',
-		fontSize: 20,
-		fontWeight: 'bold',
-		color: 'white'
-	},
-
-	CartTableContainer: {
-		width: '100%',
-	},
-	CartTableRow: {
-		width: '100%',
-		flexDirection: 'row',
-		paddingBottom: '3%'
-	},
-	CartTableRowElement: {
-		flex: 1
-	},
-	CartTableRowQtyElement: {
-		flex: 0.7,
-		flexDirection: 'row'
-	},
-	CartTableText: {
-		color: 'black',
-		fontSize: 20,
-		fontWeight: 'bold',
-		flexShrink: 1,
-		width: '100%',
-		justifyContent: 'center',
-		textAlign: 'center'
-	},
-	CartTableImgContainer: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	CartTableImg: {
-		width: 20,
-		height: 20
-	},
-
-	CartButtonContainer: {
-		backgroundColor: 'blue',
-		borderWidth: 4,
-		borderColor: 'blue',
-		borderRadius: 4,
-		padding: '1%'
-	},
-	CartButton: {
-		width: '100%',
-		textAlign: 'center',
-		color: 'white',
-		fontSize: 18,
-		fontWeight: 'bold'
+				</ScrollView>
+	
+			</View>
+	
+		)
 	}
-});
+
+	styles = StyleSheet.create({
+		CartTableContainer: {
+			width: '100%',
+		},
+		CartTableRow: {
+			width: '100%',
+			flexDirection: 'row',
+			paddingBottom: '3%'
+		}
+	}) 
+
+}
+
+/* This is the CartTableHeader component. */
+export class CartTableHeader extends Component {
+	
+	render(){
+		return (
+			<View style={this.styles.CartTableRowElement}>
+				<Text style={this.styles.CartTableText}>{this.props.title}</Text>
+			</View>
+		);
+	}
+	
+	styles=StyleSheet.create({
+		CartTableRowElement: {
+			flex: 1
+		},
+		CartTableText: {
+			color: 'black',
+			fontSize: 20,
+			fontWeight: 'bold',
+			flexShrink: 1,
+			width: '100%',
+			justifyContent: 'center',
+			textAlign: 'center'
+		},
+	})
+
+}
+
+/* This is the CartTableItem component. */
+export class CartTableItem extends Component {
+
+	render() {
+		return (
+			<View style={this.styles.CartTableRow}>
+				<View style={this.styles.CartTableRowElement}>
+					<Text style={this.styles.CartTableText}>{this.props.product}</Text>
+				</View>
+				<View style={this.styles.CartTableRowQtyElement}>
+					<View style={this.styles.CartTableImgContainer}>
+						<Image style={this.styles.CartTableImg}
+								source={require('../assets/images/add.png')} />
+					</View>
+					<View style={[this.styles.CartTableImgContainer,{flex:0.3}]}>
+						<Text style={this.styles.CartTableText}>0</Text>
+					</View>
+					<View style={this.styles.CartTableImgContainer}>
+						<Image style={this.styles.CartTableImg}
+								source={require('../assets/images/minus.png')} />
+					</View>
+				</View>
+				<View style={this.styles.CartTableRowElement}>
+					<Text style={this.styles.CartTableText}>Rs {this.props.price}</Text>
+				</View>
+			</View>
+		);
+	}
+
+	styles = StyleSheet.create({
+		CartTableRow: {
+			width: '100%',
+			flexDirection: 'row',
+			paddingBottom: '3%'
+		},
+		CartTableRowElement: {
+			flex: 1
+		},
+		CartTableRowQtyElement: {
+			flex: 0.7,
+			flexDirection: 'row'
+		},
+		CartTableText: {
+			color: 'black',
+			fontSize: 20,
+			fontWeight: 'bold',
+			flexShrink: 1,
+			width: '100%',
+			justifyContent: 'center',
+			textAlign: 'center'
+		},
+		CartTableImgContainer: {
+			flex: 1,
+			justifyContent: 'center',
+			alignItems: 'center'
+		},
+		CartTableImg: {
+			width: 20,
+			height: 20
+		},
+	})
+	
+}
+
+/* This is the CartButton Component. */
+export class CartButton extends Component {
+
+	render() {
+		let navigateFunction = (this.props.navigate)? ()=>props.navigate(this.props.navigateScreen) : null ;
+	
+		return (
+			<View style={[this.styles.CartButtonContainer,this.props.style]}>
+				<Text style={this.styles.CartButton} onPress={navigateFunction}>{this.props.title}</Text>
+			</View>
+		);
+	}
+
+	styles = StyleSheet.create({
+		CartButtonContainer: {
+			backgroundColor: 'blue',
+			borderWidth: 4,
+			borderColor: 'blue',
+			borderRadius: 4,
+			padding: '1%'
+		},
+		CartButton: {
+			width: '100%',
+			textAlign: 'center',
+			color: 'white',
+			fontSize: 18,
+			fontWeight: 'bold'
+		}
+	})
+
+}
+
+/* This is the HomeBreakLine component.	 */
+export class HomeBreakLine extends Component {
+	render() {
+		return (
+			<View style={{marginTop: '2%'}}></View>
+		);
+	}
+}

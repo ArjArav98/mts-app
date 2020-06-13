@@ -1,128 +1,135 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import { Text, StyleSheet, TextInput, View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 
 /**************/
 /* COMPONENTS */
 /**************/
 
 /* This is the Login Button (both default and inverse) component. */
-export function LoginButton(props) {
+export class LoginButton extends Component {
 
-	let containerStyle = 	(props.buttonStyle === "default")? 
-							[styles.LoginButtonContainer, props.style] : 
-							[styles.LoginButtonContainer, styles.InverseLoginButtonContainer, props.style];
+	render() {
+		let containerStyle = 	(this.props.buttonStyle === "default")? 
+							[this.styles.LoginButtonContainer, this.props.style] : 
+							[this.styles.LoginButtonContainer, this.styles.InverseLoginButtonContainer, this.props.style];
 
-	let buttonStyle = 	(props.buttonStyle === "default")?
-						[styles.LoginButton, {color: 'white'}] :
-						[styles.LoginButton, {color: 'blue'}];
-	
-	let navigateFunction = (props.navigate)? ()=>props.navigate(props.navigateScreen) : null ;
+		let buttonStyle = 	(this.props.buttonStyle === "default")?
+							[this.styles.LoginButton, {color: 'white'}] :
+							[this.styles.LoginButton, {color: 'blue'}];
+		
+		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
 
-	return (
-		<View style={containerStyle}>
-			<Text style={buttonStyle} onPress={navigateFunction}>
-				{ props.title }
-			</Text>
-		</View>
-	);
+		return (
+			<View style={containerStyle}>
+				<Text style={buttonStyle} onPress={navigateFunction}>
+					{ this.props.title }
+				</Text>
+			</View>
+		);
+	}
+
+	styles = StyleSheet.create({
+		LoginButtonContainer: {
+			paddingTop: '2.5%',
+			paddingBottom: '2.5%',
+			backgroundColor: 'blue',
+			color: 'white',
+			borderWidth: 3,
+			borderColor: 'blue',
+			borderRadius: 4,
+		},
+		LoginButton: {
+			textAlign: 'center',
+			fontWeight: '800',
+			fontSize: 18,
+			fontWeight: 'bold',
+			width: '100%'
+		},
+		InverseLoginButtonContainer: {
+			backgroundColor: 'white',
+			color: 'blue'
+		}
+	})
 }
 
 /* This is the Secondary Login Button component. */
-export function SmallLoginButton(props) {
-	return (
-		<Text style={[styles.SmallLoginButton, props.style]}>
-			{ props.title }
-		</Text>
-	);
-}
-
-export function BreakLine(props) {
-	return (
-		<View style={{marginTop: '2%'}}></View>
-	);
-}
-
-/* This is the Login Input component. */
-export function LoginInput(props) {
-
-	var keyboardType = "default";
-	var maxLength = 100;
-	var isPassword = false;
-
-	if(props.type === "password") {
-		keyboardType = "default";
-		maxLength = 50;
-		isPassword = true;
-	}
-	else if(props.type === "number" || props.type === "pincode") {
-		keyboardType = "number-pad";
-		maxLength = (props.type === "number")? 10 : 6;
-		isPassword = false;
-	}
-
-	let inputStyles = [styles.LoginInputContainer, props.style];
-
-	return (
-		<View style={inputStyles}>
-			<TextInput style={styles.LoginInput}
-				placeholder={props.placeholder}
-				placeholderTextColor="lightblue"
-				keyboardType={keyboardType}
-				maxLength={maxLength}
-				secureTextEntry={isPassword}
-			/>
-		</View>
-	);
-}
-
-/**************/
-/* STYLESHEET */
-/**************/
-
-const styles = StyleSheet.create({
+export class SmallLoginButton extends Component {
 	
-	LoginButtonContainer: {
-		paddingTop: '2.5%',
-		paddingBottom: '2.5%',
-		backgroundColor: 'blue',
-		color: 'white',
-		borderWidth: 3,
-		borderColor: 'blue',
-		borderRadius: 4,
-	},
-	LoginButton: {
-		textAlign: 'center',
-		fontWeight: '800',
-		fontSize: 18,
-		fontWeight: 'bold',
-		width: '100%'
-	},
-	InverseLoginButtonContainer: {
-		backgroundColor: 'white',
-		color: 'blue'
-	},
+	render() {
+		return (
+			<Text style={[this.styles.SmallLoginButton, this.props.style]}>
+				{ this.props.title }
+			</Text>
+		);
+	}
+	
+	styles = StyleSheet.create({
+		SmallLoginButton: {
+			color: 'red',
+			fontSize: 17,
+			fontWeight: 'bold',
+			textAlign: 'center',
+			padding: '4%'
+		}
+	})
 
-	SmallLoginButton: {
-		color: 'red',
-		fontSize: 17,
-		fontWeight: 'bold',
-		textAlign: 'center',
-		padding: '4%'
-	},
+}
 
-	LoginInputContainer: {
-		borderWidth: 3,
-		borderColor: 'blue',
-		borderRadius: 4,
-		padding: '3%'
-	},
-	LoginInput: {
-		color: 'black',
-		fontSize: 18,
-		fontWeight: 'bold',
-		width: '60%',
-		marginLeft: '5%'
+export class BreakLine extends Component {
+	render() {
+		return (
+			<View style={{marginTop: '2%'}}></View>
+		);
+	}
+}
+
+export class LoginInput extends Component {
+
+	render() {
+		var keyboardType = "default";
+		var maxLength = 100;
+		var isPassword = false;
+
+		if(this.props.type === "password") {
+			keyboardType = "default";
+			maxLength = 50;
+			isPassword = true;
+		}
+		else if(this.props.type === "number" || this.props.type === "pincode") {
+			keyboardType = "number-pad";
+			maxLength = (this.props.type === "number")? 10 : 6;
+			isPassword = false;
+		}
+
+		let inputStyles = [this.styles.LoginInputContainer, this.props.style];
+
+		return (
+			<View style={inputStyles}>
+				<TextInput style={this.styles.LoginInput}
+					placeholder={this.props.placeholder}
+					placeholderTextColor="lightblue"
+					keyboardType={keyboardType}
+					maxLength={maxLength}
+					secureTextEntry={isPassword}
+				/>
+			</View>
+		);
 	}
 
-});
+	styles = StyleSheet.create({
+		LoginInputContainer: {
+			borderWidth: 3,
+			borderColor: 'blue',
+			borderRadius: 4,
+			padding: '3%'
+		},
+		LoginInput: {
+			color: 'black',
+			fontSize: 18,
+			fontWeight: 'bold',
+			width: '60%',
+			marginLeft: '5%'
+		}
+	})
+
+}

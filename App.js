@@ -5,12 +5,12 @@ import { 	BarCodeScanner } from 'expo-barcode-scanner';
 import { 	StackNavigator } from 'react-navigation';
 
 import { 	View, KeyboardAvoidingView, Image, 
-			StyleSheet, Text, ScrollView,Button, ImagePropTypes } from 'react-native';
+			StyleSheet, Text, Button } from 'react-native';
 
 import { 	LoginInput, LoginButton, 
 			SmallLoginButton, BreakLine } from './src/login';
 
-import { 	SectionHeader, CartTable, CartTableItem,
+import { 	SectionHeader, CartTable,
 			CartButton, HomeBreakLine } from './src/home';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
