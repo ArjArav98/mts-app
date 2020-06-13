@@ -37,8 +37,11 @@ const Navbar = StackNavigator({
 	Payment: {
 		screen: PaymentHome
 	},
-	SucessfulPayment: {
-		screen: PaymentSuccessfulHome
+	PaymentSuccess: {
+		screen: PaymentSuccessHome
+	},
+	UserVerification: {
+		screen: UserVerificationHome
 	},
 }, {
 	initialRouteName: 'Login',
@@ -47,7 +50,61 @@ const Navbar = StackNavigator({
 	}
 });
 
-function PaymentSuccessfulHome(props){
+function UserVerificationHome(props) {
+
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
+
+	return (
+
+		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
+			
+			<View style={loginStyles.LogoContainer}>
+				<Image 	resizeMode="cover" 
+						style={loginStyles.LoginLogo} 
+						source={require("./assets/images/logo.png")}
+				/>
+				<BreakLine />
+				<BreakLine />
+			</View>
+
+			<View style={loginStyles.LoginOptionsContainer}>
+				<LoginButton 	title="HI, USERNAME!" buttonStyle="default" 
+								style={[loginStyles.LoginOptions, {width: '86%'}]} />
+			</View>
+
+			<View style={loginStyles.LoginFormContainer}>
+				<Text style={{fontSize: 18, fontWeight: 'bold'}}>Mobile Number Verification</Text>
+				<BreakLine />
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Enter OTP"
+					type="password"
+				/>
+			</View>
+
+			<View style={[loginStyles.LoginOtherOptions,{margin: 0}]}>
+				<SmallLoginButton 	title="Resend OTP" style={{width: '100%', textAlign: 'center'}} />
+			</View>
+
+			<View style={loginStyles.SubmitContainer}>
+				<LoginButton title="VERIFY" buttonStyle="default" 
+					style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'Login'} />
+			</View>
+
+		</KeyboardAvoidingView>
+	);
+	
+}
+
+/************************/
+/* PAYMENT SUCCESS HOME */
+/************************/
+
+function PaymentSuccessHome(props){
 
 	let navigationOptions = {
 		header: null
@@ -110,7 +167,7 @@ function PaymentHome(props){
 					Please show this code at the billing counter to make your payment.
 				</Text>
 				<TouchableOpacity 	style={homeStyles.HomeElemImageContainer}
-									onPress={()=>navigate('SucessfulPayment')}>
+									onPress={()=>navigate('PaymentSuccess')}>
 					<Image 	style={homeStyles.HomeElemImage} 
 							source={require('./assets/images/qr.png')} />
 				</TouchableOpacity>
@@ -248,7 +305,8 @@ function SignupHome(props) {
 			</View>
 
 			<View style={loginStyles.SubmitContainer}>
-			<LoginButton title="SIGNUP" buttonStyle="default" style={loginStyles.SubmitButton} />
+				<LoginButton 	title="SIGNUP" buttonStyle="default" style={loginStyles.SubmitButton}
+								navigate={navigate} navigateScreen={'UserVerification'} />
 			</View>
 
 		</KeyboardAvoidingView>
