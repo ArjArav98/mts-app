@@ -53,7 +53,6 @@ export class CartTable extends Component {
 	
 					<CartTableItem product="Horlicks 500g" price="450" />
 					<CartTableItem product="Odomos" price="450" />
-					<CartTableItem product="Horlicks 500g" price="450" />
 	
 				</ScrollView>
 	
@@ -81,7 +80,9 @@ export class CartTableHeader extends Component {
 	render(){
 		return (
 			<View style={this.styles.CartTableRowElement}>
-				<Text style={this.styles.CartTableText}>{this.props.title}</Text>
+				<View style={this.styles.CartTableRowElement}>
+					<Text style={this.styles.CartTableText}>{this.props.title}</Text>
+				</View>
 			</View>
 		);
 	}
@@ -108,25 +109,27 @@ export class CartTableItem extends Component {
 
 	render() {
 		return (
-			<View style={this.styles.CartTableRow}>
-				<View style={this.styles.CartTableRowElement}>
-					<Text style={this.styles.CartTableText}>{this.props.product}</Text>
-				</View>
-				<View style={this.styles.CartTableRowQtyElement}>
-					<View style={this.styles.CartTableImgContainer}>
-						<Image style={this.styles.CartTableImg}
-								source={require('../assets/images/add.png')} />
+			<View style={[this.styles.CartTableRow,{paddingBottom: '2%'}]}>
+				<View style={this.styles.CartTableRow}>
+					<View style={this.styles.CartTableRowElement}>
+						<Text style={this.styles.CartTableText}>{this.props.product}</Text>
 					</View>
-					<View style={[this.styles.CartTableImgContainer,{flex:0.3}]}>
-						<Text style={this.styles.CartTableText}>0</Text>
+					<View style={this.styles.CartTableRowQtyElement}>
+						<View style={this.styles.CartTableImgContainer}>
+							<Image style={this.styles.CartTableImg}
+									source={require('../assets/images/add.png')} />
+						</View>
+						<View style={[this.styles.CartTableImgContainer,{flex:0.3}]}>
+							<Text style={this.styles.CartTableText}>0</Text>
+						</View>
+						<View style={this.styles.CartTableImgContainer}>
+							<Image style={this.styles.CartTableImg}
+									source={require('../assets/images/minus.png')} />
+						</View>
 					</View>
-					<View style={this.styles.CartTableImgContainer}>
-						<Image style={this.styles.CartTableImg}
-								source={require('../assets/images/minus.png')} />
+					<View style={this.styles.CartTableRowElement}>
+						<Text style={this.styles.CartTableText}>Rs {this.props.price}</Text>
 					</View>
-				</View>
-				<View style={this.styles.CartTableRowElement}>
-					<Text style={this.styles.CartTableText}>Rs {this.props.price}</Text>
 				</View>
 			</View>
 		);
@@ -135,8 +138,7 @@ export class CartTableItem extends Component {
 	styles = StyleSheet.create({
 		CartTableRow: {
 			width: '100%',
-			flexDirection: 'row',
-			paddingBottom: '3%'
+			flexDirection: 'row'
 		},
 		CartTableRowElement: {
 			flex: 1
@@ -171,7 +173,7 @@ export class CartTableItem extends Component {
 export class CartButton extends Component {
 
 	render() {
-		let navigateFunction = (this.props.navigate)? ()=>props.navigate(this.props.navigateScreen) : null ;
+		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
 	
 		return (
 			<View style={[this.styles.CartButtonContainer,this.props.style]}>

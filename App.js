@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import 'react-native-gesture-handler';
 
 import { 	BarCodeScanner } from 'expo-barcode-scanner';
@@ -7,12 +7,12 @@ import { 	StackNavigator } from 'react-navigation';
 import { 	View, KeyboardAvoidingView, Image, 
 			StyleSheet, Text, Button } from 'react-native';
 
-import { 	LoginInput, LoginButton, 
+import { 	LoginInput, LoginButton,
 			SmallLoginButton, BreakLine } from './src/login';
 
 import { 	SectionHeader, CartTable,
 			CartButton, HomeBreakLine } from './src/home';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 
 /**************/
 /* NAVIGATION */
@@ -33,6 +33,9 @@ const Navbar = StackNavigator({
 	},
 	Barcode: {
 		screen: BarcodeScreen
+	},
+	Payment: {
+		screen: PaymentHome
 	}
 }, {
 	initialRouteName: 'Login',
@@ -40,6 +43,34 @@ const Navbar = StackNavigator({
 		header: null
 	}
 });
+
+function PaymentHome(props){
+
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
+	
+	return (
+		<View style={homeStyles.HomeContainer}>
+			
+			<SectionHeader title="YOUR BILL" style={{width: '100%'}}/>
+			<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>
+				<Text style={homeStyles.HomeElemText}>Get rid of the long queue!</Text>
+				<Text style={homeStyles.HomeElemText}>
+					Please show this code at the billing counter to make your payment.
+				</Text>
+				<TouchableOpacity style={homeStyles.HomeElemImageContainer} onPress={()=>navigate('Barcode')}>
+					<Image 	style={homeStyles.HomeElemImage} 
+							source={require('./assets/images/qr.png')} />
+				</TouchableOpacity>
+			</View>
+
+		</View>
+	);
+
+}
 
 /*******/
 /* APP */
@@ -189,7 +220,7 @@ function CartHome(props) {
 	let { navigate } = props.navigation;
 	
 	return (
-		<KeyboardAvoidingView>
+		<ScrollView>
 
 			<HomeBreakLine />
 			<HomeBreakLine />
@@ -203,10 +234,13 @@ function CartHome(props) {
 
 			<View style={homeStyles.CartHomeButtonsList}>
 				<CartButton title="ADD ITEMS" style={homeStyles.CartHomeButton} />
-				<CartButton title="GENERATE BILL" style={homeStyles.CartHomeButton} />
+				<CartButton title="GENERATE BILL" style={homeStyles.CartHomeButton}
+							navigate={navigate} navigateScreen={'Payment'} />
 			</View>
 
-		</KeyboardAvoidingView>
+			<HomeBreakLine />
+
+		</ScrollView>
 	);
 }
 
@@ -331,7 +365,8 @@ const homeStyles = StyleSheet.create({
 	},
 	HomeElemText: {
 		color: 'black',
-		fontSize: 18
+		fontSize: 18,
+		textAlign: 'center'
 	},
 	HomeElemImageContainer: {
 		marginTop: '7%'
