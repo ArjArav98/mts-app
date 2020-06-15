@@ -56,8 +56,11 @@ export class LoginButton extends Component {
 export class SmallLoginButton extends Component {
 	
 	render() {
+
+		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
+
 		return (
-			<Text style={[this.styles.SmallLoginButton, this.props.style]}>
+			<Text style={[this.styles.SmallLoginButton, this.props.style]} onPress={navigateFunction}>
 				{ this.props.title }
 			</Text>
 		);
@@ -120,11 +123,13 @@ export class LoginInput extends Component {
 		LoginInputContainer: {
 			borderWidth: 3,
 			borderColor: 'blue',
+			backgroundColor: 'white',
 			borderRadius: 4,
 			padding: '3%'
 		},
 		LoginInput: {
 			color: 'black',
+			backgroundColor: 'white',
 			fontSize: 18,
 			fontWeight: 'bold',
 			width: '60%',

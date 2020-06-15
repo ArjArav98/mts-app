@@ -1,8 +1,10 @@
 import React, { useState, useEffect, Component } from 'react';
 import 'react-native-gesture-handler';
 
-import { 	BarCodeScanner } from 'expo-barcode-scanner';
-import { 	StackNavigator,  } from 'react-navigation';
+import { BarCodeScanner } from 'expo-barcode-scanner';
+import { StackNavigator } from 'react-navigation';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { 	View, KeyboardAvoidingView, Image, 
 			StyleSheet, Text, Button } from 'react-native';
@@ -43,10 +45,237 @@ const Navbar = StackNavigator({
 	UserVerification: {
 		screen: UserVerificationHome
 	},
+	ForgotPassword: {
+		screen: ForgotPasswordHome
+	},
+	ResetPassword: {
+		screen: ResetPasswordHome
+	},
+	OTPLogin: {
+		screen: OTPLoginHome
+	},
+	OTPLoginVerification: {
+		screen: OTPLoginVerificationHome
+	}
 }, {
 	initialRouteName: 'Login',
 	headerMode: 'none'
 });
+
+function OTPLoginVerificationHome(props) {
+
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
+
+	return (
+
+		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
+			
+			<View style={loginStyles.LogoContainer}>
+				<Image 	resizeMode="cover" 
+						style={loginStyles.LoginLogo} 
+						source={require("./assets/images/logo.png")}
+				/>
+				<BreakLine />
+				<BreakLine />
+			</View>
+
+			<View style={[loginStyles.LoginOptionsContainer, {flex: 0.7}]}>
+				<LoginButton 	title="LOGIN VIA OTP" buttonStyle="default"
+								style={[loginStyles.LoginOptions, {width: '86%'}]} />
+			</View>
+
+			<View style={[loginStyles.LoginFormContainer, {flex: 0.2}]}>
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Enter OTP"
+					type="number"
+				/>
+			</View>
+
+			<View style={[loginStyles.LoginOtherOptions]}>
+				<SmallLoginButton 	title="Login" style={loginStyles.OtherOptions}
+									navigate={navigate} navigateScreen={'Login'}  />
+				<SmallLoginButton title="Signup" navigate={navigate} navigateScreen={'Signup'}/>
+			</View>
+
+			<View style={loginStyles.SubmitContainer}>
+				<LoginButton 	title="LOGIN" buttonStyle="default" style={loginStyles.SubmitButton}
+								navigate={navigate} navigateScreen={'AppHome'} />
+			</View>
+
+		</KeyboardAvoidingView>
+	);
+	
+}
+
+function OTPLoginHome(props) {
+
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
+
+	return (
+
+		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
+			
+			<View style={loginStyles.LogoContainer}>
+				<Image 	resizeMode="cover" 
+						style={loginStyles.LoginLogo} 
+						source={require("./assets/images/logo.png")}
+				/>
+				<BreakLine />
+				<BreakLine />
+			</View>
+
+			<View style={[loginStyles.LoginOptionsContainer, {flex: 0.5}]}>
+				<LoginButton 	title="LOGIN VIA OTP" buttonStyle="default"
+								style={[loginStyles.LoginOptions, {width: '86%'}]} />
+			</View>
+
+			<View style={[loginStyles.LoginFormContainer, {flex: 0.5}]}>
+				<BreakLine />
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Enter Mobile Number"
+					type="number"
+				/>
+			</View>
+
+			<View style={[loginStyles.LoginOtherOptions]}>
+				<SmallLoginButton 	title="Login" style={loginStyles.OtherOptions}
+									navigate={navigate} navigateScreen={'Login'}  />
+				<SmallLoginButton title="Signup" navigate={navigate} navigateScreen={'Signup'} />
+			</View>
+
+			<View style={loginStyles.SubmitContainer}>
+				<LoginButton 	title="CONTINUE" buttonStyle="default" style={loginStyles.SubmitButton}
+								navigate={navigate} navigateScreen={'OTPLoginVerification'} />
+			</View>
+
+		</KeyboardAvoidingView>
+	);
+	
+}
+
+function ResetPasswordHome(props) {
+
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
+
+	return (
+
+		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
+			
+			<View style={loginStyles.LogoContainer}>
+				<Image 	resizeMode="cover" 
+						style={loginStyles.LoginLogo} 
+						source={require("./assets/images/logo.png")}
+				/>
+				<BreakLine />
+				<BreakLine />
+			</View>
+
+			<View style={[loginStyles.LoginOptionsContainer, {flex: 0.8}]}>
+				<LoginButton 	title="HI, USERNAME!" buttonStyle="default"
+								style={[loginStyles.LoginOptions, {width: '86%'}]} />
+			</View>
+
+			<View style={[loginStyles.LoginFormContainer, {flex: 1.2}]}>
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Enter Password"
+					type="password"
+				/>
+				<BreakLine />
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Confirm Password"
+					type="password"
+				/>
+				<BreakLine />
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Enter OTP"
+					type="number"
+				/>
+			</View>
+
+			<View style={loginStyles.LoginOtherOptions}>
+				<SmallLoginButton 	title="Login" style={loginStyles.OtherOptions}
+									navigate={navigate} navigateScreen={'Login'}  />
+				<SmallLoginButton title="Login with OTP"/>
+			</View>
+
+			<View style={loginStyles.SubmitContainer}>
+				<LoginButton title="CONTINUE" buttonStyle="default" 
+					style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'Login'} />
+			</View>
+
+		</KeyboardAvoidingView>
+	);
+	
+}
+
+function ForgotPasswordHome(props) {
+
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
+
+	return (
+
+		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
+			
+			<View style={loginStyles.LogoContainer}>
+				<Image 	resizeMode="cover" 
+						style={loginStyles.LoginLogo} 
+						source={require("./assets/images/logo.png")}
+				/>
+				<BreakLine />
+				<BreakLine />
+			</View>
+
+			<View style={[loginStyles.LoginOptionsContainer, {flex: 0.5}]}>
+				<LoginButton 	title="FORGOT PASSWORD" buttonStyle="default"
+								style={[loginStyles.LoginOptions, {width: '86%'}]} />
+			</View>
+
+			<View style={[loginStyles.LoginFormContainer, {flex: 0.5}]}>
+				<Text style={{fontSize: 18, fontWeight: 'bold'}}>Password Reset</Text>
+				<BreakLine />
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Enter Mobile Number"
+					type="number"
+				/>
+			</View>
+
+			<View style={[loginStyles.LoginOtherOptions]}>
+				<SmallLoginButton 	title="Login" style={loginStyles.OtherOptions}
+									navigate={navigate} navigateScreen={'Login'}  />
+				<SmallLoginButton title="Login with OTP"/>
+			</View>
+
+			<View style={loginStyles.SubmitContainer}>
+				<LoginButton 	title="RESET PASSWORD" buttonStyle="default" style={loginStyles.SubmitButton}
+								navigate={navigate} navigateScreen={'ResetPassword'} />
+			</View>
+
+		</KeyboardAvoidingView>
+	);
+	
+}
 
 function UserVerificationHome(props) {
 
@@ -80,7 +309,7 @@ function UserVerificationHome(props) {
 				<LoginInput 
 					style={loginStyles.LoginFormInput}
 					placeholder="Enter OTP"
-					type="password"
+					type="number"
 				/>
 			</View>
 
@@ -200,11 +429,11 @@ function LoginHome(props) {
 
 	return (
 
-		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
-			
+		<View style={loginStyles.LoginContainer}>
+
 			<View style={loginStyles.LogoContainer}>
 				<Image 	resizeMode="cover" 
-						style={loginStyles.LoginLogo} 
+						style={[loginStyles.LoginLogo,{width: 0, height: 0}]} 
 						source={require("./assets/images/logo.png")}
 				/>
 				<BreakLine />
@@ -232,8 +461,9 @@ function LoginHome(props) {
 			</View>
 
 			<View style={loginStyles.LoginOtherOptions}>
-				<SmallLoginButton title="Forgot Password" style={loginStyles.OtherOptions} />
-				<SmallLoginButton title="Login with OTP"/>
+				<SmallLoginButton 	title="Forgot Password" style={loginStyles.OtherOptions}
+									navigate={navigate} navigateScreen={'ForgotPassword'}  />
+				<SmallLoginButton title="Login with OTP" navigate={navigate} navigateScreen={'OTPLogin'} />
 			</View>
 
 			<View style={loginStyles.SubmitContainer}>
@@ -241,7 +471,8 @@ function LoginHome(props) {
 					style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'AppHome'} />
 			</View>
 
-		</KeyboardAvoidingView>
+		</View>
+
 	);
 	
 }
@@ -263,7 +494,7 @@ function SignupHome(props) {
 			
 			<View style={loginStyles.LogoContainer}>
 				<Image 	resizeMode="cover" 
-						style={loginStyles.LoginLogo} 
+						style={[loginStyles.LoginLogo,{width: 0, height: 0}]} 
 						source={require("./assets/images/logo.png")}
 				/>
 				<BreakLine />
@@ -271,11 +502,9 @@ function SignupHome(props) {
 			</View>
 
 			<View style={loginStyles.LoginOptionsContainer}>
-				<LoginButton 	title="BACK TO LOGIN" 
-								buttonStyle="default" 
-								style={loginStyles.SubmitButton}
-								navigate={navigate} navigateScreen={'Login'}
-				/>
+				<LoginButton 	title="LOGIN" style={loginStyles.LoginOptions}
+								navigate={navigate} navigateScreen={'Login'}  />
+				<LoginButton title="SIGNUP" buttonStyle="default" style={loginStyles.LoginOptions} />
 			</View>
 
 			<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer]}>
