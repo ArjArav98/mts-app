@@ -25,7 +25,10 @@ const Navbar = StackNavigator({
 		screen: LoginHome
 	},
 	Signup: {
-		screen: SignupHome
+		screen: SignupHome1
+	},
+	SignupContinuation: {
+		screen: SignupHome2
 	},
 	AppHome: {
 		screen: Home
@@ -264,7 +267,8 @@ function ForgotPasswordHome(props) {
 			<View style={[loginStyles.LoginOtherOptions]}>
 				<SmallLoginButton 	title="Login" style={loginStyles.OtherOptions}
 									navigate={navigate} navigateScreen={'Login'}  />
-				<SmallLoginButton title="Login with OTP"/>
+				<SmallLoginButton 	title="Login with OTP" 
+									navigate={navigate} navigateScreen={'OTPLogin'} />
 			</View>
 
 			<View style={loginStyles.SubmitContainer}>
@@ -433,7 +437,7 @@ function LoginHome(props) {
 
 			<View style={loginStyles.LogoContainer}>
 				<Image 	resizeMode="cover" 
-						style={[loginStyles.LoginLogo,{width: 0, height: 0}]} 
+						style={[loginStyles.LoginLogo]} 
 						source={require("./assets/images/logo.png")}
 				/>
 				<BreakLine />
@@ -481,7 +485,7 @@ function LoginHome(props) {
 /* SIGNUPHOME */
 /**************/
 
-function SignupHome(props) {
+function SignupHome1(props) {
 
 	let navigationOptions = {
 		header: null
@@ -494,7 +498,7 @@ function SignupHome(props) {
 			
 			<View style={loginStyles.LogoContainer}>
 				<Image 	resizeMode="cover" 
-						style={[loginStyles.LoginLogo,{width: 0, height: 0}]} 
+						style={[loginStyles.LoginLogo]} 
 						source={require("./assets/images/logo.png")}
 				/>
 				<BreakLine />
@@ -510,6 +514,11 @@ function SignupHome(props) {
 			<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer]}>
 				<LoginInput 
 					style={loginStyles.LoginFormInput}
+					placeholder="Title (Mr/Mrs)"
+					type="text"
+				/>
+				<BreakLine /><LoginInput 
+					style={loginStyles.LoginFormInput}
 					placeholder="Name"
 					type="text"
 				/>
@@ -518,7 +527,47 @@ function SignupHome(props) {
 					placeholder="Mobile Number"
 					type="number"
 				/>
-				<BreakLine /><LoginInput 
+			</View>
+
+			<View style={loginStyles.SubmitContainer}>
+				<LoginButton 	title="CONTINUE" buttonStyle="default" style={loginStyles.SubmitButton}
+								navigate={navigate} navigateScreen={'SignupContinuation'} />
+			</View>
+
+		</KeyboardAvoidingView>
+	);
+	
+}
+
+function SignupHome2(props) {
+
+	let navigationOptions = {
+		header: null
+	};
+
+	let { navigate } = props.navigation;
+
+	return (
+		<KeyboardAvoidingView style={loginStyles.LoginContainer}>
+			
+			<View style={loginStyles.LogoContainer}>
+				<Image 	resizeMode="cover" 
+						style={[loginStyles.LoginLogo]} 
+						source={require("./assets/images/logo.png")}
+				/>
+				<BreakLine />
+				<BreakLine />
+			</View>
+
+			<View style={loginStyles.LoginOptionsContainer}>
+				<LoginButton 	title="LOGIN" style={loginStyles.LoginOptions}
+								navigate={navigate} navigateScreen={'Login'}  />
+				<LoginButton title="SIGNUP" buttonStyle="default" style={loginStyles.LoginOptions} />
+			</View>
+
+			<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer]}>
+				
+				<LoginInput 
 					style={loginStyles.LoginFormInput}
 					placeholder="Address"
 					type="text"
@@ -528,6 +577,12 @@ function SignupHome(props) {
 					style={loginStyles.LoginFormInput}
 					placeholder="Pincode"
 					type="pincode"
+				/>
+				<BreakLine />
+				<LoginInput 
+					style={loginStyles.LoginFormInput}
+					placeholder="Password"
+					type="password"
 				/>
 			</View>
 
@@ -767,7 +822,7 @@ const loginStyles = StyleSheet.create({
 		width: '100%',
 	},
 	OtherOptions: {
-		marginRight: '17%'
+		marginRight: '12%'
 	},
 
 	SubmitContainer: {
