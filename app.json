@@ -5,7 +5,12 @@
 	"name": "MTS",
 	"icon": "./assets/images/logo.png",
     "slug": "expo-template-bare",
-    "version": "1.0.0",
+	"version": "1.0.0",
+	"splash": {
+		"image": "./assets/images/splash.png",
+		"backgroundColor": "#FFFFFF",
+		"resizeMode": "contain"
+	},
     "ios": {
 		"bundleIdentifier": "com.arjunaravind.mts",
       	"buildNumber": "1.0.0"
