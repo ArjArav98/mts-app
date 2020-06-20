@@ -1,7 +1,7 @@
 import React from 'react';
-import 'react-native-gesture-handler';
+import 'react-native-gesture-handler'
 
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation'
 
 import LoginScreen from './src/screens/LoginScreen'
 import { SignupScreen, SignupContinuationScreen} from './src/screens/SignupScreen'

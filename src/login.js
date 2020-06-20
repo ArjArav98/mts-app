@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { Text, StyleSheet, TextInput, View } from 'react-native';
+import React, { Component, useState, useEffect } from "react"
+import { Text, StyleSheet, TextInput, View } from 'react-native'
+import { FontText, FontTextInput }from './components/FontText'
 
 /**************/
 /* COMPONENTS */
@@ -9,45 +10,43 @@ import { Text, StyleSheet, TextInput, View } from 'react-native';
 export class LoginButton extends Component {
 
 	render() {
+
 		let containerStyle = 	(this.props.buttonStyle === "default")? 
 							[this.styles.LoginButtonContainer, this.props.style] : 
 							[this.styles.LoginButtonContainer, this.styles.InverseLoginButtonContainer, this.props.style];
 
 		let buttonStyle = 	(this.props.buttonStyle === "default")?
-							[this.styles.LoginButton, {color: 'white'}] :
-							[this.styles.LoginButton, {color: 'blue'}];
+							[this.styles.LoginButton, {color: 'white' }] :
+							[this.styles.LoginButton, {color: '#0162DF'}];
 		
 		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
 
 		return (
 			<View style={containerStyle}>
-				<Text style={buttonStyle} onPress={navigateFunction}>
-					{ this.props.title }
-				</Text>
+				<FontText title={this.props.title} style={buttonStyle} onPress={navigateFunction} />
 			</View>
-		);
+		)
+		
 	}
 
 	styles = StyleSheet.create({
 		LoginButtonContainer: {
 			paddingTop: '2.5%',
 			paddingBottom: '2.5%',
-			backgroundColor: 'blue',
+			backgroundColor: '#0162DF',
 			color: 'white',
-			borderWidth: 3,
-			borderColor: 'blue',
+			borderWidth: 2,
+			borderColor: '#0162DF',
 			borderRadius: 4,
 		},
 		LoginButton: {
 			textAlign: 'center',
-			fontWeight: '800',
 			fontSize: 18,
-			fontWeight: 'bold',
 			width: '100%'
 		},
 		InverseLoginButtonContainer: {
 			backgroundColor: 'white',
-			color: 'blue'
+			color: '#0162DF'
 		}
 	})
 }
@@ -60,9 +59,8 @@ export class SmallLoginButton extends Component {
 		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
 
 		return (
-			<Text style={[this.styles.SmallLoginButton, this.props.style]} onPress={navigateFunction}>
-				{ this.props.title }
-			</Text>
+			<FontText 	title={this.props.title} style={[this.styles.SmallLoginButton, this.props.style]}
+						onPress={navigateFunction} />
 		);
 	}
 	
@@ -70,7 +68,6 @@ export class SmallLoginButton extends Component {
 		SmallLoginButton: {
 			color: 'red',
 			fontSize: 17,
-			fontWeight: 'bold',
 			textAlign: 'center',
 			padding: '4%'
 		}
@@ -108,7 +105,7 @@ export class LoginInput extends Component {
 
 		return (
 			<View style={inputStyles}>
-				<TextInput style={this.styles.LoginInput}
+				<FontTextInput style={[this.styles.LoginInput]}
 					placeholder={this.props.placeholder}
 					placeholderTextColor="lightblue"
 					keyboardType={keyboardType}
@@ -121,8 +118,8 @@ export class LoginInput extends Component {
 
 	styles = StyleSheet.create({
 		LoginInputContainer: {
-			borderWidth: 3,
-			borderColor: 'blue',
+			borderWidth: 2,
+			borderColor: '#0162DF',
 			backgroundColor: 'white',
 			borderRadius: 4,
 			padding: '3%'

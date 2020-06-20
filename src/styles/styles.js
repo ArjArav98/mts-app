@@ -48,7 +48,7 @@ export const loginStyles = StyleSheet.create({
 		width: '100%',
 	},
 	OtherOptions: {
-		marginRight: '12%'
+		marginRight: '8%'
 	},
 
 	SubmitContainer: {

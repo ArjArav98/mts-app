@@ -1,6 +1,6 @@
 import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from '../login';
 import { loginStyles } from '../styles/styles'
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { View, Image } from 'react-native'
 
 /*************/
