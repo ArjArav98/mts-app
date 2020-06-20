@@ -4,12 +4,13 @@ import { useFonts, NunitoSans_900Black, NunitoSans_400Regular } from '@expo-goog
 
 export function FontText(props) {
 	
-	let [fontsLoaded] = useFonts({ NunitoSans_900Black });
+	let [fontsLoaded] = useFonts({ NunitoSans_900Black, NunitoSans_400Regular })
+	let fontFam = (props.fontStyle === 'light')? 'NunitoSans_400Regular' : 'NunitoSans_900Black'
 
 	if(!fontsLoaded) return (<Text></Text>)
 	else {
 		return (
-			<Text style={props.style.concat({fontFamily: 'NunitoSans_900Black'})} onPress={props.onPress}>
+			<Text style={props.style.concat({fontFamily: fontFam})} onPress={props.onPress}>
 				{props.title}
 			</Text>
 		)

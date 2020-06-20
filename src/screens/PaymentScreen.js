@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { homeStyles } from '../styles/styles'
 import { SectionHeader } from '../home'
+import { FontText } from '../components/FontText'
 
 export default class PaymentScreen extends Component {
 
@@ -16,12 +17,14 @@ export default class PaymentScreen extends Component {
 		return (
 			<View style={homeStyles.HomeContainer}>
 				
-				<SectionHeader title="YOUR BILL" style={{width: '100%'}}/>
+				<SectionHeader title="YOUR BILL" style={{width: '100%', marginTop: '7%'}}/>
 				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>
-					<Text style={homeStyles.HomeElemText}>Get rid of the long queue!</Text>
-					<Text style={homeStyles.HomeElemText}>
-						Please show this code at the billing counter to make your payment.
-					</Text>
+					<FontText 	style={[homeStyles.HomeElemText]} 
+								title="Get rid of the long queue!"
+								fontStyle='light' />
+					<FontText 	style={[homeStyles.HomeElemText]} 
+								title="Please show this code at the billing counter to make your payment."
+								fontStyle='light' />
 					<TouchableOpacity 	style={homeStyles.HomeElemImageContainer}
 										onPress={()=>navigate('PaymentSuccess')}>
 						<Image 	style={homeStyles.HomeElemImage} 

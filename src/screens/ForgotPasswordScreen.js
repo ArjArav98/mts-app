@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from '../login';
 import { loginStyles } from '../styles/styles'
 import { View, Image, KeyboardAvoidingView, Text } from 'react-native'
+import { FontText } from '../components/FontText'
 
 export default class ForgotPasswordScreen extends Component {
 
@@ -32,7 +33,7 @@ export default class ForgotPasswordScreen extends Component {
 				</View>
 	
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.5}]}>
-					<Text style={{fontSize: 18, fontWeight: 'bold'}}>Password Reset</Text>
+					<FontText style={[{fontSize: 18}]} title="PASSWORD RESET" />
 					<BreakLine />
 					<LoginInput 
 						style={loginStyles.LoginFormInput}

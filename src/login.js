@@ -60,7 +60,7 @@ export class SmallLoginButton extends Component {
 
 		return (
 			<FontText 	title={this.props.title} style={[this.styles.SmallLoginButton, this.props.style]}
-						onPress={navigateFunction} />
+						onPress={navigateFunction} fontStyle={'light'} />
 		);
 	}
 	

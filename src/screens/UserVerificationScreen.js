@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from '../login';
 import { loginStyles } from '../styles/styles'
 import { View, Image, KeyboardAvoidingView, Text } from 'react-native'
+import { FontText } from '../components/FontText'
 
 export default class UserVerificationScreen extends Component {
 
@@ -32,7 +33,7 @@ export default class UserVerificationScreen extends Component {
 				</View>
 	
 				<View style={loginStyles.LoginFormContainer}>
-					<Text style={{fontSize: 18, fontWeight: 'bold'}}>Mobile Number Verification</Text>
+					<FontText style={[{fontSize: 18}]} title="Mobile Number Verification" />
 					<BreakLine />
 					<LoginInput 
 						style={loginStyles.LoginFormInput}

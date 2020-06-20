@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Image, Text, TouchableOpacity } from 'react-native'
 import { homeStyles } from '../styles/styles'
 import { SectionHeader, CartTable, CartButton, HomeBreakLine } from '../home';
+import { FontText } from "../components/FontText";
 
 export default class HomeScreen extends Component {
 
@@ -17,13 +18,12 @@ export default class HomeScreen extends Component {
 			<View style={homeStyles.HomeContainer}>
 				
 				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>
-					<Text style={homeStyles.HomeElemText}>Welcome Master!</Text>
-					<Text style={homeStyles.HomeElemText}>
-						Don't forget to check out our offers!
-					</Text>
-					<Text style={homeStyles.HomeElemText}>
-						Tap the icon below to scan a barcode.
-					</Text>
+					<FontText 	style={[homeStyles.HomeElemText]} title="Welcome, Master!"
+								fontStyle='light' />
+					<FontText 	style={[homeStyles.HomeElemText]} title="Don't forget to check out our offers!"
+								fontStyle='light' />
+					<FontText 	style={[homeStyles.HomeElemText]} title="Tap the icon below to scan a barcode."
+								fontStyle='light' />
 					<TouchableOpacity style={homeStyles.HomeElemImageContainer} onPress={()=>navigate('Barcode')}>
 						<Image 	style={homeStyles.HomeElemImage} 
 								source={require('../../assets/images/qr.png')} />
