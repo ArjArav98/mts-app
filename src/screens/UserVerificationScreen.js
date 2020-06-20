@@ -20,7 +20,7 @@ export default class UserVerificationScreen extends Component {
 				<View style={loginStyles.LogoContainer}>
 					<Image 	resizeMode="cover" 
 							style={loginStyles.LoginLogo} 
-							source={require("../../assets/images/logo.png")}
+							source={require("../../assets/images/logo.jpg")}
 					/>
 					<BreakLine />
 					<BreakLine />

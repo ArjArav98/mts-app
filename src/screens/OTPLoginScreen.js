@@ -20,7 +20,7 @@ export default class OTPLoginScreen extends Component {
 			
 					<Image 	resizeMode="cover" 
 							style={loginStyles.LoginLogo} 
-							source={require("../../assets/images/logo.png")}
+							source={require("../../assets/images/logo.jpg")}
 					/>
 					<BreakLine />
 					<BreakLine />

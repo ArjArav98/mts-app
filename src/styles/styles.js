@@ -14,8 +14,8 @@ export const loginStyles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	LoginLogo: {
-		width: 100,
-		height: 100
+		width: 140,
+		height: 140
 	},
 
 	LoginOptionsContainer: {
