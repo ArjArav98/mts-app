@@ -27,11 +27,12 @@ export default class OTPLoginVerificationScreen extends Component {
 				</View>
 	
 				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.7}]}>
-					<LoginButton 	title="LOGIN VIA OTP" buttonStyle="default"
+					<LoginButton 	title="Login with OTP"
 									style={[loginStyles.LoginOptions, {width: '86%'}]} />
 				</View>
 	
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.2}]}>
+					<BreakLine />
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Enter OTP"
@@ -46,8 +47,8 @@ export default class OTPLoginVerificationScreen extends Component {
 				</View>
 	
 				<View style={loginStyles.SubmitContainer}>
-					<LoginButton 	title="LOGIN" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'AppHome'} />
+					<LoginButton 	title="Login" buttonStyle="default" style={loginStyles.SubmitButton}
+									navigate={navigate} navigateScreen={'Login'} />
 				</View>
 	
 			</KeyboardAvoidingView>

@@ -30,8 +30,8 @@ export default class LoginScreen extends Component {
 				</View>
 	
 				<View style={loginStyles.LoginOptionsContainer}>
-					<LoginButton title="LOGIN" buttonStyle="default" style={loginStyles.LoginOptions} />
-					<LoginButton title="SIGNUP" style={loginStyles.LoginOptions} 
+					<LoginButton title="Login" buttonStyle="default" style={loginStyles.LoginOptions} />
+					<LoginButton title="Signup" style={loginStyles.LoginOptions} 
 								navigate={navigate} navigateScreen={'Signup'} />
 				</View>
 	
@@ -56,7 +56,7 @@ export default class LoginScreen extends Component {
 				</View>
 	
 				<View style={loginStyles.SubmitContainer}>
-					<LoginButton title="LOGIN" buttonStyle="default" 
+					<LoginButton title="Login" buttonStyle="default" 
 						style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'AppNavigation'} />
 				</View>
 	

@@ -28,12 +28,13 @@ export default class ForgotPasswordScreen extends Component {
 				</View>
 	
 				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.5}]}>
-					<LoginButton 	title="FORGOT PASSWORD" buttonStyle="default"
+					<LoginButton 	title="Forgot Password"
 									style={[loginStyles.LoginOptions, {width: '86%'}]} />
 				</View>
 	
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.5}]}>
-					<FontText style={[{fontSize: 18}]} title="PASSWORD RESET" />
+					<BreakLine />
+					<BreakLine />
 					<BreakLine />
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
@@ -42,7 +43,7 @@ export default class ForgotPasswordScreen extends Component {
 					/>
 				</View>
 	
-				<View style={[loginStyles.LoginOtherOptions]}>
+				<View style={[loginStyles.LoginOtherOptions, {alignItems : 'flex-start'}]}>
 					<SmallLoginButton 	title="Login" style={loginStyles.OtherOptions}
 										navigate={navigate} navigateScreen={'Login'}  />
 					<SmallLoginButton 	title="Login with OTP" 
@@ -50,7 +51,9 @@ export default class ForgotPasswordScreen extends Component {
 				</View>
 	
 				<View style={loginStyles.SubmitContainer}>
-					<LoginButton 	title="RESET PASSWORD" buttonStyle="default" style={loginStyles.SubmitButton}
+					<BreakLine />
+					<BreakLine />
+					<LoginButton 	title="Reset Password" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'ResetPassword'} />
 				</View>
 	

@@ -30,9 +30,9 @@ export class SignupScreen extends Component {
 				</View>
 
 				<View style={loginStyles.LoginOptionsContainer}>
-					<LoginButton 	title="LOGIN" style={loginStyles.LoginOptions}
+					<LoginButton 	title="Login" style={loginStyles.LoginOptions}
 									navigate={navigate} navigateScreen={'Login'}  />
-					<LoginButton title="SIGNUP" buttonStyle="default" style={loginStyles.LoginOptions} />
+					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 
 				<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer]}>
@@ -54,7 +54,7 @@ export class SignupScreen extends Component {
 				</View>
 
 				<View style={loginStyles.SubmitContainer}>
-					<LoginButton 	title="CONTINUE" buttonStyle="default" style={loginStyles.SubmitButton}
+					<LoginButton 	title="Continue" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'SignupContinuation'} />
 				</View>
 
@@ -92,9 +92,9 @@ export class SignupContinuationScreen extends Component {
 				</View>
 	
 				<View style={loginStyles.LoginOptionsContainer}>
-					<LoginButton 	title="LOGIN" style={loginStyles.LoginOptions}
+					<LoginButton 	title="Login" style={loginStyles.LoginOptions}
 									navigate={navigate} navigateScreen={'Login'}  />
-					<LoginButton title="SIGNUP" buttonStyle="default" style={loginStyles.LoginOptions} />
+					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 	
 				<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer]}>
@@ -119,7 +119,7 @@ export class SignupContinuationScreen extends Component {
 				</View>
 	
 				<View style={loginStyles.SubmitContainer}>
-					<LoginButton 	title="SIGNUP" buttonStyle="default" style={loginStyles.SubmitButton}
+					<LoginButton 	title="Signup" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'UserVerification'} />
 				</View>
 	

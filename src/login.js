@@ -17,8 +17,8 @@ export class LoginButton extends Component {
 							[this.styles.LoginButtonContainer, this.styles.InverseLoginButtonContainer, this.props.style];
 
 		let buttonStyle = 	(this.props.buttonStyle === "default")?
-							[this.styles.LoginButton, {color: Colors.appInverseShade }] :
-							[this.styles.LoginButton, {color: Colors.appBlueShade }];
+							[this.styles.LoginButton, {color: Colors.appInverseShade, fontSize: 17 }] :
+							[this.styles.LoginButton, {color: Colors.appBlueShade, fontSize: 17 }];
 		
 		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
 
