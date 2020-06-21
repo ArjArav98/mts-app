@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import 'react-native-gesture-handler'
 
 import { StackNavigator } from 'react-navigation'
@@ -16,6 +16,8 @@ import CartScreen from './src/screens/CartScreen'
 import PaymentScreen from './src/screens/PaymentScreen'
 import PaymentSuccessScreen from './src/screens/PaymentSuccessScreen';
 import BarcodeScreen from './src/screens/BarcodeScreen'
+
+import AppNavigationScreen from './src/navigation/AppNavigationScreen'
 
 /**************/
 /* NAVIGATION */
@@ -60,6 +62,9 @@ const Navbar = StackNavigator({
 	},
 	OTPLoginVerification: {
 		screen: OTPLoginVerificationScreen
+	},
+	AppNavigation: {
+		screen: AppNavigationScreen
 	}
 }, {
 	initialRouteName: 'Login',

@@ -57,7 +57,7 @@ export default class LoginScreen extends Component {
 	
 				<View style={loginStyles.SubmitContainer}>
 					<LoginButton title="LOGIN" buttonStyle="default" 
-						style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'AppHome'} />
+						style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'AppNavigation'} />
 				</View>
 	
 			</View>
