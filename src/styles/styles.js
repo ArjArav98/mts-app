@@ -110,8 +110,8 @@ export const homeStyles = StyleSheet.create({
 		marginTop: '7%'
 	},
 	HomeElemImage: {
-		height: 145,
-		width: 145,
+		height: 135,
+		width: 135,
 	},
 
 	HomeSectionHeader: {
@@ -119,6 +119,7 @@ export const homeStyles = StyleSheet.create({
 	},
 	HomeCartButton: {
 		width: '60%',
-		marginTop: '7%'
+		marginTop: '7%',
+		marginLeft: '20%'
 	}
 });

@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { homeStyles } from '../styles/styles'
 import { SectionHeader } from '../home'
 import { FontText } from '../components/FontText'
+import Colors from '../styles/Colors'
 
 export default class PaymentScreen extends Component {
 
@@ -15,7 +16,7 @@ export default class PaymentScreen extends Component {
 		let { navigate } = this.props.navigation;
 		
 		return (
-			<View style={homeStyles.HomeContainer}>
+			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
 				<SectionHeader title="YOUR BILL" style={{width: '100%', marginTop: '7%'}}/>
 				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View, Image, Text, TouchableOpacity } from 'react-native'
+import { View, Image, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { homeStyles } from '../styles/styles'
-import { SectionHeader, CartTable, CartButton, HomeBreakLine } from '../home';
-import { FontText } from "../components/FontText";
+import { SectionHeader, CartTable, CartButton, HomeBreakLine } from '../home'
+import { FontText } from "../components/FontText"
+import Colors from "../styles/Colors"
 
 export default class HomeScreen extends Component {
 
@@ -15,7 +16,7 @@ export default class HomeScreen extends Component {
 		let { navigate } = this.props.navigation
 		
 		return (
-			<View style={homeStyles.HomeContainer}>
+			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
 				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>
 					<FontText 	style={[homeStyles.HomeElemText]} title="Welcome, Master!"
@@ -32,9 +33,12 @@ export default class HomeScreen extends Component {
 	
 				<View style={homeStyles.HomeElemContainer}>
 					<SectionHeader title="CART LIST" style={homeStyles.HomeSectionHeader} />
-					<CartTable />
-					<CartButton title="CHECKOUT" style={homeStyles.HomeCartButton}
-								navigate={navigate} navigateScreen={'Cart'} />
+					<ScrollView style={{width: '100%'}}>
+						<CartTable />
+						<CartButton title="CHECKOUT" style={homeStyles.HomeCartButton}
+									navigate={navigate} navigateScreen={'Cart'} />
+					</ScrollView>
+					<HomeBreakLine />
 				</View>
 	
 			</View>

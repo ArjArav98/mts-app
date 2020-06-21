@@ -3,7 +3,8 @@ import { StackNavigator } from 'react-navigation'
 
 import CartScreen from '../screens/CartScreen'
 import HomeScreen from '../screens/HomeScreen'
-import PaymentScreen from '../screens/PaymentScreen';
+import PaymentScreen from '../screens/PaymentScreen'
+import PaymentSuccessScreen from '../screens/PaymentSuccessScreen'
 
 const Navbar = StackNavigator({
 	AppHome: {
@@ -14,6 +15,9 @@ const Navbar = StackNavigator({
 	},
 	Payment: {
 		screen: PaymentScreen
+	},
+	PaymentSuccess: {
+		screen: PaymentSuccessScreen
 	}
 }, {
 	initialRouteName: 'AppHome',

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, ScrollView } from 'react-native'
 import { homeStyles } from '../styles/styles'
 import { SectionHeader, CartTable, CartButton, HomeBreakLine } from '../home'
+import Colors from '../styles/Colors'
 
 export default class CartScreen extends Component {
 
@@ -14,7 +15,7 @@ export default class CartScreen extends Component {
 		let { navigate } = this.props.navigation
 		
 		return (
-			<ScrollView>
+			<ScrollView style={{backgroundColor: Colors.appInverseShade}}>
 	
 				<HomeBreakLine />
 				<HomeBreakLine />
@@ -27,7 +28,8 @@ export default class CartScreen extends Component {
 				<CartTable style={homeStyles.CartTable} />
 	
 				<View style={homeStyles.CartHomeButtonsList}>
-					<CartButton title="ADD ITEMS" style={homeStyles.CartHomeButton} />
+					<CartButton title="ADD ITEMS" style={homeStyles.CartHomeButton}
+								navigate={navigate} navigateScreen={'AppHome'} />
 					<CartButton title="GENERATE BILL" style={homeStyles.CartHomeButton}
 								navigate={navigate} navigateScreen={'Payment'} />
 				</View>

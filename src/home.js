@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { 	StyleSheet, Image,
 			View, ScrollView  } from 'react-native'
-import { FontText }from './components/FontText'
+import { FontText}from './components/FontText'
 
 /**************/
 /* COMPONENTS */
@@ -50,6 +50,11 @@ export class CartTable extends Component {
 					<HomeBreakLine />
 	
 					<CartTableItem product="Horlicks 500g" price="450" />
+					<CartTableItem product="Odomos" price="450" />
+					<CartTableItem product="Odomos" price="450" />
+					<CartTableItem product="Odomos" price="450" />
+					<CartTableItem product="Odomos" price="450" />
+					<CartTableItem product="Odomos" price="450" />
 					<CartTableItem product="Odomos" price="450" />
 	
 				</ScrollView>

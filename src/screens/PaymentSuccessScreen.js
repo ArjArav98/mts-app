@@ -3,7 +3,8 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { homeStyles } from '../styles/styles'
 import { SectionHeader } from '../home'
 import { LoginInput, LoginButton } from '../login'
-import { FontText } from "../components/FontText";
+import { FontText } from "../components/FontText"
+import Colors from '../styles/Colors'
 
 export default class PaymentSuccessScreen extends Component {
 
@@ -16,7 +17,7 @@ export default class PaymentSuccessScreen extends Component {
 		let { navigate } = this.props.navigation;
 		
 		return (
-			<View style={homeStyles.HomeContainer}>
+			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
 				<SectionHeader title="PAYMENT SUCCESSFUL" style={{width: '100%', marginTop: '7%'}}/>
 				<View style={[homeStyles.HomeElemContainer,{flex: 0.5}]}>
@@ -24,11 +25,9 @@ export default class PaymentSuccessScreen extends Component {
 								title="Thanks for shopping with us!"
 								fontStyle='light' />
 					<FontText 	style={[homeStyles.HomeElemText]} 
-								title="Your total bill is Rs 465."
-								fontStyle='light' />
+								title="Your total bill is Rs 465." />
 								<FontText 	style={[homeStyles.HomeElemText]} 
-								title="The number of items is 5."
-								fontStyle='light' />
+								title="The number of items is 5." />
 				</View>
 				<View style={[homeStyles.HomeElemContainer, {justifyContent: 'flex-start'}]}>
 					<View style={{width: '100%', flexDirection: 'row', justifyContent: 'center'}}>
