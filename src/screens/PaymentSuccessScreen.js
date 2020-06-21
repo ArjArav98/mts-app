@@ -44,7 +44,7 @@ export default class PaymentSuccessScreen extends Component {
 					</View>
 					<LoginInput placeholder="Your Comments" style={{width: '80%', marginTop: '5%'}} />
 					<LoginButton 	title="SUBMIT" buttonStyle="default" style={{width: '80%', marginTop: '5%'}}
-									 navigate={navigate} navigateScreen={'AppHome'} />
+									navigate={navigate} navigateScreen={'OrderReceipt'} />
 				</View>
 	
 			</View>

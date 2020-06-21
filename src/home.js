@@ -42,9 +42,7 @@ export class CartTable extends Component {
 				<ScrollView style={{width: '100%'}}>
 	
 					<View style={this.styles.CartTableRow}>
-						<CartTableHeader title="Item Name" />
-						<CartTableHeader title="Qty" />
-						<CartTableHeader title="Price" />
+						<CartTableTextItem title="Title" qty="Qty" amount="Amount" />
 					</View>
 	
 					<HomeBreakLine />
@@ -77,47 +75,18 @@ export class CartTable extends Component {
 
 }
 
-/* This is the CartTableHeader component. */
-export class CartTableHeader extends Component {
-	
-	render(){
-		return (
-			<View style={this.styles.CartTableRowElement}>
-				<View style={this.styles.CartTableRowElement}>
-					<FontText title={this.props.title} style={[this.styles.CartTableText]} />
-				</View>
-			</View>
-		);
-	}
-	
-	styles=StyleSheet.create({
-		CartTableRowElement: {
-			flex: 1,
-			marginTop: '1%'
-		},
-		CartTableText: {
-			color: 'black',
-			fontSize: 20,
-			flexShrink: 1,
-			width: '100%',
-			justifyContent: 'center',
-			textAlign: 'center'
-		},
-	})
-
-}
-
 /* This is the CartTableItem component. */
 export class CartTableItem extends Component {
 
 	render() {
+
 		return (
 			<View style={[this.styles.CartTableRow,{paddingBottom: '2%'}]}>
 				<View style={this.styles.CartTableRow}>
 					<View style={this.styles.CartTableRowElement}>
 						<FontText title={this.props.product} style={[this.styles.CartTableText]} fontStyle={'light'} />
 					</View>
-					<View style={this.styles.CartTableRowQtyElement}>
+					<View style={[this.styles.CartTableRowQtyElement]}>
 						<View style={this.styles.CartTableImgContainer}>
 							<Image style={this.styles.CartTableImg}
 									source={require('../assets/images/add.png')} />
@@ -169,6 +138,29 @@ export class CartTableItem extends Component {
 		},
 	})
 	
+}
+
+export class CartTableTextItem extends Component {
+
+	render() {
+
+		let title = this.props.title
+		let qty = this.props.qty
+		let amount = this.props.amount
+		let fontStyle = this.props.fontStyle
+
+		return (
+			<View style={{width: '100%', flex: 1, flexDirection: 'row'}}>
+				<FontText 	title={title} fontStyle={fontStyle}
+							style={[{flex: 1, textAlign: 'center'}]} />
+				<FontText 	title={qty} fontStyle={fontStyle} 
+							style={[{flex: 1, textAlign: 'center'}]} />
+				<FontText 	title={amount} fontStyle={fontStyle} 
+							style={[{flex: 1, textAlign: 'center'}]} />
+			</View>
+		)
+	}
+
 }
 
 /* This is the CartButton Component. */

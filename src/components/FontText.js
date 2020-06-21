@@ -10,7 +10,7 @@ export function FontText(props) {
 	if(!fontsLoaded) return (<Text></Text>)
 	else {
 		return (
-			<Text style={props.style.concat({fontFamily: fontFam})} onPress={props.onPress}>
+			<Text style={props.style.concat({fontFamily: fontFam, fontSize: 20})} onPress={props.onPress}>
 				{props.title}
 			</Text>
 		)

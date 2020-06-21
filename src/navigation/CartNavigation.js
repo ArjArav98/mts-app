@@ -5,6 +5,7 @@ import CartScreen from '../screens/CartScreen'
 import HomeScreen from '../screens/HomeScreen'
 import PaymentScreen from '../screens/PaymentScreen'
 import PaymentSuccessScreen from '../screens/PaymentSuccessScreen'
+import OrderReceiptScreen from '../screens/OrderReceiptScreen'
 
 const Navbar = StackNavigator({
 	AppHome: {
@@ -18,6 +19,9 @@ const Navbar = StackNavigator({
 	},
 	PaymentSuccess: {
 		screen: PaymentSuccessScreen
+	},
+	OrderReceipt: {
+		screen: OrderReceiptScreen
 	}
 }, {
 	initialRouteName: 'AppHome',
