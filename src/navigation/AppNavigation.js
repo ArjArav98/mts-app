@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { NavigationContainer } from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { NavigationContainer } from '@react-navigation/native'
 
-import HomeScreen from '../screens/HomeScreen';
-
+import CartNavigation from './CartNavigation'
 
 const Tab = createMaterialBottomTabNavigator();
 
-export default class AppNavigationScreen extends Component {
+export default class AppNavigation extends Component {
 
 	render() {
 		return (
@@ -22,22 +21,22 @@ export default class AppNavigationScreen extends Component {
 					shifting={true}
 					>
 					<Tab.Screen name="Home" 
-								component={HomeScreen}
+								component={CartNavigation}
 								options={{
-									tabBarLabel: "Home",
+									tabBarLabel: "CartNavigationScreen",
 									tabBarIcon: ({ color }) => (
 										<MaterialCommunityIcons name="home" color={color} size={28} />
 									),
 								}} />
 					<Tab.Screen name="History" 
-								component={HomeScreen}
+								component={CartNavigation}
 								options={{
 									tabBarIcon: ({ color }) => (
 										<MaterialCommunityIcons name="account-clock" color={color} size={28} />
 									),
 								}} />
 					<Tab.Screen name="Account" 
-								component={HomeScreen}
+								component={CartNavigation}
 								options={{
 									tabBarIcon: ({ color }) => (
 										<MaterialCommunityIcons name="cogs" color={color} size={28} />
@@ -45,7 +44,7 @@ export default class AppNavigationScreen extends Component {
 								}} />
 					
 					<Tab.Screen name="Logout" 
-								component={HomeScreen}
+								component={CartNavigation}
 								options={{
 									tabBarIcon: ({ color }) => (
 										<MaterialCommunityIcons name="logout" color={color} size={28} />
