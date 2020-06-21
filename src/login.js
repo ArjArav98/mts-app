@@ -1,6 +1,7 @@
-import React, { Component, useState, useEffect } from "react"
-import { Text, StyleSheet, TextInput, View } from 'react-native'
+import React, { Component } from "react"
+import { StyleSheet, View } from 'react-native'
 import { FontText, FontTextInput }from './components/FontText'
+import Colors from './styles/Colors'
 
 /**************/
 /* COMPONENTS */
@@ -16,8 +17,8 @@ export class LoginButton extends Component {
 							[this.styles.LoginButtonContainer, this.styles.InverseLoginButtonContainer, this.props.style];
 
 		let buttonStyle = 	(this.props.buttonStyle === "default")?
-							[this.styles.LoginButton, {color: 'white' }] :
-							[this.styles.LoginButton, {color: '#0162DF'}];
+							[this.styles.LoginButton, {color: Colors.appInverseShade }] :
+							[this.styles.LoginButton, {color: Colors.appBlueShade }];
 		
 		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
 
@@ -33,10 +34,10 @@ export class LoginButton extends Component {
 		LoginButtonContainer: {
 			paddingTop: '2.5%',
 			paddingBottom: '2.5%',
-			backgroundColor: '#0162DF',
-			color: 'white',
+			backgroundColor: Colors.appBlueShade,
+			color: Colors.appInverseShade,
 			borderWidth: 2,
-			borderColor: '#0162DF',
+			borderColor: Colors.appBlueShade,
 			borderRadius: 4,
 		},
 		LoginButton: {
@@ -46,7 +47,7 @@ export class LoginButton extends Component {
 		},
 		InverseLoginButtonContainer: {
 			backgroundColor: 'white',
-			color: '#0162DF'
+			color: Colors.appBlueShade
 		}
 	})
 }
@@ -119,14 +120,14 @@ export class LoginInput extends Component {
 	styles = StyleSheet.create({
 		LoginInputContainer: {
 			borderWidth: 2,
-			borderColor: '#0162DF',
-			backgroundColor: 'white',
+			borderColor: Colors.appBlueShade,
+			backgroundColor: Colors.appInverseShade,
 			borderRadius: 4,
 			padding: '3%'
 		},
 		LoginInput: {
 			color: 'black',
-			backgroundColor: 'white',
+			backgroundColor: Colors.appInverseShade,
 			fontSize: 18,
 			fontWeight: 'bold',
 			width: '60%',

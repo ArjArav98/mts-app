@@ -1,7 +1,7 @@
 import React, { Component } from "react"
-import { 	Text, StyleSheet, Image,
+import { 	StyleSheet, Image,
 			View, ScrollView  } from 'react-native'
-import { FontText, FontTextInput }from './components/FontText'
+import { FontText }from './components/FontText'
 
 /**************/
 /* COMPONENTS */
@@ -19,14 +19,14 @@ export class SectionHeader extends Component {
 
 	styles = StyleSheet.create({
 		SectionHeaderContainer: {
-			backgroundColor: '#0162DF',
+			backgroundColor: Colors.appBlueShade,
 			padding: '4%'
 		},
 		SectionHeader: {
 			width: '100%',
 			textAlign: 'center',
 			fontSize: 20,
-			color: 'white'
+			color: Colors.appInverseShade
 		}
 	})
 
@@ -181,16 +181,16 @@ export class CartButton extends Component {
 
 	styles = StyleSheet.create({
 		CartButtonContainer: {
-			backgroundColor: '#0162DF',
+			backgroundColor: Colors.appBlueShade,
 			borderWidth: 4,
-			borderColor: '#0162DF',
+			borderColor: Colors.appBlueShade,
 			borderRadius: 4,
 			padding: '1%'
 		},
 		CartButton: {
 			width: '100%',
 			textAlign: 'center',
-			color: 'white',
+			color: Colors.appInverseShade,
 			fontSize: 18,
 		}
 	})
