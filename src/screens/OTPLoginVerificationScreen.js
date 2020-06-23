@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from '../login';
 import { loginStyles } from '../styles/styles'
 import { View, Image, KeyboardAvoidingView } from 'react-native'
+import { FontText } from "../components/FontText";
 
 export default class OTPLoginVerificationScreen extends Component {
 
@@ -31,8 +32,10 @@ export default class OTPLoginVerificationScreen extends Component {
 									style={[loginStyles.LoginOptions, {width: '86%'}]} />
 				</View>
 	
-				<View style={[loginStyles.LoginFormContainer, {flex: 0.2}]}>
-					<BreakLine />
+				<View style={[loginStyles.LoginFormContainer, {flex: 0.5}]}>
+					<FontText 	title="Please check the OTP sent to your mobile."
+								style={[{width: '90%', fontSize: 18, textAlign: 'center', marginBottom: '2%'}]}
+								fontStyle='light' />
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Enter OTP"
@@ -48,7 +51,7 @@ export default class OTPLoginVerificationScreen extends Component {
 	
 				<View style={loginStyles.SubmitContainer}>
 					<LoginButton 	title="Login" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'Login'} />
+									navigate={navigate} navigateScreen={'AppNavigation'} />
 				</View>
 	
 			</KeyboardAvoidingView>

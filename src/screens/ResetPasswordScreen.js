@@ -27,12 +27,12 @@ export default class ResetPasswordScreen extends Component {
 					<BreakLine />
 				</View>
 	
-				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.8}]}>
+				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.5}]}>
 					<LoginButton 	title="Hi, Username!"
 									style={[loginStyles.LoginOptions, {width: '86%'}]} />
 				</View>
 	
-				<View style={[loginStyles.LoginFormContainer, {flex: 1.2}]}>
+				<View style={[loginStyles.LoginFormContainer, {flex: 1}]}>
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Enter Password"
@@ -52,14 +52,8 @@ export default class ResetPasswordScreen extends Component {
 					/>
 				</View>
 	
-				<View style={loginStyles.LoginOtherOptions}>
-					<SmallLoginButton 	title="Login" style={loginStyles.OtherOptions}
-										navigate={navigate} navigateScreen={'Login'}  />
-					<SmallLoginButton 	title="Login with OTP"
-										navigate={navigate} navigateScreen={'OTPLogin'} />
-				</View>
-	
 				<View style={loginStyles.SubmitContainer}>
+					<BreakLine />
 					<BreakLine />
 					<BreakLine />
 					<LoginButton title="Continue" buttonStyle="default" 

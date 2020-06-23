@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { StyleSheet, View } from 'react-native'
 import { FontText, FontTextInput }from './components/FontText'
 import Colors from './styles/Colors'
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 /**************/
 /* COMPONENTS */
@@ -24,7 +25,10 @@ export class LoginButton extends Component {
 
 		return (
 			<View style={containerStyle}>
-				<FontText title={this.props.title} style={buttonStyle} onPress={navigateFunction} />
+				<TouchableOpacity>
+					<FontText 	title={this.props.title} style={buttonStyle} 
+								onPress={navigateFunction} fontStyle='light' />
+				</TouchableOpacity>
 			</View>
 		)
 		
@@ -123,7 +127,8 @@ export class LoginInput extends Component {
 			borderColor: Colors.appBlueShade,
 			backgroundColor: Colors.appInverseShade,
 			borderRadius: 4,
-			padding: '3%'
+			padding: '2%',
+			borderBottomWidth: 2
 		},
 		LoginInput: {
 			color: 'black',
