@@ -16,7 +16,13 @@ export default class AppNavigation extends Component {
 				<Tab.Navigator
 					activeColor="#0162DF"
 					inactiveColor="gray"
-					barStyle={{ backgroundColor: 'white' }}
+					barStyle={{ 
+						backgroundColor: 'white',
+						shadowColor: '#DDD',
+						shadowOffset: { width: 0, height: 2 },
+						shadowOpacity: 0.8,
+						shadowRadius: 2,
+					}}
 					labeled={false}
 					shifting={true}
 					>

@@ -50,6 +50,9 @@ export default class OTPLoginScreen extends Component {
 					<BreakLine />
 					<LoginButton 	title="Continue" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'OTPLoginVerification'} />
+					<BreakLine />
+					<LoginButton 	title="Back" buttonStyle="default" style={loginStyles.SubmitButton}
+									navigate={navigate} navigateScreen={'Login'} />
 				</View>
 	
 			</KeyboardAvoidingView>
