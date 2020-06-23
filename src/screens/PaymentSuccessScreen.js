@@ -9,17 +9,13 @@ import Colors from '../styles/Colors'
 export default class PaymentSuccessScreen extends Component {
 
 	render() {
-
-		let navigationOptions = {
-			header: null
-		};
 	
 		let { navigate } = this.props.navigation;
 		
 		return (
 			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
-				<SectionHeader title="PAYMENT SUCCESSFUL" style={{width: '100%', marginTop: '7%'}}/>
+				<SectionHeader title="PAYMENT SUCCESSFUL" style={{width: '100%'}}/>
 				<HomeBreakLine /><HomeBreakLine /><HomeBreakLine /><HomeBreakLine /><HomeBreakLine />
 				<View style={[homeStyles.HomeElemContainer,{flex: 0.5, paddingLeft: '10%', paddingRight: '10%'}]}>
 					<FontText 	style={[homeStyles.HomeElemText]} 

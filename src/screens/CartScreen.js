@@ -8,19 +8,10 @@ export default class CartScreen extends Component {
 
 	render() {
 	
-		let navigationOptions = {
-			header: null
-		};
-	
 		let { navigate } = this.props.navigation
 		
 		return (
 			<ScrollView style={{backgroundColor: Colors.appInverseShade}}>
-	
-				<HomeBreakLine />
-				<HomeBreakLine />
-				<HomeBreakLine />
-				<HomeBreakLine />
 	
 				<SectionHeader style={homeStyles.CartSectionHeader} title="YOUR CART" />
 				<HomeBreakLine />

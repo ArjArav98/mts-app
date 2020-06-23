@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen'
 import PaymentScreen from '../screens/PaymentScreen'
 import PaymentSuccessScreen from '../screens/PaymentSuccessScreen'
 import OrderReceiptScreen from '../screens/OrderReceiptScreen'
+import BarcodeScreen from '../screens/BarcodeScreen'
 
 const Navbar = StackNavigator({
 	AppHome: {
@@ -22,16 +23,28 @@ const Navbar = StackNavigator({
 	},
 	OrderReceipt: {
 		screen: OrderReceiptScreen
+	},
+	Barcode: {
+		screen: BarcodeScreen
 	}
 }, {
 	initialRouteName: 'AppHome',
-	headerMode: 'none'
+	navigationOptions: {
+		title: 'MTS',
+		headerStyle: {
+		  backgroundColor: Colors.appBlueShade,
+		},
+		headerTintColor: Colors.appInverseShade,
+		headerTitleStyle: {
+		  fontWeight: 'bold',
+		}
+	}
 });
 
 export default class CartNavigation extends Component {
 
 	render() {
-		return <Navbar screenOptions={{headerShown: false}} />
+		return <Navbar />
 	}
 
 }

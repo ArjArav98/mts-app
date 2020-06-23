@@ -11,10 +11,6 @@ export class SignupScreen extends Component {
 
 	render() {
 
-		let navigationOptions = {
-			header: null
-		};
-
 		let { navigate } = this.props.navigation;
 
 		return (

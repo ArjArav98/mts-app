@@ -8,17 +8,13 @@ import Colors from '../styles/Colors'
 export default class PaymentScreen extends Component {
 
 	render() {
-
-		let navigationOptions = {
-			header: null
-		};
 	
 		let { navigate } = this.props.navigation;
 		
 		return (
 			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
-				<SectionHeader title="YOUR BILL" style={{width: '100%', marginTop: '7%'}}/>
+				<SectionHeader title="YOUR BILL" style={{width: '100%'}}/>
 				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>
 				<FontText 	style={[homeStyles.HomeElemText, {fontSize: 30, marginBottom: '5%'}]} 
 								title="Hi Customer Name!" />

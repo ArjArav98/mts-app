@@ -5,20 +5,16 @@ import { SectionHeader, HomeBreakLine, CartTableHeader, CartTableTextItem, CartT
 import { FontText } from '../components/FontText'
 import Colors from '../styles/Colors'
 
-export default class OrderReceiptScreen extends Component {
+export default class OrderReceiptScreen extends React.Component {
 
 	render() {
-
-		let navigationOptions = {
-			header: null
-		};
 	
 		let { navigate } = this.props.navigation;
 		
 		return (
 			<ScrollView style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
-				<SectionHeader title="ORDER RECEIPT" style={{width: '100%', marginTop: '7%'}}/>
+				<SectionHeader title="ORDER RECEIPT" style={{width: '100%'}}/>
 
 				<View style={{width: '100%', marginTop: '2%'}}>
 					<CartTable />

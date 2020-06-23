@@ -11,7 +11,7 @@ import UserVerificationScreen from '../screens/UserVerificationScreen'
 import OTPLoginScreen from '../screens/OTPLoginScreen'
 import OTPLoginVerificationScreen from '../screens/OTPLoginVerificationScreen'
 
-import AppNavigation from './AppNavigation'
+import CartNavigation from './CartNavigation'
 
 const Navbar = StackNavigator({
 	Login: {
@@ -39,7 +39,7 @@ const Navbar = StackNavigator({
 		screen: OTPLoginVerificationScreen
 	},
 	AppNavigation: {
-		screen: AppNavigation
+		screen: CartNavigation
 	}
 }, {
 	initialRouteName: 'Login',
