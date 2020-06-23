@@ -3,7 +3,7 @@
   "displayName": "mts-app",
   "expo": {
 	"name": "MTS",
-	"icon": "./assets/images/logo.png",
+	"icon": "./assets/images/logo.jpg",
     "slug": "expo-template-bare",
 	"version": "1.0.0",
 	"splash": {
