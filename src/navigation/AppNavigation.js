@@ -25,21 +25,21 @@ export default class AppNavigation extends Component {
 								options={{
 									tabBarLabel: "CartNavigationScreen",
 									tabBarIcon: ({ color }) => (
-										<MaterialCommunityIcons name="home" color={color} size={28} />
+										<MaterialCommunityIcons name="home" color={color} size={26} />
 									),
 								}} />
 					<Tab.Screen name="History" 
 								component={CartNavigation}
 								options={{
 									tabBarIcon: ({ color }) => (
-										<MaterialCommunityIcons name="account-clock" color={color} size={28} />
+										<MaterialCommunityIcons name="alert-decagram" color={'#FFD700'} size={26} />
 									),
 								}} />
 					<Tab.Screen name="Account" 
 								component={CartNavigation}
 								options={{
 									tabBarIcon: ({ color }) => (
-										<MaterialCommunityIcons name="cogs" color={color} size={28} />
+										<MaterialCommunityIcons name="history" color={color} size={26} />
 									),
 								}} />
 					
@@ -47,7 +47,7 @@ export default class AppNavigation extends Component {
 								component={CartNavigation}
 								options={{
 									tabBarIcon: ({ color }) => (
-										<MaterialCommunityIcons name="logout" color={color} size={28} />
+										<MaterialCommunityIcons name="tune" color={color} size={26} />
 									),
 								}} />
 				</Tab.Navigator>

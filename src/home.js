@@ -42,7 +42,8 @@ export class CartTable extends Component {
 				<ScrollView style={{width: '100%'}}>
 	
 					<View style={this.styles.CartTableRow}>
-						<CartTableTextItem title="Title" qty="Qty" amount="Amount" />
+						<CartTableTextItem 	title="Title" qty="Qty" amount="Amount"
+											style={[{fontSize: 18}]} />
 					</View>
 	
 					<HomeBreakLine />
@@ -121,7 +122,7 @@ export class CartTableItem extends Component {
 		},
 		CartTableText: {
 			color: 'black',
-			fontSize: 20,
+			fontSize: 18,
 			flexShrink: 1,
 			width: '100%',
 			justifyContent: 'center',
@@ -148,15 +149,16 @@ export class CartTableTextItem extends Component {
 		let qty = this.props.qty
 		let amount = this.props.amount
 		let fontStyle = this.props.fontStyle
+		let style = this.props.style
 
 		return (
 			<View style={{width: '100%', flex: 1, flexDirection: 'row'}}>
 				<FontText 	title={title} fontStyle={fontStyle}
-							style={[{flex: 1, textAlign: 'center'}]} />
+							style={[{flex: 1, textAlign: 'center'}].concat(style)} />
 				<FontText 	title={qty} fontStyle={fontStyle} 
-							style={[{flex: 1, textAlign: 'center'}]} />
+							style={[{flex: 1, textAlign: 'center'}].concat(style)} />
 				<FontText 	title={amount} fontStyle={fontStyle} 
-							style={[{flex: 1, textAlign: 'center'}]} />
+							style={[{flex: 1, textAlign: 'center'}].concat(style)} />
 			</View>
 		)
 	}
@@ -171,7 +173,8 @@ export class CartButton extends Component {
 	
 		return (
 			<View style={[this.styles.CartButtonContainer,this.props.style]}>
-				<FontText style={[this.styles.CartButton]} onPress={navigateFunction} title={this.props.title} />
+				<FontText 	style={[this.styles.CartButton]} onPress={navigateFunction} 
+							title={this.props.title} fontStyle='light' />
 			</View>
 		);
 	}

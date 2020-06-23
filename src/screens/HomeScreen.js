@@ -35,7 +35,7 @@ export default class HomeScreen extends Component {
 					<SectionHeader title="CART LIST" style={homeStyles.HomeSectionHeader} />
 					<ScrollView style={{width: '100%', marginTop: '2%'}}>
 						<CartTable />
-						<CartButton title="CHECKOUT" style={homeStyles.HomeCartButton}
+						<CartButton title="Checkout" style={homeStyles.HomeCartButton}
 									navigate={navigate} navigateScreen={'Cart'} />
 					</ScrollView>
 					<HomeBreakLine />

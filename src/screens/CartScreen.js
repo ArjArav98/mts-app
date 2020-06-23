@@ -28,9 +28,9 @@ export default class CartScreen extends Component {
 				<CartTable style={homeStyles.CartTable} />
 	
 				<View style={homeStyles.CartHomeButtonsList}>
-					<CartButton title="ADD ITEMS" style={homeStyles.CartHomeButton}
+					<CartButton title="Add Items" style={homeStyles.CartHomeButton}
 								navigate={navigate} navigateScreen={'AppHome'} />
-					<CartButton title="GENERATE BILL" style={homeStyles.CartHomeButton}
+					<CartButton title="Generate Bill" style={homeStyles.CartHomeButton}
 								navigate={navigate} navigateScreen={'Payment'} />
 				</View>
 	

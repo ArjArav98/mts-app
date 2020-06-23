@@ -95,11 +95,7 @@ export const homeStyles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	HomeElemContainer1: {
-		flex: 0.8,
-		paddingTop: '7%',
-		paddingBottom: '0%',
-		paddingLeft: '2%',
-		paddingRight: '2%',
+		flex: 0.9,
 	},
 	HomeElemText: {
 		color: 'black',
@@ -110,8 +106,8 @@ export const homeStyles = StyleSheet.create({
 		marginTop: '7%'
 	},
 	HomeElemImage: {
-		height: 135,
-		width: 135,
+		height: 125,
+		width: 125,
 	},
 
 	HomeSectionHeader: {

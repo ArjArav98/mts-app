@@ -20,17 +20,19 @@ export default class PaymentScreen extends Component {
 				
 				<SectionHeader title="YOUR BILL" style={{width: '100%', marginTop: '7%'}}/>
 				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>
+				<FontText 	style={[homeStyles.HomeElemText, {fontSize: 30, marginBottom: '5%'}]} 
+								title="Hi Customer Name!" />
 					<FontText 	style={[homeStyles.HomeElemText]} 
 								title="Get rid of the long queue!"
-								fontStyle='light' />
-					<FontText 	style={[homeStyles.HomeElemText]} 
-								title="Please show this code at the billing counter to make your payment."
 								fontStyle='light' />
 					<TouchableOpacity 	style={homeStyles.HomeElemImageContainer}
 										onPress={()=>navigate('PaymentSuccess')}>
 						<Image 	style={homeStyles.HomeElemImage} 
 								source={require('../../assets/images/qr.png')} />
 					</TouchableOpacity>
+					<FontText 	style={[homeStyles.HomeElemText, {marginTop: '5%'}]} 
+								title="Please show this QR code at the billing counter to make your payment."
+								fontStyle='light' />
 				</View>
 	
 			</View>
