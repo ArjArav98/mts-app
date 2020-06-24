@@ -43,6 +43,10 @@ const Navbar = StackNavigator({
 
 export default class CartNavigation extends Component {
 
+	static navigationOptions = {
+        header: null
+    }
+
 	render() {
 		return <Navbar />
 	}

@@ -52,9 +52,6 @@ export class SignupScreen extends Component {
 				<View style={loginStyles.SubmitContainer}>
 					<LoginButton 	title="Continue" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'SignupContinuation'} />
-					<BreakLine />
-					<LoginButton 	title="Back" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'Login'} />
 				</View>
 
 			</KeyboardAvoidingView>
@@ -120,9 +117,6 @@ export class SignupContinuationScreen extends Component {
 				<View style={loginStyles.SubmitContainer}>
 					<LoginButton 	title="Register" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'UserVerification'} />
-					<BreakLine />
-					<LoginButton 	title="Back" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'Signup'} />
 				</View>
 	
 			</KeyboardAvoidingView>

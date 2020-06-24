@@ -42,12 +42,11 @@ const Navbar = StackNavigator({
 		screen: CartNavigation
 	}
 }, {
-	initialRouteName: 'Login',
-	headerMode: 'none'
+	initialRouteName: 'Login'
 });
 
 export default function LoginNavigationScreen() {
 	return (
-		<Navbar screenOptions={{headerShown: false}} />
+		<Navbar />
 	);
 }

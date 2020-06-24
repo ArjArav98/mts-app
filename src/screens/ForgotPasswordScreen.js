@@ -45,9 +45,6 @@ export default class ForgotPasswordScreen extends Component {
 					<BreakLine />
 					<LoginButton 	title="Reset Password" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'ResetPassword'} />
-					<BreakLine />
-					<LoginButton 	title="Back" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'Login'} />
 				</View>
 	
 			</KeyboardAvoidingView>

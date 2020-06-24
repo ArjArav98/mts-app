@@ -10,8 +10,8 @@ import { View, Image } from 'react-native'
 export default class LoginScreen extends Component {
 
 	static navigationOptions = {
-		headerLeft: null
-	};
+        header: null
+    }
 
 	render() {
 	

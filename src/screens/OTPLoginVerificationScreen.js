@@ -27,12 +27,12 @@ export default class OTPLoginVerificationScreen extends Component {
 					<BreakLine />
 				</View>
 	
-				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.7}]}>
+				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.4}]}>
 					<LoginButton 	title="Login with OTP"
 									style={[loginStyles.LoginOptions, {width: '86%'}]} />
 				</View>
 	
-				<View style={[loginStyles.LoginFormContainer, {flex: 0.5}]}>
+				<View style={[loginStyles.LoginFormContainer, {flex: 0.4}]}>
 					<FontText 	title="Please check the OTP sent to your mobile."
 								style={[{width: '90%', fontSize: 18, textAlign: 'center', marginBottom: '2%'}]}
 								fontStyle='light' />
@@ -43,18 +43,12 @@ export default class OTPLoginVerificationScreen extends Component {
 					/>
 				</View>
 	
-				<View style={[loginStyles.LoginOtherOptions]}>
-					<SmallLoginButton 	title="Login" style={loginStyles.OtherOptions}
-										navigate={navigate} navigateScreen={'Login'}  />
-					<SmallLoginButton title="Signup" navigate={navigate} navigateScreen={'Signup'}/>
-				</View>
-	
 				<View style={loginStyles.SubmitContainer}>
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
 					<LoginButton 	title="Login" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'AppNavigation'} />
-					<BreakLine />
-					<LoginButton 	title="Back" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'OTPLogin'} />
 				</View>
 	
 			</KeyboardAvoidingView>
