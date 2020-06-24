@@ -7,6 +7,7 @@ import PaymentScreen from '../screens/PaymentScreen'
 import PaymentSuccessScreen from '../screens/PaymentSuccessScreen'
 import OrderReceiptScreen from '../screens/OrderReceiptScreen'
 import BarcodeScreen from '../screens/BarcodeScreen'
+import { Image, View } from 'react-native'
 
 const Navbar = StackNavigator({
 	AppHome: {
@@ -37,7 +38,13 @@ const Navbar = StackNavigator({
 		headerTintColor: Colors.appInverseShade,
 		headerTitleStyle: {
 		  fontWeight: 'bold',
-		}
+		},
+		headerRight: 
+			<View style={{paddingRight: '10%'}}>
+				<Image 
+					source={require('../../assets/images/menu.png')}
+					style={{ height: 37, width: 62}} />
+			</View>
 	}
 });
 
