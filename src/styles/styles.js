@@ -20,7 +20,8 @@ export const loginStyles = StyleSheet.create({
 
 	LoginOptionsContainer: {
 		flex: 0.4,
-		width: '100%',
+		width: '90%',
+		marginLeft: '5%',
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -56,13 +57,15 @@ export const loginStyles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
+		width: '90%',
+		marginLeft: '5%'
 	},
 	SubmitButton: {
 		width: '70%',
 	},
 
 	SignupFormContainer: {
-		flex: 2
+		flex: 1.6
 	}
 });
 

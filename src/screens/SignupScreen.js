@@ -114,7 +114,7 @@ export class SignupContinuationScreen extends Component {
 					/>
 				</View>
 	
-				<View style={loginStyles.SubmitContainer}>
+				<View style={[loginStyles.SubmitContainer]}>
 					<LoginButton 	title="Register" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'UserVerification'} />
 				</View>

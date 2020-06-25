@@ -3,6 +3,7 @@ import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from '../login';
 import { loginStyles } from '../styles/styles'
 import { View, Image, KeyboardAvoidingView, Text } from 'react-native'
 import { FontText } from '../components/FontText'
+import Colors from '../styles/Colors'
 
 export default class UserVerificationScreen extends Component {
 
@@ -25,9 +26,13 @@ export default class UserVerificationScreen extends Component {
 					/>
 				</View>
 	
-				<View style={[loginStyles.LoginOptionsContainer,{flex: 0.8}]}>
-					<LoginButton 	title="Hi, Username!"
-									style={[loginStyles.LoginOptions, {width: '86%'}]} />
+				<View style={[loginStyles.LoginOptionsContainer,{flex: 1, flexDirection: 'column'}]}>
+					<FontText 	title="Hi, Username!"
+								style={	[loginStyles.LoginOptions, 
+										{width: '86%', textAlign: 'center', fontSize: 18, color: Colors.appBlueShade}]} />
+					<Image 	resizeMode="cover" 
+							style={{height: 50, width: 50, marginTop: '7%'}}
+							source={require("../../assets/images/user.png")} />
 				</View>
 	
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.4}]}>

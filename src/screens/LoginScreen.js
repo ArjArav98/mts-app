@@ -51,14 +51,16 @@ export default class LoginScreen extends Component {
 				</View>
 	
 				<View style={loginStyles.LoginOtherOptions}>
-					<SmallLoginButton 	title="Forgot Password" style={loginStyles.OtherOptions}
+					<SmallLoginButton 	title="Forgot Password" style={[loginStyles.OtherOptions, {fontSize: 16}]}
 										navigate={navigate} navigateScreen={'ForgotPassword'}  />
-					<SmallLoginButton title="Login with OTP" navigate={navigate} navigateScreen={'OTPLogin'} />
+					<SmallLoginButton 	title="Login with OTP" style={{fontSize: 16}}
+										navigate={navigate} navigateScreen={'OTPLogin'} />
 				</View>
 	
 				<View style={loginStyles.SubmitContainer}>
-					<LoginButton title="Login" buttonStyle="default" 
-						style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'AppNavigation'} />
+					<LoginButton 	title="Login" buttonStyle="default" 
+									style={loginStyles.SubmitButton} 
+									navigate={navigate} navigateScreen={'AppNavigation'} />
 				</View>
 	
 			</View>

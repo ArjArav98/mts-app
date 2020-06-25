@@ -127,7 +127,7 @@ export class LoginInput extends Component {
 			borderColor: Colors.appBlueShade,
 			backgroundColor: Colors.appInverseShade,
 			borderRadius: 4,
-			padding: '2%',
+			padding: '1%',
 			borderBottomWidth: 2
 		},
 		LoginInput: {
