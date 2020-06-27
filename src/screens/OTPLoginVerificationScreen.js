@@ -28,8 +28,9 @@ export default class OTPLoginVerificationScreen extends Component {
 				</View>
 	
 				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.4}]}>
-					<LoginButton 	title="Login with OTP"
-									style={[loginStyles.LoginOptions, {width: '86%'}]} />
+				<FontText 	title="Login with OTP"
+								style={[loginStyles.LoginOptions, 
+								{width: '86%', color: Colors.appBlueShade, textAlign: 'center', fontSize: 18}]} />
 				</View>
 	
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.4}]}>

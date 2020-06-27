@@ -36,7 +36,7 @@ export default class LoginScreen extends Component {
 								navigate={navigate} navigateScreen={'Signup'} />
 				</View>
 	
-				<View style={loginStyles.LoginFormContainer}>
+				<View style={[loginStyles.LoginFormContainer, {flex: 0.5}]}>
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Mobile Number"
@@ -50,14 +50,14 @@ export default class LoginScreen extends Component {
 					/>
 				</View>
 	
-				<View style={loginStyles.LoginOtherOptions}>
-					<SmallLoginButton 	title="Forgot Password" style={[loginStyles.OtherOptions, {fontSize: 16}]}
+				<View style={[loginStyles.LoginOtherOptions, {flex: 0.3}]}>
+					<SmallLoginButton 	title="Forgot Password" style={[loginStyles.OtherOptions, {fontSize: 15}]}
 										navigate={navigate} navigateScreen={'ForgotPassword'}  />
-					<SmallLoginButton 	title="Login with OTP" style={{fontSize: 16}}
+					<SmallLoginButton 	title="Login with OTP" style={{fontSize: 15}}
 										navigate={navigate} navigateScreen={'OTPLogin'} />
 				</View>
 	
-				<View style={loginStyles.SubmitContainer}>
+				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Login" buttonStyle="default" 
 									style={loginStyles.SubmitButton} 
 									navigate={navigate} navigateScreen={'AppNavigation'} />

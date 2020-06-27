@@ -60,8 +60,14 @@ export const loginStyles = StyleSheet.create({
 		width: '90%',
 		marginLeft: '5%'
 	},
+	SubmitContainerWidth: {
+		width: '40%',
+		marginLeft: '30%'
+	},
 	SubmitButton: {
-		width: '70%',
+		width: '100%',
+		paddingTop: '6%',
+		paddingBottom: '6%'
 	},
 
 	SignupFormContainer: {

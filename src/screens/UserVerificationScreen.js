@@ -35,7 +35,7 @@ export default class UserVerificationScreen extends Component {
 							source={require("../../assets/images/user.png")} />
 				</View>
 	
-				<View style={[loginStyles.LoginFormContainer, {flex: 0.4}]}>
+				<View style={[loginStyles.LoginFormContainer, {flex: 0.3}]}>
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Enter OTP"
@@ -47,8 +47,7 @@ export default class UserVerificationScreen extends Component {
 					<SmallLoginButton 	title="Resend OTP" style={{width: '100%', textAlign: 'center'}} />
 				</View>
 	
-				<View style={loginStyles.SubmitContainer}>
-					<BreakLine />
+				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<BreakLine />
 					<LoginButton title="Verify" buttonStyle="default" 
 						style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'Login'} />

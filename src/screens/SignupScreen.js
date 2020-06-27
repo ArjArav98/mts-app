@@ -31,7 +31,7 @@ export class SignupScreen extends Component {
 					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 
-				<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer]}>
+				<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer, {flex: 0.9}]}>
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Title (Mr/Mrs)"
@@ -49,7 +49,9 @@ export class SignupScreen extends Component {
 					/>
 				</View>
 
-				<View style={loginStyles.SubmitContainer}>
+				<BreakLine />
+
+				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Continue" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'SignupContinuation'} />
 				</View>
@@ -93,7 +95,7 @@ export class SignupContinuationScreen extends Component {
 					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 	
-				<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer]}>
+				<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer, {flex: 0.9}]}>
 					
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
@@ -114,7 +116,9 @@ export class SignupContinuationScreen extends Component {
 					/>
 				</View>
 	
-				<View style={[loginStyles.SubmitContainer]}>
+				<BreakLine />
+
+				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Register" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'UserVerification'} />
 				</View>

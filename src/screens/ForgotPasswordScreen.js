@@ -24,12 +24,12 @@ export default class ForgotPasswordScreen extends Component {
 							source={require("../../assets/images/logo.jpg")}
 					/>
 					<BreakLine />
-					<BreakLine />
 				</View>
 	
-				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.3}]}>
-					<LoginButton 	title="Forgot Password"
-									style={[loginStyles.LoginOptions, {width: '86%'}]} />
+				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.2}]}>
+				<FontText 	title="Forgot Password"
+								style={[loginStyles.LoginOptions, 
+								{width: '86%', color: Colors.appBlueShade, textAlign: 'center', fontSize: 18}]} />
 				</View>
 	
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.4}]}>
@@ -40,8 +40,7 @@ export default class ForgotPasswordScreen extends Component {
 					/>
 				</View>
 	
-				<View style={loginStyles.SubmitContainer}>
-					<BreakLine />
+				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<BreakLine />
 					<LoginButton 	title="Reset Password" buttonStyle="default" style={loginStyles.SubmitButton}
 									navigate={navigate} navigateScreen={'ResetPassword'} />
