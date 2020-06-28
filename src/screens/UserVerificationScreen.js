@@ -28,6 +28,7 @@ export default class UserVerificationScreen extends Component {
 	
 				<View style={[loginStyles.LoginOptionsContainer,{flex: 1, flexDirection: 'column'}]}>
 					<FontText 	title="Hi, Username!"
+								fontStyle='light'
 								style={	[loginStyles.LoginOptions, 
 										{width: '86%', textAlign: 'center', fontSize: 18, color: Colors.appBlueShade}]} />
 					<Image 	resizeMode="cover" 

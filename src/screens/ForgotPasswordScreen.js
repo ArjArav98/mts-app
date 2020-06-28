@@ -24,6 +24,13 @@ export default class ForgotPasswordScreen extends Component {
 							source={require("../../assets/images/logo.jpg")}
 					/>
 					<BreakLine />
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
 				</View>
 	
 				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.2}]}>

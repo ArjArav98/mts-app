@@ -25,6 +25,12 @@ export default class OTPLoginVerificationScreen extends Component {
 					/>
 					<BreakLine />
 					<BreakLine />
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
+					<BreakLine />
 				</View>
 	
 				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.4}]}>

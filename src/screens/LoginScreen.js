@@ -37,6 +37,8 @@ export default class LoginScreen extends Component {
 				</View>
 	
 				<BreakLine />
+				<BreakLine />
+				<BreakLine />
 
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.5}]}>
 					<LoginInput 
@@ -52,13 +54,17 @@ export default class LoginScreen extends Component {
 					/>
 				</View>
 	
-				<View style={[loginStyles.LoginOtherOptions, {flex: 0.3}]}>
+				<BreakLine />
+
+				<View style={[loginStyles.LoginOtherOptions, {flex: 0.3, paddingTop: '1%'}]}>
 					<SmallLoginButton 	title="Forgot Password" style={[loginStyles.OtherOptions, {fontSize: 15}]}
 										navigate={navigate} navigateScreen={'ForgotPassword'}  />
 					<SmallLoginButton 	title="Login with OTP" style={{fontSize: 15}}
 										navigate={navigate} navigateScreen={'OTPLogin'} />
 				</View>
 	
+				<BreakLine />
+				<BreakLine />
 				<BreakLine />
 
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
