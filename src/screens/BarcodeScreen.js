@@ -1,6 +1,8 @@
 import React, { Component, useState, useEffect } from "react";
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Button } from 'react-native'
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import Colors from "../styles/Colors";
+import { FontText } from "../components/FontText";
 
 export default function BarcodeScreen() {
 	const [hasPermission, setHasPermission] = useState(null);
@@ -26,18 +28,30 @@ export default function BarcodeScreen() {
 	}
 	
 	return (
-		<View
-		style={{
-			flex: 1,
-			flexDirection: 'column',
-			justifyContent: 'flex-end',
-		}}>
-		<BarCodeScanner
-			onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-			style={StyleSheet.absoluteFillObject}
-		/>
+		<View style={{ 	flex: 1, flexDirection: 'column', 
+						justifyContent: 'flex-end', backgroundColor: Colors.appInverseShade}}>
+			<BarCodeScanner
+				onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+				style={StyleSheet.absoluteFillObject}
+			/>
+
+			<View style={[StyleSheet.absoluteFillObject, {flex: 1}]}>
+				<View style={{flex: 1, backgroundColor: 'rgba(255,255,255,0.5)', justifyContent: 'center'}}>
+					<FontText 
+						title='Please place the barcode inside the box to scan!'
+						fontStyle='light'
+						style={{width: '60%', marginLeft: '20%', borderRadius: 4,
+								textAlign: 'center', fontSize: 20, backgroundColor: 'white', padding: '2%'}} />
+				</View>
+				<View style={{flex: 1, backgroundColor: 'rgba(255,255,255,0,5)', flexDirection: 'row'}}>
+					<View style={{flex: 1, backgroundColor: 'rgba(255,255,255,0.5)'}}></View >
+					<View style={{flex: 6}}></View>
+					<View style={{flex: 1, backgroundColor: 'rgba(255,255,255,0.5)'}}></View>
+				</View>
+				<View style={{flex: 1, backgroundColor: 'rgba(255,255,255,0.5)'}}></View>
+			</View>
 	
-		{scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+			<Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />
 		</View>
 	);
 }

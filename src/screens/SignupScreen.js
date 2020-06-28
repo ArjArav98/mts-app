@@ -31,6 +31,11 @@ export class SignupScreen extends Component {
 					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 
+				<BreakLine />
+				<BreakLine />
+				<BreakLine />
+				<BreakLine />
+
 				<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer, {flex: 0.9}]}>
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
@@ -49,6 +54,10 @@ export class SignupScreen extends Component {
 					/>
 				</View>
 
+				<BreakLine />
+				<BreakLine />
+				<BreakLine />
+				<BreakLine />
 				<BreakLine />
 
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
@@ -95,6 +104,11 @@ export class SignupContinuationScreen extends Component {
 					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 	
+				<BreakLine />
+				<BreakLine />
+				<BreakLine />
+				<BreakLine />
+
 				<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer, {flex: 0.9}]}>
 					
 					<LoginInput 
@@ -116,6 +130,10 @@ export class SignupContinuationScreen extends Component {
 					/>
 				</View>
 	
+				<BreakLine />
+				<BreakLine />
+				<BreakLine />
+				<BreakLine />
 				<BreakLine />
 
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>

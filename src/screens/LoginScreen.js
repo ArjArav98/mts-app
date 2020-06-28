@@ -36,6 +36,8 @@ export default class LoginScreen extends Component {
 								navigate={navigate} navigateScreen={'Signup'} />
 				</View>
 	
+				<BreakLine />
+
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.5}]}>
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
@@ -57,6 +59,8 @@ export default class LoginScreen extends Component {
 										navigate={navigate} navigateScreen={'OTPLogin'} />
 				</View>
 	
+				<BreakLine />
+
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Login" buttonStyle="default" 
 									style={loginStyles.SubmitButton} 

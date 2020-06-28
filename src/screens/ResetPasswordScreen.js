@@ -29,11 +29,15 @@ export default class ResetPasswordScreen extends Component {
 				</View>
 	
 				<View style={[loginStyles.LoginOptionsContainer, {flex: 0.2}]}>
-				<FontText 	title="Hi, Username!"
+					<FontText 	title="Hi, Username!"
+								fontStyle='light'
 								style={[loginStyles.LoginOptions, 
 								{width: '86%', color: Colors.appBlueShade, textAlign: 'center', fontSize: 18}]} />
 				</View>
 	
+				<BreakLine />
+				<BreakLine />
+
 				<View style={[loginStyles.LoginFormContainer, {flex: 1}]}>
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
@@ -54,6 +58,9 @@ export default class ResetPasswordScreen extends Component {
 					/>
 				</View>
 	
+				<BreakLine />
+				<BreakLine />
+
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<BreakLine />
 					<BreakLine />
