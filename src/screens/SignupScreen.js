@@ -26,11 +26,12 @@ export class SignupScreen extends Component {
 				</View>
 
 				<View style={loginStyles.LoginOptionsContainer}>
-					<LoginButton 	title="Login" style={loginStyles.LoginOptions}
-									navigate={navigate} navigateScreen={'Login'}  />
+					<LoginButton title="Login" style={loginStyles.LoginOptions} />
 					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 
+				<BreakLine />
+				<BreakLine />
 				<BreakLine />
 				<BreakLine />
 				<BreakLine />
@@ -54,6 +55,8 @@ export class SignupScreen extends Component {
 					/>
 				</View>
 
+				<BreakLine />
+				<BreakLine />
 				<BreakLine />
 				<BreakLine />
 				<BreakLine />
@@ -108,6 +111,8 @@ export class SignupContinuationScreen extends Component {
 				<BreakLine />
 				<BreakLine />
 				<BreakLine />
+				<BreakLine />
+				<BreakLine />
 
 				<View style={[loginStyles.LoginFormContainer, loginStyles.SignupFormContainer, {flex: 0.9}]}>
 					
@@ -130,6 +135,8 @@ export class SignupContinuationScreen extends Component {
 					/>
 				</View>
 	
+				<BreakLine />
+				<BreakLine />
 				<BreakLine />
 				<BreakLine />
 				<BreakLine />

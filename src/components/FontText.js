@@ -26,13 +26,15 @@ export function FontTextInput(props) {
 	else {
 		return (
 			<TextInput 	style={props.style.concat({fontFamily: 'NunitoSans_400Regular'})} 
-					onPress={props.onPress}
-					placeholder={props.placeholder}
-					placeholderTextColor={props.placeholderTextColor}
-					keyboardType={props.keyboardType}
-					maxLength={props.maxLength}
-					secureTextEntry={props.secureTextEntry}
-					>
+						onPress={props.onPress}
+						placeholder={props.placeholder}
+						placeholderTextColor={props.placeholderTextColor}
+						keyboardType={props.keyboardType}
+						maxLength={props.maxLength}
+						secureTextEntry={props.secureTextEntry}
+						onFocus={props.onFocus}
+						onBlur={props.onBlur}
+						>
 				{props.title}
 			</TextInput>
 		)

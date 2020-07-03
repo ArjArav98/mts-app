@@ -1,7 +1,9 @@
-import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from '../login';
+import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from '../login'
 import { loginStyles } from '../styles/styles'
 import React, { Component } from 'react'
 import { View, Image } from 'react-native'
+import Colors from '../styles/Colors'
+import KeyboardListener from 'react-native-keyboard-listener'
 
 /*************/
 /* LOGINHOME */
@@ -9,9 +11,22 @@ import { View, Image } from 'react-native'
 
 export default class LoginScreen extends Component {
 
+	constructor(props) {
+		super(props)
+		this.state = { color: 'red' }
+	}
+
 	static navigationOptions = {
         header: null
     }
+
+	makeSmallLoginButtonsDisappear() {
+		this.setState({ color: Colors.appInverseShade })
+	}
+
+	makeSmallLoginButtonsAppear() {
+		this.setState({ color: 'red' })
+	}
 
 	render() {
 	
@@ -20,6 +35,11 @@ export default class LoginScreen extends Component {
 		return (
 	
 			<View style={loginStyles.LoginContainer}>
+
+				<KeyboardListener
+						onDidShow={() => this.makeSmallLoginButtonsDisappear()}
+						onDidHide={() => this.makeSmallLoginButtonsAppear()}
+					/>
 	
 				<View style={loginStyles.LogoContainer}>
 					<Image 	resizeMode="cover" 
@@ -28,15 +48,15 @@ export default class LoginScreen extends Component {
 					/>
 					<BreakLine />
 					<BreakLine />
+					<BreakLine />
 				</View>
 	
 				<View style={loginStyles.LoginOptionsContainer}>
-					<LoginButton title="Login" buttonStyle="default" style={loginStyles.LoginOptions} />
-					<LoginButton title="Signup" style={loginStyles.LoginOptions} 
-								navigate={navigate} navigateScreen={'Signup'} />
+					<LoginButton 	title="Login" buttonStyle="default" style={loginStyles.LoginOptions} />
+					<LoginButton 	title="Signup" style={loginStyles.LoginOptions} 
+									navigate={navigate} navigateScreen={'Signup'} />
 				</View>
 	
-				<BreakLine />
 				<BreakLine />
 				<BreakLine />
 
@@ -56,14 +76,13 @@ export default class LoginScreen extends Component {
 	
 				<BreakLine />
 
-				<View style={[loginStyles.LoginOtherOptions, {flex: 0.3, paddingTop: '1%'}]}>
-					<SmallLoginButton 	title="Forgot Password" style={[loginStyles.OtherOptions, {fontSize: 15}]}
+				<View style={[loginStyles.LoginOtherOptions, {flex: 0.3}]}>
+					<SmallLoginButton 	title="Forgot Password" style={[loginStyles.OtherOptions, {fontSize: 15, color: this.state.color}]}
 										navigate={navigate} navigateScreen={'ForgotPassword'}  />
-					<SmallLoginButton 	title="Login with OTP" style={{fontSize: 15}}
+					<SmallLoginButton 	title="Login with OTP" style={{fontSize: 15, color: this.state.color}}
 										navigate={navigate} navigateScreen={'OTPLogin'} />
 				</View>
 	
-				<BreakLine />
 				<BreakLine />
 				<BreakLine />
 

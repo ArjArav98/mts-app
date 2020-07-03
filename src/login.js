@@ -116,6 +116,8 @@ export class LoginInput extends Component {
 					keyboardType={keyboardType}
 					maxLength={maxLength}
 					secureTextEntry={isPassword}
+					onBlur={this.props.onBlur}
+					onFocus={this.props.onFocus}
 				/>
 			</View>
 		);

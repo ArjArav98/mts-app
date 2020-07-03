@@ -39,11 +39,14 @@ export default class OTPLoginVerificationScreen extends Component {
 							style={[loginStyles.LoginOptions, 
 							{width: '86%', color: Colors.appBlueShade, textAlign: 'center', fontSize: 18}]} />
 				</View>
-	
+				
+				<BreakLine />
+				<BreakLine />
+
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.4}]}>
 					<FontText 	title="Please check the OTP sent to your mobile."
 								fontStyle='light'
-								style={[{width: '90%', fontSize: 18, textAlign: 'center', marginBottom: '2%'}]}
+								style={[{width: '100%', fontSize: 18, textAlign: 'center', marginBottom: '2%'}]}
 								fontStyle='light' />
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
@@ -52,8 +55,11 @@ export default class OTPLoginVerificationScreen extends Component {
 					/>
 				</View>
 	
+				<View style={[loginStyles.LoginOtherOptions, {flex: 0.3}]}>
+					<SmallLoginButton 	title="Resend OTP" />
+				</View>
+
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
-					<BreakLine />
 					<BreakLine />
 					<BreakLine />
 					<LoginButton 	title="Login" buttonStyle="default" style={loginStyles.SubmitButton}

@@ -4,14 +4,24 @@ import { loginStyles } from '../styles/styles'
 import { View, Image, KeyboardAvoidingView, Text } from 'react-native'
 import { FontText } from '../components/FontText'
 import Colors from '../styles/Colors'
+import KeyboardListener from 'react-native-keyboard-listener'
 
 export default class UserVerificationScreen extends Component {
 
-	render() {
+	constructor(props) {
+		super(props)
+		this.state = { color: 'red' }
+	}
 
-		let navigationOptions = {
-			header: null
-		};
+	makeSmallLoginButtonsDisappear() {
+		this.setState({ color: Colors.appInverseShade })
+	}
+
+	makeSmallLoginButtonsAppear() {
+		this.setState({ color: 'red' })
+	}
+
+	render() {
 	
 		let { navigate } = this.props.navigation;
 	
@@ -19,6 +29,11 @@ export default class UserVerificationScreen extends Component {
 	
 			<KeyboardAvoidingView style={loginStyles.LoginContainer}>
 				
+				<KeyboardListener
+						onDidShow={() => this.makeSmallLoginButtonsDisappear()}
+						onDidHide={() => this.makeSmallLoginButtonsAppear()}
+					/>
+
 				<View style={loginStyles.LogoContainer}>
 					<Image 	resizeMode="cover" 
 							style={loginStyles.LoginLogo} 
@@ -41,11 +56,13 @@ export default class UserVerificationScreen extends Component {
 						style={loginStyles.LoginFormInput}
 						placeholder="Enter OTP"
 						type="number"
+						onFocus={() => this.makeSmallLoginButtonsDisappear()}
+						onBlur={() => this.makeSmallLoginButtonsAppear()}
 					/>
 				</View>
 	
 				<View style={loginStyles.LoginOtherOptions}>
-					<SmallLoginButton 	title="Resend OTP" style={{width: '100%', textAlign: 'center'}} />
+					<SmallLoginButton 	title="Resend OTP" style={{width: '100%', textAlign: 'center', color: this.state.color}} />
 				</View>
 	
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>

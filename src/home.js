@@ -12,7 +12,7 @@ export class SectionHeader extends Component {
 	render() {
 		return (
 			<View style={[this.styles.SectionHeaderContainer,this.props.style]}>
-				<FontText title={this.props.title} style={[this.styles.SectionHeader]} />
+				<FontText title={this.props.title} style={[this.styles.SectionHeader]} fontStyle='light' />
 			</View>
 		);
 	}
@@ -25,7 +25,7 @@ export class SectionHeader extends Component {
 		SectionHeader: {
 			width: '100%',
 			textAlign: 'center',
-			fontSize: 20,
+			fontSize: 19,
 			color: Colors.appInverseShade
 		}
 	})
@@ -43,7 +43,7 @@ export class CartTable extends Component {
 	
 					<View style={this.styles.CartTableRow}>
 						<CartTableTextItem 	title="Title" qty="Qty" amount="Amount"
-											style={[{fontSize: 18}]} />
+											style={[{fontSize: 17}]} />
 					</View>
 	
 					<HomeBreakLine />
@@ -122,7 +122,7 @@ export class CartTableItem extends Component {
 		},
 		CartTableText: {
 			color: 'black',
-			fontSize: 18,
+			fontSize: 17,
 			flexShrink: 1,
 			width: '100%',
 			justifyContent: 'center',

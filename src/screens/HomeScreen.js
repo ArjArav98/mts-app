@@ -15,10 +15,6 @@ export default class HomeScreen extends Component {
 			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
 				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>
-					<FontText 	style={[homeStyles.HomeElemText]} title="Welcome, Master!"
-								fontStyle='light' />
-					<FontText 	style={[homeStyles.HomeElemText]} title="Don't forget to check out our offers!"
-								fontStyle='light' />
 					<FontText 	style={[homeStyles.HomeElemText]} title="Tap the icon below to scan a barcode."
 								fontStyle='light' />
 					<TouchableOpacity style={homeStyles.HomeElemImageContainer} onPress={()=>navigate('Barcode')}>

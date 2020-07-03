@@ -3,21 +3,35 @@ import { LoginInput, LoginButton, SmallLoginButton, BreakLine } from '../login';
 import { loginStyles } from '../styles/styles'
 import { View, Image, KeyboardAvoidingView } from 'react-native'
 import { FontText } from '../components/FontText'
-
+import KeyboardListener from 'react-native-keyboard-listener'
 
 export default class ResetPasswordScreen extends Component {
 
-	render() {
+	constructor(props) {
+		super(props)
+		this.state = { color: 'red' }
+	}
 
-		let navigationOptions = {
-			header: null
-		};
+	makeSmallLoginButtonsDisappear() {
+		this.setState({ color: Colors.appInverseShade })
+	}
+
+	makeSmallLoginButtonsAppear() {
+		this.setState({ color: 'red' })
+	}
+
+	render() {
 	
 		let { navigate } = this.props.navigation;
 	
 		return (
 	
 			<KeyboardAvoidingView style={loginStyles.LoginContainer}>
+
+					<KeyboardListener
+						onDidShow={() => this.makeSmallLoginButtonsDisappear()}
+						onDidHide={() => this.makeSmallLoginButtonsAppear()}
+					/>
 				
 				<View style={loginStyles.LogoContainer}>
 					<Image 	resizeMode="cover" 
@@ -34,9 +48,6 @@ export default class ResetPasswordScreen extends Component {
 								style={[loginStyles.LoginOptions, 
 								{width: '86%', color: Colors.appBlueShade, textAlign: 'center', fontSize: 18}]} />
 				</View>
-	
-				<BreakLine />
-				<BreakLine />
 
 				<View style={[loginStyles.LoginFormContainer, {flex: 1}]}>
 					<LoginInput 
@@ -57,9 +68,10 @@ export default class ResetPasswordScreen extends Component {
 						type="number"
 					/>
 				</View>
-	
-				<BreakLine />
-				<BreakLine />
+				
+				<View style={[loginStyles.LoginOtherOptions, {flex: 0.4}]}>
+					<SmallLoginButton title="Resend OTP" style={{color: this.state.color}} />
+				</View>
 
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<BreakLine />
