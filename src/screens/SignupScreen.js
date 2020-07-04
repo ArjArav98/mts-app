@@ -26,7 +26,8 @@ export class SignupScreen extends Component {
 				</View>
 
 				<View style={loginStyles.LoginOptionsContainer}>
-					<LoginButton title="Login" style={loginStyles.LoginOptions} />
+					<LoginButton 	title="Login" style={loginStyles.LoginOptions} 
+									goBack={() => this.props.navigation.goBack()}  />
 					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 

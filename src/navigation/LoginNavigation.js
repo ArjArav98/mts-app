@@ -11,6 +11,7 @@ import UserVerificationScreen from '../screens/UserVerificationScreen'
 import OTPLoginScreen from '../screens/OTPLoginScreen'
 import OTPLoginVerificationScreen from '../screens/OTPLoginVerificationScreen'
 
+import CartNavigation from './CartNavigation'
 import AppNavigation from './AppNavigation'
 
 const Navbar = StackNavigator({

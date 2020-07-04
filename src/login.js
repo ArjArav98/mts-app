@@ -22,6 +22,7 @@ export class LoginButton extends Component {
 							[this.styles.LoginButton, {color: Colors.appBlueShade, fontSize: 17 }];
 		
 		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
+		navigateFunction = (this.props.goBack)? ()=>this.props.goBack() : navigateFunction ;		
 
 		return (
 			<View style={containerStyle}>
