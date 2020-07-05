@@ -14,7 +14,7 @@ export default class HomeScreen extends Component {
 		return (
 			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
-				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1]}>
+				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1, {flex: 0.7}]}>
 					<FontText 	style={[homeStyles.HomeElemText]} title="Tap the icon below to scan a barcode."
 								fontStyle='light' />
 					<TouchableOpacity style={homeStyles.HomeElemImageContainer} onPress={()=>navigate('Barcode')}>
@@ -24,10 +24,25 @@ export default class HomeScreen extends Component {
 				</View>
 	
 				<View style={homeStyles.HomeElemContainer}>
-					<SectionHeader title="CART LIST" style={homeStyles.HomeSectionHeader} />
+
+					<View style={{	width: '100%', flexDirection: 'row', backgroundColor: Colors.appBlueShade,
+									paddingVertical: '3%'}}>
+						<View style={{flex: 1, paddingLeft: '3%'}}>
+							<Image 	source={require('../../assets/images/bell.png')}
+									style={{width: 30, height: 30}} />
+						</View>
+						<FontText 	title='CART LIST' style={{	flex: 1, fontSize: 19, color: 'white',
+																textAlign: 'center'}}
+									fontStyle='light' />
+						<FontText 	title='₹ 430.00' style={{	flex: 1, fontSize: 19, color: 'white',
+																textAlign: 'right', paddingRight: '3%'}}
+									fontStyle='light' />
+					</View>
+
 					<ScrollView style={{width: '100%', marginTop: '2%'}}>
 						<CartTable />
-						<CartButton title="Checkout" style={homeStyles.HomeCartButton}
+						<CartButton title="Checkout" style={[homeStyles.HomeCartButton, 
+															{width: '35%', marginLeft: '32.5%'}]}
 									navigate={navigate} navigateScreen={'Cart'} />
 					</ScrollView>
 					<HomeBreakLine />

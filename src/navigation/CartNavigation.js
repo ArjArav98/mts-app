@@ -31,11 +31,12 @@ const Navbar = StackNavigator({
 }, {
 	initialRouteName: 'AppHome',
 	navigationOptions: {
-		title: 'MTS',
 		headerStyle: {
 		  backgroundColor: Colors.appBlueShade,
 		},
 		headerTintColor: Colors.appInverseShade,
+		headerLeft: <Image 	source={require('../../assets/images/mts-header.png')}
+							style={{width: 120, height: 40}} />,
 		headerTitleStyle: {
 		  fontWeight: 'bold',
 		},

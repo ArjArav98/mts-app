@@ -42,7 +42,7 @@ export class CartTable extends Component {
 				<ScrollView style={{width: '100%'}}>
 	
 					<View style={this.styles.CartTableRow}>
-						<CartTableTextItem 	title="Title" qty="Qty" amount="Amount"
+						<CartTableTextItem 	title="Description" qty="Qty" amount="Amount"
 											style={[{fontSize: 17}]} />
 					</View>
 	
