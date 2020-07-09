@@ -41,7 +41,9 @@ const Navbar = StackNavigator({
 		  fontWeight: 'bold',
 		},
 		headerRight: 
-			<View style={{paddingRight: '10%'}}>
+			<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+				<Image 	source={require('../../assets/images/user.png')}
+						style={{width: 65, height: 37}} />
 				<Image 
 					source={require('../../assets/images/menu.png')}
 					style={{ height: 37, width: 62}} />

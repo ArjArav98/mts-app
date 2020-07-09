@@ -26,17 +26,23 @@ export default class HomeScreen extends Component {
 				<View style={homeStyles.HomeElemContainer}>
 
 					<View style={{	width: '100%', flexDirection: 'row', backgroundColor: Colors.appBlueShade,
-									paddingVertical: '3%'}}>
+									paddingVertical: '2%'}}>
 						<View style={{flex: 1, paddingLeft: '3%'}}>
 							<Image 	source={require('../../assets/images/bell.png')}
-									style={{width: 30, height: 30}} />
+									style={{width: 26, height: 26}} />
 						</View>
-						<FontText 	title='CART LIST' style={{	flex: 1, fontSize: 19, color: 'white',
+						<FontText 	title='Cart List' style={{	flex: 1, fontSize: 19, color: 'white',
 																textAlign: 'center'}}
 									fontStyle='light' />
 						<FontText 	title='₹ 430.00' style={{	flex: 1, fontSize: 19, color: 'white',
 																textAlign: 'right', paddingRight: '3%'}}
 									fontStyle='light' />
+					</View>
+
+					<View style={{width: '100%', flexDirection: 'row', backgroundColor: 'white', paddingVertical: '1%'}}>
+						<FontText title='Description' style={{flex: 1, fontSize: 18, textAlign: 'center'}} />
+						<FontText title='Qty' style={{flex: 1, fontSize: 18, textAlign: 'center'}} />
+						<FontText title='Price' style={{flex: 1, fontSize: 18, textAlign: 'center'}} />
 					</View>
 
 					<ScrollView style={{width: '100%', marginTop: '2%'}}>

@@ -86,7 +86,9 @@ export const homeStyles = StyleSheet.create({
 
 	CartHomeButtonsList: {
 		width: '100%',
-		flexDirection: 'row'
+		flexDirection: 'row',
+		marginBottom: '2%',
+		backgroundColor: 'white'
 	},
 	CartHomeButton: {
 		flex: 1,

@@ -16,7 +16,6 @@ export default function BarcodeScreen() {
 	}, []);
 	
 	const handleBarCodeScanned = ({ type, data }) => {
-		setScanned(true);
 		alert(`${data}`); //The type is ean 13
 	};
 	
@@ -50,8 +49,6 @@ export default function BarcodeScreen() {
 				</View>
 				<View style={{flex: 1, backgroundColor: 'rgba(255,255,255,0.5)'}}></View>
 			</View>
-	
-			<Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />
 		</View>
 	);
 }

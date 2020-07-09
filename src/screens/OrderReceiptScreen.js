@@ -14,7 +14,7 @@ export default class OrderReceiptScreen extends React.Component {
 		return (
 			<ScrollView style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
-				<SectionHeader title="ORDER RECEIPT" style={{width: '100%'}}/>
+				<SectionHeader title="Order Receipt" style={{width: '100%'}}/>
 
 				<View style={{width: '100%', marginTop: '2%'}}>
 					<CartTable />

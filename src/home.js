@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { 	StyleSheet, Image,
 			View, ScrollView  } from 'react-native'
 import { FontText}from './components/FontText'
+import Colors from './styles/Colors'
 
 /**************/
 /* COMPONENTS */
@@ -39,24 +40,13 @@ export class CartTable extends Component {
 		return (
 		
 			<View style={[this.styles.CartTableContainer,this.props.style]}>
-				<ScrollView style={{width: '100%'}}>
-	
-					<View style={this.styles.CartTableRow}>
-						<CartTableTextItem 	title="Description" qty="Qty" amount="Amount"
-											style={[{fontSize: 17}]} />
-					</View>
-	
-					<HomeBreakLine />
-	
-					<CartTableItem product="Horlicks 500g" price="450" />
-					<CartTableItem product="Odomos" price="450" />
-					<CartTableItem product="Odomos" price="450" />
-					<CartTableItem product="Odomos" price="450" />
-					<CartTableItem product="Odomos" price="450" />
-					<CartTableItem product="Odomos" price="450" />
-					<CartTableItem product="Odomos" price="450" />
-	
-				</ScrollView>
+
+				<HomeBreakLine />
+
+				<CartTableItem product="Horlicks 500g" price="450" />
+				<CartTableItem product="Odomos" price="450" />
+				<CartTableItem product="Odomos" price="450" />
+				<CartTableItem product="Odomos" price="450" />
 	
 			</View>
 	
