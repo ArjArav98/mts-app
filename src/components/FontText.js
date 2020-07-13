@@ -34,6 +34,7 @@ export function FontTextInput(props) {
 						secureTextEntry={props.secureTextEntry}
 						onFocus={props.onFocus}
 						onBlur={props.onBlur}
+						onChangeText={props.onChangeText}
 						>
 				{props.title}
 			</TextInput>

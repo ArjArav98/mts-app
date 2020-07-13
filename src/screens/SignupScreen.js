@@ -9,6 +9,24 @@ import { StyleSheet, View, Image, KeyboardAvoidingView } from 'react-native'
 
 export class SignupScreen extends Component {
 
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			title: '',
+			name: '',
+			mobile: ''
+		}
+	}
+
+	updateStateProperty(property, value) {
+		switch(property) {
+			case 'title': this.setState({ title: value }); break;
+			case 'name': this.setState({ name: value }); break;
+			case 'mobile': this.setState({ mobile: value })
+		}
+	}
+
 	render() {
 
 		let { navigate } = this.props.navigation;
@@ -43,16 +61,19 @@ export class SignupScreen extends Component {
 						style={loginStyles.LoginFormInput}
 						placeholder="Title (Mr/Mrs)"
 						type="text"
+						onChangeText={(text) => this.updateStateProperty('title', text)}
 					/>
 					<BreakLine /><LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Name"
 						type="text"
+						onChangeText={(text) => this.updateStateProperty('name', text)}
 					/>
 					<BreakLine /><LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Mobile Number"
 						type="number"
+						onChangeText={(text) => this.updateStateProperty('mobile', text)}
 					/>
 				</View>
 
@@ -66,7 +87,7 @@ export class SignupScreen extends Component {
 
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Continue" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'SignupContinuation'} />
+									navigate={navigate} navigateScreen={'SignupContinuation'} screenProps={{details: this.state}} />
 				</View>
 
 			</KeyboardAvoidingView>
@@ -82,6 +103,28 @@ export class SignupScreen extends Component {
 
 export class SignupContinuationScreen extends Component {
 
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			title: this.props.navigation.state.params.details.title,
+			name: this.props.navigation.state.params.details.name,
+			mobile: this.props.navigation.state.params.details.mobile,
+
+			address: '',
+			pincode: '',
+			password: '',
+		}
+	}
+
+	updateStateProperty(property, value) {
+		switch(property) {
+			case 'address': this.setState({ address: value }); break;
+			case 'pincode': this.setState({ pincode: value }); break;
+			case 'password': this.setState({ password: value })
+		}
+	}
+
 	render() {
 
 		let navigationOptions = {
@@ -89,7 +132,7 @@ export class SignupContinuationScreen extends Component {
 		};
 	
 		let { navigate } = this.props.navigation;
-	
+
 		return (
 			<KeyboardAvoidingView style={loginStyles.LoginContainer}>
 				
@@ -121,18 +164,21 @@ export class SignupContinuationScreen extends Component {
 						style={loginStyles.LoginFormInput}
 						placeholder="Address"
 						type="text"
+						onChangeText={(text) => this.updateStateProperty('address', text)}
 					/>
 					<BreakLine />
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Pincode"
 						type="pincode"
+						onChangeText={(text) => this.updateStateProperty('pincode', text)}
 					/>
 					<BreakLine />
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Password"
 						type="password"
+						onChangeText={(text) => this.updateStateProperty('password', text)}
 					/>
 				</View>
 	
@@ -146,7 +192,7 @@ export class SignupContinuationScreen extends Component {
 
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Register" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'UserVerification'} />
+									onPress={() => console.log(this.state)} />
 				</View>
 	
 			</KeyboardAvoidingView>

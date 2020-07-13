@@ -21,12 +21,12 @@ export class LoginButton extends Component {
 							[this.styles.LoginButton, {color: Colors.appInverseShade, fontSize: 17 }] :
 							[this.styles.LoginButton, {color: Colors.appBlueShade, fontSize: 17 }];
 		
-		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
-		navigateFunction = (this.props.goBack)? ()=>this.props.goBack() : navigateFunction ;		
+		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen, this.props.screenProps) : null ;
+		navigateFunction = (this.props.goBack)? ()=>this.props.goBack() : navigateFunction ;
 
 		return (
 			<View style={containerStyle}>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={this.props.onPress}>
 					<FontText 	title={this.props.title} style={buttonStyle} 
 								onPress={navigateFunction} fontStyle='light' />
 				</TouchableOpacity>
@@ -119,6 +119,7 @@ export class LoginInput extends Component {
 					secureTextEntry={isPassword}
 					onBlur={this.props.onBlur}
 					onFocus={this.props.onFocus}
+					onChangeText={this.props.onChangeText}
 				/>
 			</View>
 		);
