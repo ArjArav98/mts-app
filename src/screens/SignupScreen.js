@@ -30,6 +30,32 @@ export class SignupScreen extends Component {
 		}
 	}
 
+	/**************/
+	/* SUBMISSION */
+	/**************/
+
+	allFieldsAreFilled() {
+		if(this.state.title.trim().length === 0) return false
+		if(this.state.name.trim().length === 0) return false
+		if(this.state.mobile.trim().length != 10) return false
+
+		return true
+	}
+
+	submitDetails() {
+		if(!this.allFieldsAreFilled()) {	
+			showMessage({
+				message: "Error",
+				description: "Please make sure you have filled all fields correctly.",
+				type: "danger",
+				icon: "danger",
+			})
+			return
+		}
+
+		this.props.navigation.navigate('SignupContinuation', { details: this.state })
+	}
+
 	render() {
 
 		let { navigate } = this.props.navigation;
@@ -47,8 +73,8 @@ export class SignupScreen extends Component {
 				</View>
 
 				<View style={loginStyles.LoginOptionsContainer}>
-					<LoginButton 	title="Login" style={loginStyles.LoginOptions} 
-									goBack={() => this.props.navigation.goBack()}  />
+					<LoginButton 	title="Login" style={loginStyles.LoginOptions}
+									goBack={() => this.props.navigation.goBack()} />
 					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 
@@ -90,7 +116,7 @@ export class SignupScreen extends Component {
 
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Continue" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'SignupContinuation'} screenProps={{details: this.state}} />
+									onPress={() => this.submitDetails() } />
 				</View>
 
 			</KeyboardAvoidingView>

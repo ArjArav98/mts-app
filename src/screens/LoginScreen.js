@@ -4,6 +4,9 @@ import React, { Component } from 'react'
 import { View, Image } from 'react-native'
 import Colors from '../styles/Colors'
 import KeyboardListener from 'react-native-keyboard-listener'
+import { showMessage } from 'react-native-flash-message'
+
+const axios = require('axios')
 
 /*************/
 /* LOGINHOME */
@@ -13,7 +16,12 @@ export default class LoginScreen extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = { color: 'red' }
+		this.state = { 
+			color: 'red',
+
+			mobileno: '',
+			password: ''
+		 }
 	}
 
 	static navigationOptions = {
@@ -26,6 +34,80 @@ export default class LoginScreen extends Component {
 
 	makeSmallLoginButtonsAppear() {
 		this.setState({ color: 'red' })
+	}
+
+	/************/
+	/* UPDATION */
+	/************/
+
+	updateStateProperty(property, value) {
+		switch(property) {
+			case 'mobileno': this.setState({ mobileno: value }); break;
+			case 'password': this.setState({ password: value })
+		}
+	}
+
+	/**************/
+	/* SUBMISSION */
+	/**************/
+
+	allFieldsAreFilled() {
+		if(this.state.mobileno.trim().length != 10) return false
+		if(this.state.password.trim().length == 0) return false
+
+		return true
+	}
+
+	submitLoginDetails() {
+		if(this.allFieldsAreFilled() !== true) {
+			this.showResponseMessage(0)
+			return
+		}
+
+		let apiUrl = 'http://cnagaraj-001-site1.ftempurl.com/JSonsString.asmx/Login?Josnloginstr=' + 
+					'%5B%7B%22mobileno%22%3A%22' + this.state.mobileno + '%22%2C' + 
+					'%22password%22%3A%22' + this.state.password + '%22%7D%5D'
+
+		console.log(apiUrl)
+		const self = this
+		axios.get(apiUrl)
+			.then(function (response) {
+				if(response.data.includes('200')) {
+					self.showResponseMessage(200)
+					self.props.navigation.navigate('AppNavigation')
+				}
+				else if(response.data.includes('Invalid')) self.showResponseMessage(500)
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}
+
+	showResponseMessage(status) {
+		if(status === 200) {
+			showMessage({
+				message: "Success",
+				description: "You have successfully logged in!",
+				type: "success",
+				icon: "success",
+			})
+		}
+		else if(status === 500) {
+			showMessage({
+				message: "Sorry!",
+				description: "Incorrect credentials!",
+				type: "danger",
+				icon: "danger",
+			})
+		}
+		else {
+			showMessage({
+				message: "Sorry!",
+				description: "Please fill all the fields.",
+				type: "danger",
+				icon: "danger",
+			})
+		}
 	}
 
 	render() {
@@ -65,12 +147,14 @@ export default class LoginScreen extends Component {
 						style={loginStyles.LoginFormInput}
 						placeholder="Mobile Number"
 						type="number"
+						onChangeText={(text) => this.updateStateProperty('mobileno', text)}
 					/>
 					<BreakLine />
 					<LoginInput 
 						style={loginStyles.LoginFormInput}
 						placeholder="Password"
 						type="password"
+						onChangeText={(text) => this.updateStateProperty('password', text)}
 					/>
 				</View>
 	
@@ -89,7 +173,7 @@ export default class LoginScreen extends Component {
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Login" buttonStyle="default" 
 									style={loginStyles.SubmitButton} 
-									navigate={navigate} navigateScreen={'AppNavigation'} />
+									onPress={() => this.submitLoginDetails()} />
 				</View>
 	
 			</View>
