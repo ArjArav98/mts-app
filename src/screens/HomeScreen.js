@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, Text, Button, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Image, Text, Button, TouchableOpacity, ScrollView, Keyboard, BackHandler } from 'react-native'
 import { homeStyles } from '../styles/styles'
 import { SectionHeader, CartTable, CartButton, HomeBreakLine } from '../home'
 import { FontText } from "../components/FontText"
@@ -7,9 +7,17 @@ import Colors from "../styles/Colors"
 
 export default class HomeScreen extends Component {
 
+	componentDidMount() {
+		this.backHandler = BackHandler.addEventListener(
+		  "hardwareBackPress",
+		  BackHandler.exitApp
+		);
+	  }
+
 	render() {
 	
 		let { navigate } = this.props.navigation
+		Keyboard.dismiss()
 		
 		return (
 			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>

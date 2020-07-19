@@ -60,7 +60,7 @@ export default class LoginScreen extends Component {
 
 	submitLoginDetails() {
 		if(this.allFieldsAreFilled() !== true) {
-			this.showResponseMessage(0)
+			this.showResponseMessage(500)
 			return
 		}
 
@@ -94,18 +94,8 @@ export default class LoginScreen extends Component {
 		}
 		else if(status === 500) {
 			showMessage({
-				message: "Sorry!",
-				description: "Incorrect credentials!",
-				type: "danger",
-				icon: "danger",
-			})
-		}
-		else {
-			showMessage({
-				message: "Sorry!",
-				description: "Please fill all the fields.",
-				type: "danger",
-				icon: "danger",
+				message: "Sorry!", description: "Incorrect credentials!",
+				type: "danger", icon: "danger",
 			})
 		}
 	}

@@ -4,7 +4,10 @@ import { loginStyles } from '../styles/styles'
 import { View, Image, KeyboardAvoidingView, Text } from 'react-native'
 import { FontText } from '../components/FontText'
 import Colors from '../styles/Colors'
+
+import { showMessage } from "react-native-flash-message";
 import KeyboardListener from 'react-native-keyboard-listener'
+const axios = require('axios')
 
 export default class UserVerificationScreen extends Component {
 
@@ -19,6 +22,52 @@ export default class UserVerificationScreen extends Component {
 
 	makeSmallLoginButtonsAppear() {
 		this.setState({ color: 'red' })
+	}
+
+	/**************/
+	/* SUBMISSION */
+	/**************/
+
+	submitDetails() {
+		let details = this.props.navigation.state.params.details
+
+		let apiUrl = 'http://cnagaraj-001-site1.ftempurl.com/JSonsString.asmx/SignUp?JosnRegistration=' + 
+					'%5B%7B%22Title%22%3A%22' + details.title + '%22%2C' + 
+					'%22UserName%22%3A%22' + details.name + '%22%2C' +
+					'%22MobileNumber%22%3A%22' + details.mobile + '%22%2C' +
+					'%22Address%22%3A%22' + details.address + '%22%2C' +
+					'%22Pincode%22%3A%22' + details.pincode + '%22%2C' +
+					'%22Password%22%3A%22' + details.password + '%22%7D%5D'
+
+		console.log(apiUrl)
+		const self = this
+		axios.get(apiUrl)
+			.then(function (response) {
+				if(response.data.includes('200')) {
+					self.showResponseMessage(200)
+					self.props.navigation.popToTop()
+				}
+				else if(response.data.includes('#')) self.showResponseMessage(500)
+				else self.showResponseMessage(500)
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}
+
+	showResponseMessage(status) {
+		if(status === 200) {
+			showMessage({
+				message: "Success", description: "You have successfully signed up!",
+				type: "success", icon: "success",
+			})
+		}
+		else if(status === 500) {
+			showMessage({
+				message: "Sorry!", description: "An account with this number already exists. Try again.",
+				type: "danger", icon: "danger",
+			})
+		}
 	}
 
 	render() {
@@ -48,7 +97,7 @@ export default class UserVerificationScreen extends Component {
 										{width: '86%', textAlign: 'center', fontSize: 18, color: Colors.appBlueShade}]} />
 					<Image 	resizeMode="cover" 
 							style={{height: 50, width: 50, marginTop: '7%'}}
-							source={require("../../assets/images/user.png")} />
+							source={require("../../assets/images/user-otp.png")} />
 				</View>
 	
 				<View style={[loginStyles.LoginFormContainer, {flex: 0.3}]}>
@@ -67,8 +116,9 @@ export default class UserVerificationScreen extends Component {
 	
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<BreakLine />
-					<LoginButton title="Verify" buttonStyle="default" 
-						style={loginStyles.SubmitButton} navigate={navigate} navigateScreen={'Login'} />
+					<LoginButton 	title="Verify" buttonStyle="default" style={loginStyles.SubmitButton}
+									onPress={() => this.submitDetails()}
+						 />
 				</View>
 	
 			</KeyboardAvoidingView>

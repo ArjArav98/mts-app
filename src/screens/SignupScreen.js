@@ -3,7 +3,6 @@ import { loginStyles } from '../styles/styles'
 import React, { useState, useEffect, Component } from 'react';
 import { StyleSheet, View, Image, KeyboardAvoidingView } from 'react-native'
 
-const axios = require('axios')
 import { showMessage } from "react-native-flash-message";
 
 /**************/
@@ -34,22 +33,53 @@ export class SignupScreen extends Component {
 	/* SUBMISSION */
 	/**************/
 
-	allFieldsAreFilled() {
+	allFieldsAreValid() {
 		if(this.state.title.trim().length === 0) return false
+		if(!(this.state.title.trim() === 'Mr'
+			|| this.state.trim() === 'Mrs'
+			|| this.state.trim() === 'Ms' )) return false
 		if(this.state.name.trim().length === 0) return false
 		if(this.state.mobile.trim().length != 10) return false
 
 		return true
 	}
 
-	submitDetails() {
-		if(!this.allFieldsAreFilled()) {	
+	showErrorMessageForInvalidFields() {
+		if(this.state.title.trim().length === 0) {
 			showMessage({
-				message: "Error",
-				description: "Please make sure you have filled all fields correctly.",
-				type: "danger",
-				icon: "danger",
+				message: "Error", description: "The field 'title' must not be empty.",
+				type: "danger", icon: "danger",
 			})
+			return 
+		}
+		if(	!(this.state.title.trim() === 'Mr' 
+			|| this.state.title.trim() === 'Ms'
+			|| this.state.title.trim() === 'Mrs' )) {
+			showMessage({
+				message: "Error", description: "The field 'title' must contain either Mr or Ms or Mrs.",
+				type: "danger", icon: "danger",
+			})
+			return
+		}
+		if(this.state.name.trim().length === 0) {
+			showMessage({
+				message: "Error", description: "The field 'name' must not be empty.",
+				type: "danger", icon: "danger",
+			})
+			return
+		}
+		if(this.state.mobile.trim().length != 10) {
+			showMessage({
+				message: "Error", description: "The field 'mobile' must have 10 characters.",
+				type: "danger", icon: "danger",
+			})
+			return
+		}
+	}
+
+	submitDetails() {
+		if(!this.allFieldsAreValid()) {
+			this.showErrorMessageForInvalidFields()
 			return
 		}
 
@@ -162,71 +192,50 @@ export class SignupContinuationScreen extends Component {
 	/* SUBMISSION */
 	/**************/
 
-	allFieldsAreFilled() {
+	allFieldsAreValid() {
 		if(!this.state.title) return false
 		if(!this.state.name) return false
 		if(!this.state.mobile) return false
-		if(!this.state.pincode) return false
+		if(this.state.pincode.trim().length != 6) return false
 		if(!this.state.address) return false
 		if(!this.state.password) return false
 
 		return true
 	}
 
-	submitSignupInfo() {
-
-		if(this.allFieldsAreFilled() !== true) {
-			this.showResponseMessage(0)
+	showErrorMessageForInvalidFields() {
+		if(this.state.address.trim().length === 0) {
+			showMessage({
+				message: "Error", description: "The field 'address' cannot be empty.",
+				type: "danger", icon: "danger",
+			})
+			return
+		}
+		if(this.state.pincode.trim().length != 6) {
+			showMessage({
+				message: "Error", description: "The field 'pincode' must have only 6 digits.",
+				type: "danger", icon: "danger",
+			})
+			return
+		}
+		if(this.state.password.trim().length != 10) {
+			showMessage({
+				message: "Error", description: "The field 'password' cannot be empty.",
+				type: "danger", icon: "danger",
+			})
 			return
 		}
 
-		let apiUrl = 'http://cnagaraj-001-site1.ftempurl.com/JSonsString.asmx/SignUp?JosnRegistration=' + 
-					'%5B%7B%22Title%22%3A%22' + this.state.title + '%22%2C' + 
-					'%22UserName%22%3A%22' + this.state.name + '%22%2C' +
-					'%22MobileNumber%22%3A%22' + this.state.mobile + '%22%2C' +
-					'%22Address%22%3A%22' + this.state.address + '%22%2C' +
-					'%22Pincode%22%3A%22' + this.state.pincode + '%22%2C' +
-					'%22Password%22%3A%22' + this.state.password + '%22%7D%5D'
-
-		const self = this
-		axios.get(apiUrl)
-			.then(function (response) {
-				if(response.data.includes('200')) {
-					self.showResponseMessage(200)
-					self.props.navigation.popToTop()
-				}
-				else if(response.data.includes('#')) self.showResponseMessage(500)
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+		return 'none'
 	}
 
-	showResponseMessage(status) {
-		if(status === 200) {
-			showMessage({
-				message: "Success",
-				description: "You have successfully signed up!",
-				type: "success",
-				icon: "success",
-			})
+	submitDetails() {
+		if(!this.allFieldsAreValid()) {
+			this.showErrorMessageForInvalidFields()
+			return
 		}
-		else if(status === 500) {
-			showMessage({
-				message: "Sorry!",
-				description: "An account with this number already exists. Try again.",
-				type: "danger",
-				icon: "danger",
-			})
-		}
-		else {
-			showMessage({
-				message: "Sorry!",
-				description: "Please fill all the fields.",
-				type: "danger",
-				icon: "danger",
-			})
-		}
+
+		this.props.navigation.navigate('UserVerification', {details: this.state})
 	}
 
 	render() {
@@ -252,7 +261,7 @@ export class SignupContinuationScreen extends Component {
 	
 				<View style={loginStyles.LoginOptionsContainer}>
 					<LoginButton 	title="Login" style={loginStyles.LoginOptions}
-									navigate={navigate} navigateScreen={'Signup'}  />
+									onPress={() => this.props.navigation.popToTop()}  />
 					<LoginButton title="Signup" buttonStyle="default" style={loginStyles.LoginOptions} />
 				</View>
 	
@@ -297,7 +306,7 @@ export class SignupContinuationScreen extends Component {
 
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Register" buttonStyle="default" style={loginStyles.SubmitButton}
-									onPress={() => this.submitSignupInfo()} />
+									onPress={() => this.submitDetails()} />
 				</View> 
 			</KeyboardAvoidingView>
 		);
