@@ -74,7 +74,7 @@ export default class LoginScreen extends Component {
 			.then(function (response) {
 				if(response.data.includes('200')) {
 					self.showResponseMessage(200)
-					self.props.navigation.navigate('AppNavigation')
+					self.props.navigation.navigate('AppNavigation', {prevNavigation: self.props.navigation})
 				}
 				else if(response.data.includes('Invalid')) self.showResponseMessage(500)
 			})

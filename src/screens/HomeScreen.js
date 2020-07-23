@@ -7,12 +7,14 @@ import Colors from "../styles/Colors"
 
 export default class HomeScreen extends Component {
 
-	componentDidMount() {
-		this.backHandler = BackHandler.addEventListener(
-		  "hardwareBackPress",
-		  BackHandler.exitApp
+	constructor(props) {
+		super(props)
+
+		BackHandler.addEventListener(
+			"hardwareBackPress",
+			() => true
 		);
-	  }
+	}
 
 	render() {
 	

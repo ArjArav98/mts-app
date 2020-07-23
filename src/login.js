@@ -139,7 +139,7 @@ export class LoginInput extends Component {
 			backgroundColor: Colors.appInverseShade,
 			fontSize: 18,
 			fontWeight: 'bold',
-			width: '60%',
+			width: '90%',
 			marginLeft: '5%'
 		}
 	})

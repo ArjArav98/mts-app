@@ -4,7 +4,28 @@ import { loginStyles } from '../styles/styles'
 import { View, Image, KeyboardAvoidingView, Text } from 'react-native'
 import { FontText } from '../components/FontText'
 
+import { showMessage } from "react-native-flash-message";
+
 export default class ForgotPasswordScreen extends Component {
+
+	constructor(props) {
+		super(props)
+		this.state = {
+			mobile: ''
+		}
+	}
+
+	submitDetails() {
+		if(this.state.mobile.trim().length != 10) {
+			showMessage({
+				message: "Error", description: "Mobile should be 10 characters.",
+				type: "danger", icon: "danger",
+			})
+			return 
+		}
+
+		this.props.navigation.navigate('ResetPassword', { details: this.state })
+	}
 
 	render() {
 
@@ -45,13 +66,14 @@ export default class ForgotPasswordScreen extends Component {
 						style={loginStyles.LoginFormInput}
 						placeholder="Enter Mobile Number"
 						type="number"
+						onChangeText={(text) => this.setState({ mobile: text })}
 					/>
 				</View>
 	
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<BreakLine />
 					<LoginButton 	title="Reset Password" buttonStyle="default" style={loginStyles.SubmitButton}
-									navigate={navigate} navigateScreen={'ResetPassword'} />
+									onPress={() => this.submitDetails()} />
 				</View>
 	
 			</KeyboardAvoidingView>

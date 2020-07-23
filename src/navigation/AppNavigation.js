@@ -4,10 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import CartNavigation from './CartNavigation'
+import LogoutScreen from '../screens/LogoutScreen'
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function MyTabs(props) {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -33,20 +34,10 @@ function MyTabs() {
 				<MaterialCommunityIcons name="history" color={color} size={size} />
 			), }}
       	/>
-		
-		<Tab.Screen
-			name="Settings"
-			component={CartNavigation}
-			options={{
-			tabBarLabel: 'Settings',
-			tabBarIcon: ({ color, size }) => (
-				<MaterialCommunityIcons name="cogs" color={color} size={size} />
-			), }}
-		/>
 
 		<Tab.Screen
 			name="Logout"
-			component={CartNavigation}
+			component={props.logout}
 			options={{
 			tabBarLabel: 'Logout',
 			tabBarIcon: ({ color, size }) => (
@@ -58,16 +49,26 @@ function MyTabs() {
   );
 }
 
+function Logout(props) {
+	props.logout()
+	return (<View></View>)
+}
+
 export default class AppNavigation extends React.Component {
   
+	constructor(props) {
+		super(props)
+	}
+
 	static navigationOptions = {
 		header: null,
 	};
 	
 	render() {
+		const LogoutComponent = (<Logout logout={this.props.navigation.popToTop()} />)
 		return (
 			<NavigationContainer>
-				<MyTabs />
+				<MyTabs logout={LogoutComponent} />
 			</NavigationContainer>
 		);
 	}

@@ -91,7 +91,7 @@ export default class UserVerificationScreen extends Component {
 				</View>
 	
 				<View style={[loginStyles.LoginOptionsContainer,{flex: 1, flexDirection: 'column'}]}>
-					<FontText 	title="Hi, Username!"
+					<FontText 	title={'Hi, ' + this.props.navigation.state.params.details.name + '!'}
 								fontStyle='light'
 								style={	[loginStyles.LoginOptions, 
 										{width: '86%', textAlign: 'center', fontSize: 18, color: Colors.appBlueShade}]} />

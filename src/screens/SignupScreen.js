@@ -36,8 +36,8 @@ export class SignupScreen extends Component {
 	allFieldsAreValid() {
 		if(this.state.title.trim().length === 0) return false
 		if(!(this.state.title.trim() === 'Mr'
-			|| this.state.trim() === 'Mrs'
-			|| this.state.trim() === 'Ms' )) return false
+			|| this.state.title.trim() === 'Mrs'
+			|| this.state.title.trim() === 'Ms' )) return false
 		if(this.state.name.trim().length === 0) return false
 		if(this.state.mobile.trim().length != 10) return false
 
@@ -47,7 +47,7 @@ export class SignupScreen extends Component {
 	showErrorMessageForInvalidFields() {
 		if(this.state.title.trim().length === 0) {
 			showMessage({
-				message: "Error", description: "The field 'title' must not be empty.",
+				message: "Error", description: "Title can't be blank.",
 				type: "danger", icon: "danger",
 			})
 			return 
@@ -56,21 +56,21 @@ export class SignupScreen extends Component {
 			|| this.state.title.trim() === 'Ms'
 			|| this.state.title.trim() === 'Mrs' )) {
 			showMessage({
-				message: "Error", description: "The field 'title' must contain either Mr or Ms or Mrs.",
+				message: "Error", description: "Invalid title.",
 				type: "danger", icon: "danger",
 			})
 			return
 		}
 		if(this.state.name.trim().length === 0) {
 			showMessage({
-				message: "Error", description: "The field 'name' must not be empty.",
+				message: "Error", description: "Name can't be blank.",
 				type: "danger", icon: "danger",
 			})
 			return
 		}
 		if(this.state.mobile.trim().length != 10) {
 			showMessage({
-				message: "Error", description: "The field 'mobile' must have 10 characters.",
+				message: "Error", description: "Mobile can't be blank.",
 				type: "danger", icon: "danger",
 			})
 			return
@@ -206,21 +206,21 @@ export class SignupContinuationScreen extends Component {
 	showErrorMessageForInvalidFields() {
 		if(this.state.address.trim().length === 0) {
 			showMessage({
-				message: "Error", description: "The field 'address' cannot be empty.",
+				message: "Error", description: "Address can't be blank.",
 				type: "danger", icon: "danger",
 			})
 			return
 		}
 		if(this.state.pincode.trim().length != 6) {
 			showMessage({
-				message: "Error", description: "The field 'pincode' must have only 6 digits.",
+				message: "Error", description: "Pincode is invalid.",
 				type: "danger", icon: "danger",
 			})
 			return
 		}
 		if(this.state.password.trim().length != 10) {
 			showMessage({
-				message: "Error", description: "The field 'password' cannot be empty.",
+				message: "Error", description: "Password can't be blank.",
 				type: "danger", icon: "danger",
 			})
 			return
