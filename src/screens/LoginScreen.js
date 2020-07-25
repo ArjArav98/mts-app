@@ -3,6 +3,8 @@ import { loginStyles } from '../styles/styles'
 import React, { Component } from 'react'
 import { View, Image } from 'react-native'
 import Colors from '../styles/Colors'
+
+import AsyncStorage from '@react-native-community/async-storage';
 import KeyboardListener from 'react-native-keyboard-listener'
 import { showMessage } from 'react-native-flash-message'
 
@@ -27,6 +29,10 @@ export default class LoginScreen extends Component {
 	static navigationOptions = {
         header: null
     }
+
+	async componentDidMount() {
+		await AsyncStorage.setItem('cart', '{ "items": [] }')
+	}
 
 	makeSmallLoginButtonsDisappear() {
 		this.setState({ color: Colors.appInverseShade })
@@ -74,7 +80,7 @@ export default class LoginScreen extends Component {
 			.then(function (response) {
 				if(response.data.includes('200')) {
 					self.showResponseMessage(200)
-					self.props.navigation.navigate('AppNavigation', {prevNavigation: self.props.navigation})
+					self.props.navigation.navigate('AppNavigation')
 				}
 				else if(response.data.includes('Invalid')) self.showResponseMessage(500)
 			})
@@ -163,7 +169,10 @@ export default class LoginScreen extends Component {
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Login" buttonStyle="default" 
 									style={loginStyles.SubmitButton} 
-									onPress={() => this.submitLoginDetails()} />
+									onPress={() => {
+										//this.submitLoginDetails()
+										this.props.navigation.navigate('AppNavigation')
+									}} />
 				</View>
 	
 			</View>

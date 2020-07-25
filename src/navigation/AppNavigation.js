@@ -8,7 +8,7 @@ import LogoutScreen from '../screens/LogoutScreen'
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs(props) {
+function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -37,7 +37,7 @@ function MyTabs(props) {
 
 		<Tab.Screen
 			name="Logout"
-			component={props.logout}
+			component={CartNavigation}
 			options={{
 			tabBarLabel: 'Logout',
 			tabBarIcon: ({ color, size }) => (
@@ -47,11 +47,6 @@ function MyTabs(props) {
 
     </Tab.Navigator>
   );
-}
-
-function Logout(props) {
-	props.logout()
-	return (<View></View>)
 }
 
 export default class AppNavigation extends React.Component {
@@ -65,10 +60,9 @@ export default class AppNavigation extends React.Component {
 	};
 	
 	render() {
-		const LogoutComponent = (<Logout logout={this.props.navigation.popToTop()} />)
 		return (
 			<NavigationContainer>
-				<MyTabs logout={LogoutComponent} />
+				<MyTabs />
 			</NavigationContainer>
 		);
 	}

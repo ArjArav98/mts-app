@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { View, Image, Text, Button, TouchableOpacity, ScrollView, Keyboard, BackHandler } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { homeStyles } from '../styles/styles'
 import { SectionHeader, CartTable, CartButton, HomeBreakLine } from '../home'
 import { FontText } from "../components/FontText"
@@ -10,10 +12,50 @@ export default class HomeScreen extends Component {
 	constructor(props) {
 		super(props)
 
+		this.state = {
+			barcodeNavigation: 1
+		}
+
 		BackHandler.addEventListener(
 			"hardwareBackPress",
 			() => true
 		);
+	}
+
+	async componentDidMount() {
+		console.log(await this.getCart())
+
+		//We check if we have come from the Barcode Screen.
+		try {
+			this.setState({ barcodeNavigation: this.props.navigation.goBack() })
+
+			const itemId = this.props.navigation.state.params.itemId
+			const cart = await this.getCart()
+
+			if(this.cartContains(itemId, cart) === false) 
+				cart.items.push({id: itemId, name: 'Ponni Rice', qty: 1})
+			
+			console.log(cart)
+		} catch(error) {
+			//We do nothing here.
+		}
+	}
+
+	/******************/
+	/* CART FUNCTIONS */
+	/******************/
+
+	async getCart () {
+		try {
+			const value = await AsyncStorage.getItem('cart')
+			if(value !== null) return JSON.parse(value)
+		} catch(e) {
+			return null
+		}
+	}
+
+	cartContains(id, cart) {
+		return cart.items.some((item) => item.id === id)
 	}
 
 	render() {
@@ -27,12 +69,12 @@ export default class HomeScreen extends Component {
 				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1, {flex: 0.7}]}>
 					<FontText 	style={[homeStyles.HomeElemText]} title="Tap the icon below to scan a barcode."
 								fontStyle='light' />
-					<TouchableOpacity style={homeStyles.HomeElemImageContainer} onPress={()=>navigate('Barcode')}>
+					<TouchableOpacity style={homeStyles.HomeElemImageContainer} onPress={(this.state.barcodeNavigation === 1)? () => this.props.navigation.navigate('Barcode') : () => this.props.navigation.goBack()}>
 						<Image 	style={homeStyles.HomeElemImage} 
 								source={require('../../assets/images/qr.png')} />
 					</TouchableOpacity>
 				</View>
-	
+
 				<View style={homeStyles.HomeElemContainer}>
 
 					<View style={{	width: '100%', flexDirection: 'row', backgroundColor: Colors.appBlueShade,

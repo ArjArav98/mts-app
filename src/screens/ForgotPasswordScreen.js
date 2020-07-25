@@ -18,7 +18,7 @@ export default class ForgotPasswordScreen extends Component {
 	submitDetails() {
 		if(this.state.mobile.trim().length != 10) {
 			showMessage({
-				message: "Error", description: "Mobile should be 10 characters.",
+				message: "Error", description: "Mobile# should be 10 characters.",
 				type: "danger", icon: "danger",
 			})
 			return 
