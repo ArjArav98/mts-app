@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { View, Image, Text, Button, TouchableOpacity, ScrollView, Keyboard, BackHandler } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage'
+import { showMessage } from 'react-native-flash-message'
+const axios = require('axios')
 
 import { homeStyles } from '../styles/styles'
 import { SectionHeader, CartTable, CartButton, HomeBreakLine } from '../home'
@@ -13,7 +15,7 @@ export default class HomeScreen extends Component {
 		super(props)
 
 		this.state = {
-			barcodeNavigation: 1
+			comingFromBarcode: false
 		}
 
 		BackHandler.addEventListener(
@@ -27,30 +29,109 @@ export default class HomeScreen extends Component {
 
 		//We check if we have come from the Barcode Screen.
 		try {
-			this.setState({ barcodeNavigation: this.props.navigation.goBack() })
-
 			const itemId = this.props.navigation.state.params.itemId
 			const cart = await this.getCart()
 
-			if(this.cartContains(itemId, cart) === false) 
-				cart.items.push({id: itemId, name: 'Ponni Rice', qty: 1})
+			this.setState({ comingFromBarcode: true })
+
+			const itemData = await this.getProductData(itemId)
+			
+			if(this.productIsNotInDatabase(itemData)) {
+				showMessage({
+					message: "Error", description: "This product is not present in the database.",
+					type: "danger", icon: "danger",
+				})
+			}
+			else {
+				itemData = this.extractProductInformation(itemData)
+
+				if(this.cartContains(itemId, cart) === false) {
+					cart.items.push({
+						id: itemId,
+						sku: itemData.prod_code,
+						name: itemData.prod_name, 
+						qty: 1
+					})
+					await this.setCart(cart)
+				}
+				else {
+					showMessage({
+						message: "Warning", description: "This product is already present in cart.",
+						type: "warning", icon: "warning",
+					})
+				}
+			}
 			
 			console.log(cart)
 		} catch(error) {
-			//We do nothing here.
+			console.log(error)
 		}
+	}
+
+	/************************/
+	/* NAVIGATION FUNCTIONS */
+	/************************/
+
+	navigateToBarcode() {
+		console.log(this.state.comingFromBarcode)
+		if(this.state.comingFromBarcode === true) this.props.navigation.goBack()
+		else this.props.navigation.navigate('Barcode')
+	}
+
+	/*********************/
+	/* PRODUCT FUNCTIONS */
+	/*********************/
+
+	async getProductData(productId) {
+		let apiUrl = 'http://cnagaraj-001-site1.ftempurl.com/JSonsString.asmx/Scan2Product?jsonstr=' + 
+					'%5B%7B%22mobileno%22%3A%228939227281%22%2C' + 
+					'%22barcodedetails%22%3A%22' + productId + '%22%2C' + 
+					'%22qty%22%3A%221%22%7D%5D'
+
+		console.log(apiUrl)
+
+		const productData = await axios.get(apiUrl)
+								.then(function (response) {
+									return response.data
+								})
+								.catch(function (error) {
+									console.log(error);
+								});
+		
+		return productData
+	}
+
+	productIsNotInDatabase(productData) {
+		if(productData.includes("not been initialised")) return true
+		else if(productData.includes("does not exist")) return true
+		return false
+	}
+
+	extractProductInformation(response) {
+		const start = response.search(/\[/)
+		const end = response.search(/]/)
+	  
+		return JSON.parse(response.substring(start,end+1))
 	}
 
 	/******************/
 	/* CART FUNCTIONS */
 	/******************/
 
-	async getCart () {
+	async getCart() {
 		try {
 			const value = await AsyncStorage.getItem('cart')
 			if(value !== null) return JSON.parse(value)
 		} catch(e) {
 			return null
+		}
+	}
+
+	async setCart(cart) {
+		try {
+			await AsyncStorage.setItem('cart', JSON.stringify(cart))
+		} catch (error) {
+			//Nothing happens here
 		}
 	}
 
@@ -69,7 +150,7 @@ export default class HomeScreen extends Component {
 				<View style={[homeStyles.HomeElemContainer,homeStyles.HomeElemContainer1, {flex: 0.7}]}>
 					<FontText 	style={[homeStyles.HomeElemText]} title="Tap the icon below to scan a barcode."
 								fontStyle='light' />
-					<TouchableOpacity style={homeStyles.HomeElemImageContainer} onPress={(this.state.barcodeNavigation === 1)? () => this.props.navigation.navigate('Barcode') : () => this.props.navigation.goBack()}>
+					<TouchableOpacity style={homeStyles.HomeElemImageContainer} onPress={() => this.navigateToBarcode()}>
 						<Image 	style={homeStyles.HomeElemImage} 
 								source={require('../../assets/images/qr.png')} />
 					</TouchableOpacity>
