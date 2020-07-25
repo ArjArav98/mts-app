@@ -16,7 +16,8 @@ export default class ResetPasswordScreen extends Component {
 			color: 'red',
 
 			password: '',
-			confirmPassword: ''
+			confirmPassword: '',
+			otp: ''
 		}
 	}
 
@@ -32,6 +33,7 @@ export default class ResetPasswordScreen extends Component {
 		if(this.state.password.trim().length === 0) return false
 		if(this.state.confirmPassword.trim().length === 0) return false
 		if(this.state.password !== this.state.confirmPassword) return false
+		if(this.state.otp.trim().length !== 6) return false
 
 		return true
 	}
@@ -53,7 +55,14 @@ export default class ResetPasswordScreen extends Component {
 		}
 		if(this.state.password !== this.state.confirmPassword) {
 			showMessage({
-				message: "Error", description: "Passwords don't match.",
+				message: "Error", description: "Passwords mismatch.",
+				type: "danger", icon: "danger",
+			})
+			return 
+		}
+		if(this.state.otp.trim().length === 0) {
+			showMessage({
+				message: "Error", description: "OTP must be 6 characters.",
 				type: "danger", icon: "danger",
 			})
 			return 
@@ -152,6 +161,7 @@ export default class ResetPasswordScreen extends Component {
 						style={loginStyles.LoginFormInput}
 						placeholder="Enter OTP"
 						type="number"
+						onChangeText={(text) => this.setState({ otp: text })}
 					/>
 				</View>
 				

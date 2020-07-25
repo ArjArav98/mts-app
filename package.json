@@ -20,6 +20,7 @@
     "bufferutil": "^4.0.1",
     "canvas": "^2.6.1",
     "expo": "~37.0.3",
+    "expo-av": "^8.3.0",
     "expo-barcode-scanner": "^8.1.0",
     "expo-font": "^8.1.1",
     "expo-splash-screen": "^0.2.3",

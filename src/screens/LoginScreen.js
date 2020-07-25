@@ -169,10 +169,7 @@ export default class LoginScreen extends Component {
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Login" buttonStyle="default" 
 									style={loginStyles.SubmitButton} 
-									onPress={() => {
-										//this.submitLoginDetails()
-										this.props.navigation.navigate('AppNavigation')
-									}} />
+									onPress={() => this.submitLoginDetails() } />
 				</View>
 	
 			</View>

@@ -5,7 +5,7 @@ import { showMessage } from 'react-native-flash-message'
 const axios = require('axios')
 
 import { homeStyles } from '../styles/styles'
-import { SectionHeader, CartTable, CartButton, HomeBreakLine } from '../home'
+import { CartButton, HomeBreakLine, CartTableItem } from '../home'
 import { FontText } from "../components/FontText"
 import Colors from "../styles/Colors"
 
@@ -15,7 +15,11 @@ export default class HomeScreen extends Component {
 		super(props)
 
 		this.state = {
-			comingFromBarcode: false
+			comingFromBarcode: false,
+
+			cart: {
+				items: []
+			}
 		}
 
 		BackHandler.addEventListener(
@@ -25,16 +29,13 @@ export default class HomeScreen extends Component {
 	}
 
 	async componentDidMount() {
-		console.log(await this.getCart())
-
 		//We check if we have come from the Barcode Screen.
 		try {
 			const itemId = this.props.navigation.state.params.itemId
 			const cart = await this.getCart()
+			const itemData = await this.getProductData(itemId)
 
 			this.setState({ comingFromBarcode: true })
-
-			const itemData = await this.getProductData(itemId)
 			
 			if(this.productIsNotInDatabase(itemData)) {
 				showMessage({
@@ -50,7 +51,8 @@ export default class HomeScreen extends Component {
 						id: itemId,
 						sku: itemData.prod_code,
 						name: itemData.prod_name, 
-						qty: 1
+						qty: 1,
+						rate: itemData.prod_rate
 					})
 					await this.setCart(cart)
 				}
@@ -62,9 +64,9 @@ export default class HomeScreen extends Component {
 				}
 			}
 			
-			console.log(cart)
+			this.setState({ cart: cart })
 		} catch(error) {
-			console.log(error)
+			//Nothing happens here
 		}
 	}
 
@@ -73,7 +75,6 @@ export default class HomeScreen extends Component {
 	/************************/
 
 	navigateToBarcode() {
-		console.log(this.state.comingFromBarcode)
 		if(this.state.comingFromBarcode === true) this.props.navigation.goBack()
 		else this.props.navigation.navigate('Barcode')
 	}
@@ -87,8 +88,6 @@ export default class HomeScreen extends Component {
 					'%5B%7B%22mobileno%22%3A%228939227281%22%2C' + 
 					'%22barcodedetails%22%3A%22' + productId + '%22%2C' + 
 					'%22qty%22%3A%221%22%7D%5D'
-
-		console.log(apiUrl)
 
 		const productData = await axios.get(apiUrl)
 								.then(function (response) {
@@ -139,6 +138,15 @@ export default class HomeScreen extends Component {
 		return cart.items.some((item) => item.id === id)
 	}
 
+	getCartJSX() {
+		return this.state.cart.items.map((cartItem) => {
+			return (
+				<CartTableItem 	product={cartItem.name} key={cartItem.id}
+								rate={cartItem.rate} qty="1"  />
+			)
+		})
+	}
+
 	render() {
 	
 		let { navigate } = this.props.navigation
@@ -179,7 +187,12 @@ export default class HomeScreen extends Component {
 					</View>
 
 					<ScrollView style={{width: '100%', marginTop: '2%'}}>
-						<CartTable />
+						
+						<View style={{width: '100%'}}>
+							<HomeBreakLine />
+							{ this.getCartJSX() }
+						</View>
+
 						<CartButton title="Checkout" style={[homeStyles.HomeCartButton, 
 															{width: '35%', marginLeft: '32.5%'}]}
 									navigate={navigate} navigateScreen={'Cart'} />

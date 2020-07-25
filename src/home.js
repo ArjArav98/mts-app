@@ -1,6 +1,6 @@
-import React, { Component } from "react"
+import React, { Component, useState } from "react"
 import { 	StyleSheet, Image,
-			View, ScrollView  } from 'react-native'
+			View, ScrollView, Touchable, TouchableOpacity  } from 'react-native'
 import { FontText}from './components/FontText'
 import Colors from './styles/Colors'
 
@@ -67,36 +67,7 @@ export class CartTable extends Component {
 }
 
 /* This is the CartTableItem component. */
-export class CartTableItem extends Component {
-
-	render() {
-
-		return (
-			<View style={[this.styles.CartTableRow,{paddingBottom: '2%'}]}>
-				<View style={this.styles.CartTableRow}>
-					<View style={this.styles.CartTableRowElement}>
-						<FontText title={this.props.product} style={[this.styles.CartTableText]} fontStyle={'light'} />
-					</View>
-					<View style={[this.styles.CartTableRowQtyElement]}>
-						<View style={this.styles.CartTableImgContainer}>
-							<Image style={this.styles.CartTableImg}
-									source={require('../assets/images/add.png')} />
-						</View>
-						<View style={[this.styles.CartTableImgContainer,{flex:0.3}]}>
-							<FontText title={0} style={[this.styles.CartTableText]} fontStyle={'light'} />
-						</View>
-						<View style={this.styles.CartTableImgContainer}>
-							<Image style={this.styles.CartTableImg}
-									source={require('../assets/images/minus.png')} />
-						</View>
-					</View>
-					<View style={this.styles.CartTableRowElement}>
-						<FontText title={"Rs "+this.props.price} style={[this.styles.CartTableText]} fontStyle={'light'} />
-					</View>
-				</View>
-			</View>
-		);
-	}
+export function CartTableItem(props) {
 
 	styles = StyleSheet.create({
 		CartTableRow: {
@@ -128,6 +99,42 @@ export class CartTableItem extends Component {
 			height: 20
 		},
 	})
+
+	const [quantity, setQuantity] = useState(1)
+	const rate = parseInt(props.rate)
+
+	return (
+		<View style={[styles.CartTableRow,{paddingBottom: '2%'}]}>
+			<View style={styles.CartTableRow}>
+				<View style={styles.CartTableRowElement}>
+					<FontText title={props.product} style={[styles.CartTableText]} fontStyle={'light'} />
+				</View>
+				<View style={[styles.CartTableRowQtyElement]}>
+					<View style={styles.CartTableImgContainer}>
+						<TouchableOpacity onPress={() => setQuantity(quantity+1)}>
+							<Image style={styles.CartTableImg}
+									source={require('../assets/images/add.png')} />
+						</TouchableOpacity>
+					</View>
+					<View style={[styles.CartTableImgContainer,{flex:0.3}]}>
+						<FontText title={quantity} style={[styles.CartTableText]} fontStyle={'light'} />
+					</View>
+					<View style={styles.CartTableImgContainer}>
+						<TouchableOpacity onPress={() => {
+							(quantity > 0)? setQuantity(quantity-1) : console.log('')
+						}}>
+							<Image style={styles.CartTableImg}
+									source={require('../assets/images/minus.png')} />
+						</TouchableOpacity>
+					</View>
+				</View>
+				<View style={styles.CartTableRowElement}>
+					<FontText 	title={"Rs " + (props.rate * quantity)} 
+								style={[styles.CartTableText]} fontStyle={'light'} />
+				</View>
+			</View>
+		</View>
+	);
 	
 }
 

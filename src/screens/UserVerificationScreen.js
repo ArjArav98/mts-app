@@ -13,7 +13,10 @@ export default class UserVerificationScreen extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = { color: 'red' }
+		this.state = { 
+			color: 'red',
+			otp: ''
+		}
 	}
 
 	makeSmallLoginButtonsDisappear() {
@@ -29,6 +32,15 @@ export default class UserVerificationScreen extends Component {
 	/**************/
 
 	submitDetails() {
+		if(this.state.otp.trim().length != 6) {
+			showMessage({
+				message: "Sorry!", description: "The OTP must be 6 characters.",
+				type: "danger", icon: "danger",
+			})
+
+			return
+		}
+
 		let details = this.props.navigation.state.params.details
 
 		let apiUrl = 'http://cnagaraj-001-site1.ftempurl.com/JSonsString.asmx/SignUp?JosnRegistration=' + 
@@ -105,6 +117,7 @@ export default class UserVerificationScreen extends Component {
 						style={loginStyles.LoginFormInput}
 						placeholder="Enter OTP"
 						type="number"
+						onChangeText={(text) => this.setState({ otp: text })}
 						onFocus={() => this.makeSmallLoginButtonsDisappear()}
 						onBlur={() => this.makeSmallLoginButtonsAppear()}
 					/>

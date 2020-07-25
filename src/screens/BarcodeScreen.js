@@ -1,10 +1,16 @@
 import React, { Component, useState, useEffect } from "react";
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import { BarCodeScanner } from 'expo-barcode-scanner'
+import { Audio } from 'expo-av'
 
 import Colors from "../styles/Colors";
 import { FontText } from "../components/FontText";
+
+const playProductScannedBeepSound = async () => {
+	const soundObject = new Audio.Sound()
+	await soundObject.loadAsync(require('../../assets/sounds/beep.mp3'))
+	await soundObject.playAsync()
+}
 
 export default function BarcodeScreen(props) {
 	const [hasPermission, setHasPermission] = useState(null);
@@ -17,8 +23,9 @@ export default function BarcodeScreen(props) {
 		})();
 	}, []);
 
-	const handleBarCodeScanned = ({ type, data }) => {
+	const handleBarCodeScanned = async ({ type, data }) => {
 		setScanned(true)
+		await playProductScannedBeepSound()
 		props.navigation.navigate('AppHome', { itemId: data })
 	};
 
