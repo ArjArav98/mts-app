@@ -88,10 +88,12 @@ export const homeStyles = StyleSheet.create({
 		width: '100%',
 		flexDirection: 'row',
 		marginBottom: '2%',
-		backgroundColor: 'white'
+		backgroundColor: 'white',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	CartHomeButton: {
-		flex: 1,
+		width: '40%',
 		marginRight: '2%',
 		marginLeft: '2%'
 	},

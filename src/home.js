@@ -69,7 +69,7 @@ export class CartTable extends Component {
 /* This is the CartTableItem component. */
 export function CartTableItem(props) {
 
-	styles = StyleSheet.create({
+	const styles = StyleSheet.create({
 		CartTableRow: {
 			width: '100%',
 			flexDirection: 'row'
@@ -101,7 +101,6 @@ export function CartTableItem(props) {
 	})
 
 	const [quantity, setQuantity] = useState(1)
-	const rate = parseInt(props.rate)
 
 	return (
 		<View style={[styles.CartTableRow,{paddingBottom: '2%'}]}>
@@ -169,15 +168,18 @@ export class CartButton extends Component {
 		let navigateFunction = (this.props.navigate)? ()=>this.props.navigate(this.props.navigateScreen) : null ;
 	
 		return (
-			<View style={[this.styles.CartButtonContainer,this.props.style]}>
-				<FontText 	style={[this.styles.CartButton]} onPress={navigateFunction} 
-							title={this.props.title} fontStyle='light' />
-			</View>
+			<TouchableOpacity onPress={this.props.onPress} style={this.props.style}>
+				<View style={this.styles.CartButtonContainer}>
+					<FontText 	style={[this.styles.CartButton]} onPress={navigateFunction} 
+								title={this.props.title} fontStyle='light' />
+				</View>
+			</TouchableOpacity>
 		);
 	}
 
 	styles = StyleSheet.create({
 		CartButtonContainer: {
+			width: '100%',
 			backgroundColor: Colors.appBlueShade,
 			borderWidth: 4,
 			borderColor: Colors.appBlueShade,

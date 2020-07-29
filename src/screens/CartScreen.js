@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, ScrollView, Image } from 'react-native'
 import { homeStyles } from '../styles/styles'
-import { SectionHeader, CartTable, CartButton, HomeBreakLine } from '../home'
+import { CartTableItem, CartButton, HomeBreakLine } from '../home'
 import Colors from '../styles/Colors'
 import { FontText } from '../components/FontText'
 
@@ -34,13 +34,11 @@ export default class CartScreen extends Component {
 					<FontText title='Price' style={{flex: 1, fontSize: 18, textAlign: 'center'}} />
 				</View>
 
-				<ScrollView style={{backgroundColor: Colors.appInverseShade, height: 200}}>
+				<ScrollView style={{backgroundColor: Colors.appInverseShade, height: 180}}>
 
-					<HomeBreakLine />
-
-					<CartTable style={homeStyles.CartTable} />
-
-					<HomeBreakLine />
+					<CartTableItem 	product='Rice' rate={23} qty="1"  />
+					<CartTableItem 	product='Rice' rate={23} qty="1"  />
+					<CartTableItem 	product='Rice' rate={23} qty="1"  />
 
 				</ScrollView>
 
