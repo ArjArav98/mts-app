@@ -36,8 +36,8 @@ export default class LoginScreen extends Component {
 		const errorFunction = (error) => console.log("There was an error of some kind.")
 		const successFunction = () => console.log("It was a success!")
 
-		const txSuccessFunction = (tx, rs) => console.log(rs)
-		const txErrorFunction = (tx, error) => console.log(error)
+		const txSuccessFunction = (tx, rs) => console.log()
+		const txErrorFunction = (tx, error) => console.log()
 
 		try {
 			sqlDb.transaction((tx) => {
@@ -194,10 +194,7 @@ export default class LoginScreen extends Component {
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Login" buttonStyle="default" 
 									style={loginStyles.SubmitButton} 
-									onPress={() => {
-										//this.submitLoginDetails() 
-										this.props.navigation.navigate('AppNavigation')
-									}} />
+									onPress={() => this.submitLoginDetails() } />
 				</View>
 	
 			</View>

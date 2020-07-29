@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Image, Text, Button, TouchableOpacity, ScrollView, Keyboard, BackHandler } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage'
 import { showMessage } from 'react-native-flash-message'
+import * as SQLite from 'expo-sqlite';
 const axios = require('axios')
 
 import { homeStyles } from '../styles/styles'
@@ -32,8 +32,9 @@ export default class HomeScreen extends Component {
 		//We check if we have come from the Barcode Screen.
 		try {
 			const itemId = this.props.navigation.state.params.itemId
-			const cart = await this.getCart()
-			const itemData = await this.getProductData(itemId)
+			this.loadCartToState()
+			const cart = this.state.cart
+			let itemData = await this.getProductData(itemId)
 
 			this.setState({ comingFromBarcode: true })
 			
@@ -54,7 +55,12 @@ export default class HomeScreen extends Component {
 						qty: 1,
 						rate: itemData.prod_rate
 					})
-					await this.setCart(cart)
+					this.setCart(cart)
+
+					showMessage({
+						message: "Success", description: "Added to cart!",
+						type: "success", icon: "success",
+					})
 				}
 				else {
 					showMessage({
@@ -66,7 +72,7 @@ export default class HomeScreen extends Component {
 			
 			this.setState({ cart: cart })
 		} catch(error) {
-			//Nothing happens here
+			//console.log(error)
 		}
 	}
 
@@ -117,21 +123,39 @@ export default class HomeScreen extends Component {
 	/* CART FUNCTIONS */
 	/******************/
 
-	async getCart() {
-		try {
-			const value = await AsyncStorage.getItem('cart')
-			if(value !== null) return JSON.parse(value)
-		} catch(e) {
-			return null
-		}
+	loadCartToState() {
+		const sqlDb = SQLite.openDatabase('cart.db')
+
+		const errorFunction = (error) => {}
+		const successFunction = () => {}
+
+		const txErrorFunction = (tx, error) => console.log()
+
+		sqlDb.transaction((tx) => {
+			tx.executeSql("select * from cart", [], (_, { rows }) =>
+				this.setState({ cart: JSON.parse(rows['_array'][0]['cartItems']) })	
+			);
+		}, errorFunction, successFunction)
 	}
 
-	async setCart(cart) {
-		try {
-			await AsyncStorage.setItem('cart', JSON.stringify(cart))
-		} catch (error) {
-			//Nothing happens here
-		}
+	setCart(cart) {
+		const sqlDb = SQLite.openDatabase('cart.db')
+
+		const errorFunction = (error) => {}
+		const successFunction = () => {}
+
+		const txErrorFunction = (tx, error) => console.log()
+		const txSuccessFunction = (tx, rs) => console.log()
+
+		sqlDb.transaction((tx) => {
+			tx.executeSql('DELETE FROM cart;', 
+			[], txSuccessFunction, txErrorFunction)
+		}, errorFunction, successFunction)
+
+		sqlDb.transaction((tx) => {
+			tx.executeSql('INSERT INTO cart VALUES (?);', 
+			[JSON.stringify(cart)], txSuccessFunction, txErrorFunction)
+		}, errorFunction, successFunction)
 	}
 
 	cartContains(id, cart) {
@@ -145,6 +169,27 @@ export default class HomeScreen extends Component {
 								rate={cartItem.rate} qty="1"  />
 			)
 		})
+	}
+
+	/**********************/
+	/* CHECKOUT FUNCTIONS */
+	/**********************/
+
+	cartContainsNoItems(cart) {
+		if(cart.items.length > 0) return false
+		return true
+	}
+
+	navigateToCheckout(cart) {
+		if(this.cartContainsNoItems(cart)) {
+			showMessage({
+				message: "Warning", description: "Your cart has 0 items.",
+				type: "warning", icon: "warning",
+			})
+			return
+		}
+
+		this.props.navigation.navigate('Cart')
 	}
 
 	render() {
@@ -195,7 +240,7 @@ export default class HomeScreen extends Component {
 
 						<CartButton title="Checkout" style={[homeStyles.HomeCartButton, 
 															{width: '35%', marginLeft: '32.5%'}]}
-									navigate={navigate} navigateScreen={'Cart'} />
+									onPress={() => this.navigateToCheckout(this.state.cart)} />
 					</ScrollView>
 					<HomeBreakLine />
 				</View>
