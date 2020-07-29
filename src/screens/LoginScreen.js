@@ -3,8 +3,8 @@ import { loginStyles } from '../styles/styles'
 import React, { Component } from 'react'
 import { View, Image } from 'react-native'
 import Colors from '../styles/Colors'
+import * as SQLite from 'expo-sqlite';
 
-import AsyncStorage from '@react-native-community/async-storage';
 import KeyboardListener from 'react-native-keyboard-listener'
 import { showMessage } from 'react-native-flash-message'
 
@@ -31,7 +31,32 @@ export default class LoginScreen extends Component {
     }
 
 	async componentDidMount() {
-		await AsyncStorage.setItem('cart', '{ "items": [] }')
+		const sqlDb = SQLite.openDatabase('cart.db')
+
+		const errorFunction = (error) => console.log("There was an error of some kind.")
+		const successFunction = () => console.log("It was a success!")
+
+		const txSuccessFunction = (tx, rs) => console.log(rs)
+		const txErrorFunction = (tx, error) => console.log(error)
+
+		try {
+			sqlDb.transaction((tx) => {
+				tx.executeSql('CREATE TABLE cart (cartItems varchar(5000));', 
+				[], txSuccessFunction, txErrorFunction)
+			}, errorFunction, successFunction)
+
+			sqlDb.transaction((tx) => {
+				tx.executeSql('DELETE FROM cart;', 
+				[], txSuccessFunction, txErrorFunction)
+			}, errorFunction, successFunction)
+
+			sqlDb.transaction((tx) => {
+				tx.executeSql('INSERT INTO cart VALUES (?);', 
+				[JSON.stringify({ items: [] })], txSuccessFunction, txErrorFunction)
+			}, errorFunction, successFunction)
+		} catch(error) {
+			//Nothing happens here.
+		}
 	}
 
 	makeSmallLoginButtonsDisappear() {
@@ -169,7 +194,10 @@ export default class LoginScreen extends Component {
 				<View style={[loginStyles.SubmitContainer, loginStyles.SubmitContainerWidth]}>
 					<LoginButton 	title="Login" buttonStyle="default" 
 									style={loginStyles.SubmitButton} 
-									onPress={() => this.submitLoginDetails() } />
+									onPress={() => {
+										//this.submitLoginDetails() 
+										this.props.navigation.navigate('AppNavigation')
+									}} />
 				</View>
 	
 			</View>

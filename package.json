@@ -10,7 +10,6 @@
   "dependencies": {
     "@expo-google-fonts/nunito-sans": "^0.1.0",
     "@expo/vector-icons": "^10.2.0",
-    "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.6.1",
     "@react-navigation/drawer": "^5.8.2",
@@ -24,6 +23,7 @@
     "expo-barcode-scanner": "^8.1.0",
     "expo-font": "^8.1.1",
     "expo-splash-screen": "^0.2.3",
+    "expo-sqlite": "^8.2.1",
     "expo-updates": "~0.2.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
