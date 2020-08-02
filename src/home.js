@@ -79,12 +79,12 @@ export function CartTableItem(props) {
 		},
 		CartTableRowQtyElement: {
 			flex: 0.7,
-			flexDirection: 'row'
+			flexDirection: 'row',
 		},
 		CartTableText: {
 			color: 'black',
 			fontSize: 17,
-			flexShrink: 1,
+			flex: 1,
 			width: '100%',
 			justifyContent: 'center',
 			textAlign: 'center'
@@ -100,8 +100,6 @@ export function CartTableItem(props) {
 		},
 	})
 
-	const [quantity, setQuantity] = useState(1)
-
 	return (
 		<View style={[styles.CartTableRow,{paddingBottom: '2%'}]}>
 			<View style={styles.CartTableRow}>
@@ -110,17 +108,19 @@ export function CartTableItem(props) {
 				</View>
 				<View style={[styles.CartTableRowQtyElement]}>
 					<View style={styles.CartTableImgContainer}>
-						<TouchableOpacity onPress={() => setQuantity(quantity+1)}>
+						<TouchableOpacity onPress={() => {
+							props.onQuantityChange(1)
+						}}>
 							<Image style={styles.CartTableImg}
 									source={require('../assets/images/add.png')} />
 						</TouchableOpacity>
 					</View>
-					<View style={[styles.CartTableImgContainer,{flex:0.3}]}>
-						<FontText title={quantity} style={[styles.CartTableText]} fontStyle={'light'} />
+					<View style={[styles.CartTableImgContainer,{flex:0.5}]}>
+						<FontText title={props.qty} style={[styles.CartTableText]} fontStyle={'light'} />
 					</View>
 					<View style={styles.CartTableImgContainer}>
 						<TouchableOpacity onPress={() => {
-							(quantity > 0)? setQuantity(quantity-1) : console.log('')
+							(props.qty > 0)? props.onQuantityChange(-1) : {}
 						}}>
 							<Image style={styles.CartTableImg}
 									source={require('../assets/images/minus.png')} />
@@ -128,7 +128,7 @@ export function CartTableItem(props) {
 					</View>
 				</View>
 				<View style={styles.CartTableRowElement}>
-					<FontText 	title={"Rs " + (props.rate * quantity)} 
+					<FontText 	title={"₹ " + (props.rate * props.qty)} 
 								style={[styles.CartTableText]} fontStyle={'light'} />
 				</View>
 			</View>

@@ -16,61 +16,43 @@ export default class HomeScreen extends Component {
 
 		this.state = {
 			comingFromBarcode: false,
+			dummy: true,
 
 			cart: {
 				items: []
 			}
 		}
 
-		BackHandler.addEventListener(
-			"hardwareBackPress",
-			() => true
-		);
+		BackHandler.addEventListener( "hardwareBackPress", () => true )
+		this.loadCartToState()
 	}
 
 	async componentDidMount() {
 		//We check if we have come from the Barcode Screen.
+
 		try {
-			const itemId = this.props.navigation.state.params.itemId
-			this.loadCartToState()
+			const newCart = this.props.navigation.state.params.cart
 			const cart = this.state.cart
-			let itemData = await this.getProductData(itemId)
 
-			this.setState({ comingFromBarcode: true })
-			
-			if(this.productIsNotInDatabase(itemData)) {
-				showMessage({
-					message: "Error", description: "This product is not present in the database.",
-					type: "danger", icon: "danger",
-				})
-			}
-			else {
-				itemData = this.extractProductInformation(itemData)
+			for(let i=0; i<newCart.items.length; i+=1) {
+				const item = newCart.items[i]
 
-				if(this.cartContains(itemId, cart) === false) {
-					cart.items.push({
-						id: itemId,
-						sku: itemData.prod_code,
-						name: itemData.prod_name, 
-						qty: 1,
-						rate: itemData.prod_rate
-					})
-					this.setCart(cart)
-
-					showMessage({
-						message: "Success", description: "Added to cart!",
-						type: "success", icon: "success",
-					})
+				if(this.cartContains(item.prod_code)) {
+					this.updateCartItemQuantity(item.prod_code, item.prod_qty)
+					continue
 				}
-				else {
-					showMessage({
-						message: "Warning", description: "This product is already present in cart.",
-						type: "warning", icon: "warning",
-					})
-				}
+
+				cart.items.push({
+					id: item.prod_code,
+					sku: item.prod_code,
+					name: item.prod_name, 
+					qty: item.prod_qty,
+					rate: item.prod_rate
+				})	
 			}
 			
-			this.setState({ cart: cart })
+			this.setState({ cart: cart, comingFromBarcode: true })
+			this.setCart(cart)
 		} catch(error) {
 			//console.log(error)
 		}
@@ -83,40 +65,6 @@ export default class HomeScreen extends Component {
 	navigateToBarcode() {
 		if(this.state.comingFromBarcode === true) this.props.navigation.goBack()
 		else this.props.navigation.navigate('Barcode')
-	}
-
-	/*********************/
-	/* PRODUCT FUNCTIONS */
-	/*********************/
-
-	async getProductData(productId) {
-		let apiUrl = 'http://cnagaraj-001-site1.ftempurl.com/JSonsString.asmx/Scan2Product?jsonstr=' + 
-					'%5B%7B%22mobileno%22%3A%228939227281%22%2C' + 
-					'%22barcodedetails%22%3A%22' + productId + '%22%2C' + 
-					'%22qty%22%3A%221%22%7D%5D'
-
-		const productData = await axios.get(apiUrl)
-								.then(function (response) {
-									return response.data
-								})
-								.catch(function (error) {
-									console.log(error);
-								});
-		
-		return productData
-	}
-
-	productIsNotInDatabase(productData) {
-		if(productData.includes("not been initialised")) return true
-		else if(productData.includes("does not exist")) return true
-		return false
-	}
-
-	extractProductInformation(response) {
-		const start = response.search(/\[/)
-		const end = response.search(/]/)
-	  
-		return JSON.parse(response.substring(start,end+1))
 	}
 
 	/******************/
@@ -158,15 +106,49 @@ export default class HomeScreen extends Component {
 		}, errorFunction, successFunction)
 	}
 
-	cartContains(id, cart) {
-		return cart.items.some((item) => item.id === id)
+	updateCartItemQuantity(id, qty) {
+		if(this.cartContainsNoItems(this.state.cart)) return
+
+		let cart = this.state.cart
+		for(let iter=0; iter<cart.items.length; iter+=1) {
+			if(cart.items[iter].id === id) {
+				cart.items[iter].qty += qty
+				break
+			}
+		}
+
+		this.setState({ cart: cart })
+	}
+
+	cartContains(id) {
+		if(this.cartContainsNoItems(this.state.cart)) return false
+		return this.state.cart.items.some((item) => item.id === id)
+	}
+
+	getCartAmount() {
+		if(this.cartContainsNoItems(this.state.cart)) return 0
+		
+		let total = 0
+		for(let iter=0; iter<this.state.cart.items.length; iter+=1) {
+			const item = this.state.cart.items[iter]
+			total += (item.qty*item.rate)
+		}
+
+		return total
 	}
 
 	getCartJSX() {
+		if(this.cartContainsNoItems(this.state.cart)) {
+			return <Text style={{textAlign: 'center', fontSize: 16}}>
+						This cart contains no items.
+					</Text>
+		}
 		return this.state.cart.items.map((cartItem) => {
 			return (
-				<CartTableItem 	product={cartItem.name} key={cartItem.id}
-								rate={cartItem.rate} qty="1"  />
+				<CartTableItem 	
+					product={cartItem.name} key={cartItem.id}
+					rate={cartItem.rate} qty={cartItem.qty + ''}
+					onQuantityChange={(qty) => this.updateCartItemQuantity(cartItem.id, qty)}  />
 			)
 		})
 	}
@@ -197,6 +179,7 @@ export default class HomeScreen extends Component {
 		let { navigate } = this.props.navigation
 		Keyboard.dismiss()
 		
+		console.log(this.state.cart)
 		return (
 			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				
@@ -220,8 +203,9 @@ export default class HomeScreen extends Component {
 						<FontText 	title='Cart List' style={{	flex: 1, fontSize: 19, color: 'white',
 																textAlign: 'center'}}
 									fontStyle='light' />
-						<FontText 	title='₹ 430.00' style={{	flex: 1, fontSize: 19, color: 'white',
-																textAlign: 'right', paddingRight: '3%'}}
+						<FontText 	title={'₹ ' + this.getCartAmount()} 
+									style={{	flex: 1, fontSize: 19, color: 'white',
+												textAlign: 'right', paddingRight: '3%'}}
 									fontStyle='light' />
 					</View>
 

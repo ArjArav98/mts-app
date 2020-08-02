@@ -96,12 +96,20 @@ export default function BarcodeScreen(props) {
 			}
 
 			await playProductScannedBeepSound()
-			
+			showMessage({
+				message: "Success", description: "Product added to cart.",
+				type: "success", icon: "success",
+			})
+
 			return
 		}
 
 		cartItems.items.push(extractProductInformation(productData))
 		await playProductScannedBeepSound()
+		showMessage({
+			message: "Success", description: "Product added to cart.",
+			type: "success", icon: "success",
+		})
 	};
 
 	if (hasPermission === null) {
@@ -140,7 +148,7 @@ export default function BarcodeScreen(props) {
 								style={{width: '60%', marginLeft: '20%', borderRadius: 4,
 										textAlign: 'center', fontSize: 20, backgroundColor: 'white', padding: '2%'}} />
 					</TouchableOpacity>
-					<TouchableOpacity onPress={() => props.navigation.navigate('AppHome')}>
+					<TouchableOpacity onPress={() => props.navigation.navigate('AppHome', { cart: cartItems})}>
 						<FontText 
 								title='GO BACK'
 								fontStyle='light'
