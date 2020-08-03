@@ -87,6 +87,7 @@ export default function BarcodeScreen(props) {
 				type: "danger", icon: "danger",
 			})
 
+			return
 		}
 		
 		if(productIsAlreadyInCart(cartItems, '1')) {
@@ -131,7 +132,7 @@ export default function BarcodeScreen(props) {
 					<FontText 
 						title='Please place the barcode inside the box and tap screen to scan!'
 						fontStyle='light'
-						style={{width: '60%', marginLeft: '20%', borderRadius: 4,
+						style={{width: '50%', marginLeft: '25%', borderRadius: 4,
 								textAlign: 'center', fontSize: 20, backgroundColor: 'white', padding: '2%'}} />
 				</View>
 				<View style={{flex: 1, backgroundColor: 'rgba(255,255,255,0,5)', flexDirection: 'row'}}>
@@ -144,14 +145,14 @@ export default function BarcodeScreen(props) {
 						<FontText 
 								title='SCAN'
 								fontStyle='light'
-								style={{width: '60%', marginLeft: '20%', borderRadius: 4,
+								style={{width: '50%', marginLeft: '25%', borderRadius: 4,
 										textAlign: 'center', fontSize: 20, backgroundColor: 'white', padding: '2%'}} />
 					</TouchableOpacity>
 					<TouchableOpacity onPress={() => props.navigation.navigate('AppHome', { cart: cartItems})}>
 						<FontText 
 								title='GO BACK'
 								fontStyle='light'
-								style={{width: '60%', marginLeft: '20%', borderRadius: 4,
+								style={{width: '50%', marginLeft: '25%', borderRadius: 4,
 										textAlign: 'center', fontSize: 20, backgroundColor: 'white', 
 										padding: '2%', marginTop: '4%'}} />
 					</TouchableOpacity>

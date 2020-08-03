@@ -52,7 +52,7 @@ export default class HomeScreen extends Component {
 			}
 			
 			this.setState({ cart: cart, comingFromBarcode: true })
-			this.setCart(cart)
+			this.setCart(cart) 
 		} catch(error) {
 			//console.log(error)
 		}
@@ -126,9 +126,9 @@ export default class HomeScreen extends Component {
 	}
 
 	getCartAmount() {
-		if(this.cartContainsNoItems(this.state.cart)) return 0
+		if(this.cartContainsNoItems(this.state.cart)) return 0.00
 		
-		let total = 0
+		let total = 0.00
 		for(let iter=0; iter<this.state.cart.items.length; iter+=1) {
 			const item = this.state.cart.items[iter]
 			total += (item.qty*item.rate)
@@ -215,16 +215,15 @@ export default class HomeScreen extends Component {
 					</View>
 
 					<ScrollView style={{width: '100%', marginTop: '2%'}}>
-						
 						<View style={{width: '100%'}}>
 							<HomeBreakLine />
 							{ this.getCartJSX() }
 						</View>
-
-						<CartButton title="Checkout" style={[homeStyles.HomeCartButton, 
-															{width: '35%', marginLeft: '32.5%'}]}
-									onPress={() => this.navigateToCheckout(this.state.cart)} />
 					</ScrollView>
+
+					<CartButton title="Checkout" 
+								style={[homeStyles.HomeCartButton, {width: '35%', marginLeft: '0%'}]}
+								onPress={() => this.navigateToCheckout(this.state.cart)} />
 					<HomeBreakLine />
 				</View>
 	
