@@ -19,6 +19,44 @@ export default class CartScreen extends Component {
 		this.setState({ cart: this.props.navigation.state.params.cart })
 	}
 
+	updateCartItemQuantity(id, qty) {
+		if(this.state.cart.items.length === 0) return
+
+		let cart = this.state.cart
+		for(let iter=0; iter<cart.items.length; iter+=1) {
+			if(cart.items[iter].id === id) {
+				cart.items[iter].qty += qty
+				break
+			}
+		}
+
+		this.setState({ cart: cart })
+	}
+
+	getTotalCartAmount() {
+		if(this.state.cart.items.length === 0) return 0
+		
+		let total = 0
+		for(let iter=0; iter<this.state.cart.items.length; iter+=1) {
+			const item = this.state.cart.items[iter]
+			total += (item.qty*item.rate)
+		}
+
+		return total
+	}
+
+	getTotalCartItemsNo() {
+		if(this.state.cart.items.length === 0) return 0
+		
+		let total = 0
+		for(let iter=0; iter<this.state.cart.items.length; iter+=1) {
+			const item = this.state.cart.items[iter]
+			total += item.qty
+		}
+
+		return total
+	}
+
 	getCartJSX() {
 		if(this.state.cart.items.length === 0) {
 			return <Text style={{textAlign: 'center', fontSize: 16}}>
@@ -48,10 +86,11 @@ export default class CartScreen extends Component {
 						<Image 	source={require('../../assets/images/wallet.png')}
 								style={{width: 36, height: 26}} />
 					</View>
-					<FontText 	title='₹ 430.00' style={{	flex: 2, fontSize: 19, color: 'white',
-															textAlign: 'left'}}
+					<FontText 	title={'₹ ' + this.getTotalCartAmount()} 
+								style={{	flex: 2, fontSize: 19, color: 'white', textAlign: 'left'}}
 								fontStyle='light' />
-					<FontText 	title='Qty: 7' style={{	flex: 2, fontSize: 19, color: 'white',
+					<FontText 	title={'Qty: ' + this.getTotalCartItemsNo()} 
+								style={{	flex: 2, fontSize: 19, color: 'white',
 															textAlign: 'right', paddingRight: '3%'}}
 								fontStyle='light' />
 				</View>
