@@ -171,7 +171,7 @@ export default class HomeScreen extends Component {
 			return
 		}
 
-		this.props.navigation.navigate('Cart')
+		this.props.navigation.navigate('Cart', { cart: cart })
 	}
 
 	render() {
@@ -179,7 +179,6 @@ export default class HomeScreen extends Component {
 		let { navigate } = this.props.navigation
 		Keyboard.dismiss()
 		
-		console.log(this.state.cart)
 		return (
 			<View style={[homeStyles.HomeContainer, {backgroundColor: Colors.appInverseShade}]}>
 				

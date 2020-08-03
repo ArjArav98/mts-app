@@ -87,7 +87,6 @@ export default function BarcodeScreen(props) {
 				type: "danger", icon: "danger",
 			})
 
-			return
 		}
 		
 		if(productIsAlreadyInCart(cartItems, '1')) {
@@ -104,7 +103,7 @@ export default function BarcodeScreen(props) {
 			return
 		}
 
-		cartItems.items.push(extractProductInformation(productData))
+		cartItems.items.push({ prod_name: 'Ponni Rice', prod_rate: 123, prod_code: '1', prod_qty: 2})
 		await playProductScannedBeepSound()
 		showMessage({
 			message: "Success", description: "Product added to cart.",

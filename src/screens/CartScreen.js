@@ -1,11 +1,39 @@
 import React, { Component } from "react";
-import { View, ScrollView, Image } from 'react-native'
+import { View, ScrollView, Image, Text } from 'react-native'
 import { homeStyles } from '../styles/styles'
 import { CartTableItem, CartButton, HomeBreakLine } from '../home'
 import Colors from '../styles/Colors'
 import { FontText } from '../components/FontText'
 
 export default class CartScreen extends Component {
+
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			cart: { items: [] }
+		}
+	}
+
+	componentDidMount() {
+		this.setState({ cart: this.props.navigation.state.params.cart })
+	}
+
+	getCartJSX() {
+		if(this.state.cart.items.length === 0) {
+			return <Text style={{textAlign: 'center', fontSize: 16}}>
+						This cart contains no items.
+					</Text>
+		}
+		return this.state.cart.items.map((cartItem) => {
+			return (
+				<CartTableItem 	
+					product={cartItem.name} key={cartItem.id}
+					rate={cartItem.rate} qty={cartItem.qty + ''}
+					onQuantityChange={(qty) => this.updateCartItemQuantity(cartItem.id, qty)}  />
+			)
+		})
+	}
 
 	render() {
 	
@@ -36,9 +64,7 @@ export default class CartScreen extends Component {
 
 				<ScrollView style={{backgroundColor: Colors.appInverseShade, height: 180}}>
 
-					<CartTableItem 	product='Rice' rate={23} qty="1"  />
-					<CartTableItem 	product='Rice' rate={23} qty="1"  />
-					<CartTableItem 	product='Rice' rate={23} qty="1"  />
+				{ this.getCartJSX() }
 
 				</ScrollView>
 
